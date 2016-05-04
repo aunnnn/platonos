@@ -28,8 +28,7 @@
             "^meteor/"
           ]
         }
-      ],
-      "indent": ["error", "tab"]
+      ]
     }
   },
   "dependencies": {

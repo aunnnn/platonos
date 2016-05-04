@@ -22,3 +22,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 practicalmeteor:mocha
 semantic:ui
 flemay:less-autoprefixer
+react-meteor-data
