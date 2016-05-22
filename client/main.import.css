@@ -455,6 +455,9 @@ th {
 - Media Queries
 */
 
+div {
+  box-sizing: border-box;
+}
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

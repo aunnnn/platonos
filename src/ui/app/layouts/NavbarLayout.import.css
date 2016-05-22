@@ -21,5 +21,9 @@
     display: inline-block;
     float: right;
     height: 55px;
+    padding: 10px 0;
+    > .fa {
+      font-size: 22px;
+    }
   }
 }
