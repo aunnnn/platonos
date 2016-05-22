@@ -24,6 +24,29 @@
     padding: 10px 0;
     > .fa {
       font-size: 22px;
+      color: #999;
+      &:hover {
+        color: #222;
+      }
     }
+    > .fa-bell-o {
+      margin-top: 3px;
+    }
+    > .fa-comments {
+      font-size: 28px;
+    }
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 10px
+    }
+  }
+  .user-pic {
+    border-radius: 50%;
+  }
+  .user-name {
+    margin: 0;
+    color: #999;
+    font-size: 16px;
   }
 }
