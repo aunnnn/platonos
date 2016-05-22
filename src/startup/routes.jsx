@@ -7,7 +7,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import Store from '../ui/Store.js';
 
 // import Containers
-import AppLayout from '../ui/app/layouts/AppLayout.jsx';
+import AppContainer from '../ui/app/containers/AppContainer.jsx';
 import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
 import LoginPageLayout from '../ui/auth/layouts/LoginPageLayout.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
@@ -17,7 +17,7 @@ const history = syncHistoryWithStore(browserHistory, Store);
 export const renderRoutes = () => (
   <Provider store={Store}>
     <Router history={history}>
-      <Route path="/" component={AppLayout}>
+      <Route path="/" component={AppContainer}>
         <Route path="feed" component={FeedLayout} />
         <Route path="login" component={LoginPageLayout} />
         <Route path="signup" component={SignupPageLayout} />

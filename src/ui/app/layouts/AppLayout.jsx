@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -8,22 +9,27 @@ import NavbarLayout from './NavbarLayout.jsx';
 class AppLayout extends Component {
   constructor(props) {
     super(props);
+    this.logout = this.logout.bind(this);
   }
-
+  logout(event) {
+    Meteor.logout();
+  }
   render() {
-    // const {
-    //   children,
-    //   location,
-    // } = this.props;
+    const {
+      user,
+      children,
+    } = this.props;
 
-    // const clonedChildren = children && React.cloneElement(children, {
-    //   key: location.pathname,
-    // });
-
-    return (
-      <div>
-        <NavbarLayout />
-
+    var menu = "";
+    if (user) {
+      menu = (
+        <div>
+          <Link to="/feed">feed</Link>
+          <button onClick={this.logout}>logout</button>
+        </div>
+      );
+    } else {
+      menu = (
         <div>
           <Link to="/feed">feed</Link>
           <br />
@@ -31,8 +37,21 @@ class AppLayout extends Component {
           <br />
           <Link to="/signup">signup</Link>
         </div>
+      );
+    }
+
+    return (
+      <div>
+        <NavbarLayout />
+        <div>
+          {menu}
+        </div>
+        <div>
+          {user ? "Logged in as: "+user.emails[0].address: ""}
+        </div>
+
         <div className="child-content">
-          {this.props.children}
+          {children}
         </div>
       </div>
     );
@@ -46,8 +65,8 @@ const mapStateToProps = (state) => (
 );
 
 AppLayout.propTypes = {
-  children: React.PropTypes.element, // matched child route component
-  location: React.PropTypes.object,  // current router location
+  user: React.PropTypes.object,
+  children: React.PropTypes.object,
 };
 
 export default connect(mapStateToProps)(AppLayout);
