@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -9,22 +10,28 @@ import NavbarLayout from './NavbarLayout.jsx';
 class AppLayout extends Component {
   constructor(props) {
     super(props);
+    this.logout = this.logout.bind(this);
   }
-
+  logout() {
+    Meteor.logout( err => {
+      // go to first page automatically
+      // cannnot use '/' because it will not reevaluate requireAuth*
+      this.context.router.push('/login');
+    });
+  }
   render() {
+    const {
+      user,
+      children,
+    } = this.props;
     return (
       <div>
         <NavbarLayout />
-
         <div>
-          <Link to="/feed">feed</Link>
-          <br />
-          <Link to="/login">login</Link>
-          <br />
-          <Link to="/signup">signup</Link>
+          {user ? 'Logged in as:' + user.emails[0].address : ''}
         </div>
         <div className="child-content">
-          {this.props.children}
+          {children}
         </div>
       </div>
     );
@@ -42,5 +49,11 @@ const mapStateToProps = (state) => (
     count: state.count,
   }
 );
+
+AppLayout.propTypes = {
+  user: React.PropTypes.object,
+  children: React.PropTypes.object,
+  router: React.PropTypes.object,
+};
 
 export default connect(mapStateToProps)(AppLayout);
