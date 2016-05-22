@@ -1,0 +1,15 @@
+{
+  "root": "src",
+  "devServer": {
+    "host": "localhost"
+  },
+  "css": {
+    "modules": false
+  },
+  "postcss": [
+    ["autoprefixer", { "browser": "last 2 versions" }],
+    "postcss-nested",
+    "postcss-import",
+    "css-mqpacker"
+  ]
+}
