@@ -20,7 +20,7 @@ class AppLayout extends Component {
             Platonos
           </div>
         </div>
-        <div className="content">
+        <div className="child-content">
 
         </div>
         <AddCount count={this.props.count} />
