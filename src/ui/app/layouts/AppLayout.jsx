@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // components
 import AddCount from '../components/AddCount.jsx';
+import NavbarLayout from 'ui/navbar/layouts/NavbarLayout.jsx';
 
 class AppLayout extends Component {
   constructor(props) {
@@ -14,14 +15,14 @@ class AppLayout extends Component {
 
   render() {
     return (
-      <div>      
+      <div>
+        <NavbarLayout />
         <div className="navbar">
           <div className="logo">
             Platonos
           </div>
         </div>
         <div className="content">
-
         </div>
         <AddCount count={this.props.count} />
       </div>
