@@ -26,18 +26,31 @@ export default class LoginPageLayout extends React.Component {
     Meteor.loginWithPassword(email, password, error => {
       if (error) {
         console.log(error.reason);
+        this.setState({
+          errors: { none: error.reason },
+        });
       } else {
-        console.log('Login success');
+        this.context.router.push('/');
       }
-      this.context.router.push('/');
     });
   }
   render() {
+
+    const { errors } = this.state;
+    const errorMessages = Object.keys(errors).map(key => errors[key]);
+
     return (
       <div>
         <form onSubmit={this.onSubmit}>
           <div className="row">
             <h4>Login here</h4>
+
+            <div>
+              {errorMessages.map(msg => (
+                <p>{msg}</p>
+              ))}
+            </div>
+
             <label>Email</label>
             <input
               className="u-full-width"

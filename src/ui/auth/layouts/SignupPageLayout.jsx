@@ -1,6 +1,6 @@
 import React from 'react';
 import { Accounts } from 'meteor/accounts-base';
-
+import { Link } from 'react-router';
 export default class SignupPageLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -81,7 +81,8 @@ export default class SignupPageLayout extends React.Component {
             />
 
 
-            <input className="button-primary" type="submit" value="Login" />
+            <input className="button-primary" type="submit" value="Signup" /> or
+            <Link to="/login">Login</Link>
           </div>
         </form>
       </div>

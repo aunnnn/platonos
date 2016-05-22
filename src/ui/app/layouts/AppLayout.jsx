@@ -11,8 +11,12 @@ class AppLayout extends Component {
     super(props);
     this.logout = this.logout.bind(this);
   }
-  logout(event) {
-    Meteor.logout();
+  logout() {
+    Meteor.logout( err => {
+      // go to first page automatically
+      // cannnot use '/' because it will not reevaluate requireAuth*
+      this.context.router.push('/login');
+    });
   }
   render() {
     const {
@@ -20,11 +24,10 @@ class AppLayout extends Component {
       children,
     } = this.props;
 
-    var menu = "";
+    let menu = "";
     if (user) {
       menu = (
         <div>
-          <Link to="/feed">feed</Link>
           <button onClick={this.logout}>logout</button>
         </div>
       );
@@ -67,6 +70,9 @@ const mapStateToProps = (state) => (
 AppLayout.propTypes = {
   user: React.PropTypes.object,
   children: React.PropTypes.object,
+};
+AppLayout.contextTypes = {
+  router: React.PropTypes.object,
 };
 
 export default connect(mapStateToProps)(AppLayout);

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
-
+import { Meteor } from 'meteor/meteor';
 // import store
 import Store from '../ui/Store.js';
 
@@ -14,13 +14,27 @@ import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 
 const history = syncHistoryWithStore(browserHistory, Store);
 
+// check auth
+function requireAuth(nextState, replace) {
+  if (!Meteor.user()) {
+    console.log("no user");
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname },
+    });
+  } else {
+    console.log("with user");
+  }
+}
+
+
 export const renderRoutes = () => (
   <Provider store={Store}>
     <Router history={history}>
+      <Route path="/login" component={LoginPageLayout} />
+      <Route path="/signup" component={SignupPageLayout} />
       <Route path="/" component={AppContainer}>
-        <Route path="feed" component={FeedLayout} />
-        <Route path="login" component={LoginPageLayout} />
-        <Route path="signup" component={SignupPageLayout} />
+        <IndexRoute component={FeedLayout} onEnter={requireAuth}/>
       </Route>
     </Router>
   </Provider>
