@@ -1,0 +1,11 @@
+.horizontal-divider {
+	display: block;
+	background-color: black;
+	width: 90%;
+	height: 2px;
+	margin: 2px 0;
+}
+
+.sidebarlist-wrapper {
+	background-color: yellow;
+}
