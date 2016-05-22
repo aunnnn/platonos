@@ -14,8 +14,15 @@ class AppLayout extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Hellooo Are u ready for Platonosss~~~~</h1>
+      <div>      
+        <div className="navbar">
+          <div className="logo">
+            Platonos
+          </div>
+        </div>
+        <div className="content">
+
+        </div>
         <AddCount count={this.props.count} />
       </div>
     );
