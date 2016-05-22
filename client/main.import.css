@@ -455,13 +455,16 @@ th {
 - Media Queries
 */
 
+div {
+  box-sizing: border-box;
+}
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 1001px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
@@ -557,6 +560,10 @@ body {
   font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222; }
 
+.merr-font {
+  font-family: 'Merriweather', Palatino, serif;
+  font-weight: 400px;
+}
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

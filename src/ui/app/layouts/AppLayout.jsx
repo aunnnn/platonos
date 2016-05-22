@@ -3,15 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 // components
-import AddCount from '../components/AddCount.jsx';
-import NavbarLayout from 'ui/navbar/layouts/NavbarLayout.jsx';
+import NavbarLayout from './NavbarLayout.jsx';
 
 class AppLayout extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 0,
-    };
   }
 
   render() {
@@ -27,11 +23,6 @@ class AppLayout extends Component {
     return (
       <div>
         <NavbarLayout />
-        <div className="navbar">
-          <div className="logo">
-            Platonos
-          </div>
-        </div>
 
         <div>
           <Link to="/feed">feed</Link>
@@ -43,7 +34,6 @@ class AppLayout extends Component {
         <div className="child-content">
           {this.props.children}
         </div>
-        <AddCount count={this.props.count} />
       </div>
     );
   }
