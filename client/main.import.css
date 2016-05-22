@@ -560,6 +560,10 @@ body {
   font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222; }
 
+.merr-font {
+  font-family: 'Merriweather', Palatino, serif;
+  font-weight: 400px;
+}
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
