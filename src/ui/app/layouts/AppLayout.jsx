@@ -26,10 +26,13 @@ class AppLayout extends Component {
     } = this.props;
     return (
       <div>
+        {/* Navbar & Padding */}
         <NavbarLayout />
+        <div style={{ height: '55px', width: '100%' }}></div>
         <div>
           {user ? 'Logged in as:' + user.emails[0].address : ''}
         </div>
+        {/* Children */}
         <div className="child-content">
           {children}
         </div>
