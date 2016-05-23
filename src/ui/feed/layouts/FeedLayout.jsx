@@ -6,6 +6,10 @@ import SidebarList from '../components/SidebarList.jsx';
 class FeedLayout extends Component {
 
   render() {
+    const {
+      children,
+    } = this.props;
+
     return (
       <div className="feed-wrapper container">
         <div className="row">
@@ -13,7 +17,7 @@ class FeedLayout extends Component {
             <SidebarList />
           </div>
           <div className="seven columns">
-            fffffffffffffffffffffffffffffffffffffffffffffff
+            {children}
           </div>
           <div className="two columns">
             Message from Founders: fffff...
@@ -26,3 +30,7 @@ class FeedLayout extends Component {
 }
 
 export default FeedLayout;
+
+FeedLayout.propTypes = {
+  children: React.PropTypes.object,
+};
