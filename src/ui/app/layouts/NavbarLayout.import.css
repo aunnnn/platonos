@@ -93,19 +93,19 @@
     &.setting {
       width: 200px;
       font-size: 17px;
-      padding: 10px 20px;
     }
     .item {
       cursor: pointer;
     }
     hr {
-      margin: 10px -20px;
+      margin: 0;
     }
   }
   .setting .item {
-    padding: 2px;
+    padding: 7px 20px;
     &:hover {
       color: #000;
+      background-color: #fcfcfc;
     }
   }
   .discuss .item {
