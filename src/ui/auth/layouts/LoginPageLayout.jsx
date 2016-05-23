@@ -5,6 +5,7 @@ export default class LoginPageLayout extends React.Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.loginWithFacebook = this.loginWithFacebook.bind(this);
     this.state = { errors: {} };
   }
   onSubmit(event) {
@@ -29,6 +30,17 @@ export default class LoginPageLayout extends React.Component {
         this.setState({
           errors: { none: error.reason },
         });
+      } else {
+        this.context.router.push('/');
+      }
+    });
+  }
+  loginWithFacebook() {
+    Meteor.loginWithFacebook({
+      requestPermissions: ['user_friends', 'public_profile', 'email'],
+    }, err => {
+      if (err) {
+        console.log('error login with facebook'+err.reason);
       } else {
         this.context.router.push('/');
       }
@@ -70,6 +82,8 @@ export default class LoginPageLayout extends React.Component {
             <Link to="/signup">Signup</Link>
           </div>
         </form>
+        <p>or</p>
+        <button className="button-primary" onClick={this.loginWithFacebook}>Login with facebook</button>
       </div>
     );
   }

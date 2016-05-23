@@ -18,6 +18,7 @@ class AppLayout extends Component {
     Meteor.logout( err => {
       // go to first page automatically
       // cannnot use '/' because it will not reevaluate requireAuth*
+      console.log('dispatch to login');
       Store.dispatch(push('/login'));
 
     });
@@ -31,7 +32,8 @@ class AppLayout extends Component {
       <div>
         <NavbarLayout />
         <div>
-          {user ? 'Logged in as:' + user.emails[0].address : ''}
+          {user ? 'Logged in as:' + user : ''}
+          {user ? <button className="button-primary" onClick={this.logout}>Logout</button>:""}
         </div>
         <div className="child-content">
           {children}
