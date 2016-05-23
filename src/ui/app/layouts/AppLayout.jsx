@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
+
 import Store from '../../../ui/Store.js';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
 
+// Layout
 class AppLayout extends Component {
   constructor(props) {
     super(props);
@@ -25,36 +27,12 @@ class AppLayout extends Component {
       user,
       children,
     } = this.props;
-
-    let menu = "";
-    if (user) {
-      menu = (
-        <div>
-          <button onClick={this.logout}>logout</button>
-        </div>
-      );
-    } else {
-      menu = (
-        <div>
-          <Link to="/feed">feed</Link>
-          <br />
-          <Link to="/login">login</Link>
-          <br />
-          <Link to="/signup">signup</Link>
-        </div>
-      );
-    }
-
     return (
       <div>
         <NavbarLayout />
         <div>
-          {menu}
+          {user ? 'Logged in as:' + user.emails[0].address : ''}
         </div>
-        <div>
-          {user ? "Logged in as: "+user.emails[0].address: ""}
-        </div>
-
         <div className="child-content">
           {children}
         </div>
@@ -63,6 +41,12 @@ class AppLayout extends Component {
   }
 }
 
+AppLayout.propTypes = {
+  children: React.PropTypes.element, // matched child route component
+  location: React.PropTypes.object,  // current router location
+};
+
+// Redux
 const mapStateToProps = (state) => (
   {
     count: state.count,
@@ -72,8 +56,6 @@ const mapStateToProps = (state) => (
 AppLayout.propTypes = {
   user: React.PropTypes.object,
   children: React.PropTypes.object,
-};
-AppLayout.contextTypes = {
   router: React.PropTypes.object,
 };
 
