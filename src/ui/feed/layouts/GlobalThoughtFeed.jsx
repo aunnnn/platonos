@@ -1,7 +1,7 @@
 import React from 'react';
 import FeedLayout from './FeedLayout.jsx';
 
-export default class PersonalThoughFeed extends React.Component {
+export default class GlobalThoughtFeed extends React.Component {
 
   constructor(props) {
     super(props);
@@ -10,7 +10,7 @@ export default class PersonalThoughFeed extends React.Component {
   render() {
     return (
       <FeedLayout>
-        <h2>Personal Thought Feed</h2>
+        <h4>Global Thought Feed</h4>
       </FeedLayout>
     );
   }

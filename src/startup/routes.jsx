@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore, push } from 'react-router-redux';
+import { syncHistoryWithStore, push} from 'react-router-redux';
 import { Meteor } from 'meteor/meteor';
 // import store
 import Store from '../ui/Store.js';
@@ -10,6 +10,7 @@ import Store from '../ui/Store.js';
 import AppContainer from '../ui/app/containers/AppContainer.jsx';
 // import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
 import PersonalThoughtFeed from '../ui/feed/layouts/PersonalThoughtFeed.jsx';
+import GlobalThoughtFeed from '../ui/feed/layouts/GlobalThoughtFeed.jsx';
 import LoginPageLayout from '../ui/auth/layouts/LoginPageLayout.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 
@@ -19,11 +20,11 @@ const history = syncHistoryWithStore(browserHistory, Store);
 function requireAuth(nextState, replace) {
   if (!Meteor.user()) {
     console.log("no user");
-    // replace({
-    //   pathname: '/login',
-    //   state: { nextPathname: nextState.location.pathname },
-    // });
-    Store.dispatch(push('/login'));
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname },
+    });
+    // Store.dispatch(push('/login'));
   } else {
     console.log("with user");
   }
@@ -34,9 +35,8 @@ export const renderRoutes = () => (
   <Provider store={Store}>
     <Router history={history}>
       <Route path="/" component={AppContainer}>
-        <IndexRoute component={PersonalThoughtFeed} onEnter={requireAuth}>
-          <Route path=":feedType" />
-        </IndexRoute>
+        <IndexRoute component={PersonalThoughtFeed}/>
+        <Route path="global" component={GlobalThoughtFeed}/>
       </Route>
       <Route path="/login" component={LoginPageLayout} />
       <Route path="/signup" component={SignupPageLayout} />

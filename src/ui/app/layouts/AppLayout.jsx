@@ -1,29 +1,31 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { Link } from 'react-router';
 
-import Store from '../../../ui/Store.js';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
-
+import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
 // Layout
 class AppLayout extends Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
+    this.renderAnonymous = this.renderAnonymous.bind(this);
+    this.renderAuthorized = this.renderAuthorized.bind(this);
   }
   logout() {
     Meteor.logout( err => {
-      // go to first page automatically
-      // cannnot use '/' because it will not reevaluate requireAuth*
-      console.log('dispatch to login');
-      Store.dispatch(push('/login'));
-
+      if (err) {
+        console.log('logout error: ' + err.reason);
+      }
     });
   }
-  render() {
+  renderAnonymous() {
+    return (
+      <LoginPageLayout />
+    );
+  }
+  renderAuthorized() {
     const {
       user,
       children,
@@ -44,6 +46,16 @@ class AppLayout extends Component {
       </div>
     );
   }
+  render() {
+    const {
+      user,
+    } = this.props;
+
+    if (user) {
+      return this.renderAuthorized(this.props);
+    }
+    return this.renderAnonymous();
+  }
 }
 
 AppLayout.propTypes = {
@@ -61,7 +73,6 @@ const mapStateToProps = (state) => (
 AppLayout.propTypes = {
   user: React.PropTypes.object,
   children: React.PropTypes.object,
-  router: React.PropTypes.object,
 };
 
 export default connect(mapStateToProps)(AppLayout);
