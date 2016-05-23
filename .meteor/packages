@@ -25,3 +25,5 @@ webpack:postcss
 aldeed:collection2
 accounts-password
 fortawesome:fontawesome
+accounts-facebook
+service-configuration
