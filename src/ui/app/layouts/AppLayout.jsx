@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { Link } from 'react-router';
-
+import Store from '../../../ui/Store.js';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
 
@@ -15,7 +16,8 @@ class AppLayout extends Component {
     Meteor.logout( err => {
       // go to first page automatically
       // cannnot use '/' because it will not reevaluate requireAuth*
-      this.context.router.push('/login');
+      Store.dispatch(push('/login'));
+
     });
   }
   render() {
