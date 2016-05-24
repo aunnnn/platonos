@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
+// components
 import SidebarList from '../components/SidebarList.jsx';
 
-class FeedLayout extends Component {
+export default class FeedLayout extends Component {
 
   render() {
     const {
@@ -27,8 +28,6 @@ class FeedLayout extends Component {
   }
 
 }
-
-export default FeedLayout;
 
 FeedLayout.propTypes = {
   children: React.PropTypes.object,

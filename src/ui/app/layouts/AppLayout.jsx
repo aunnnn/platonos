@@ -30,13 +30,14 @@ class AppLayout extends Component {
       user,
       children,
     } = this.props;
+
     return (
       <div>
         {/* Navbar & Padding */}
         <NavbarLayout />
         <div style={{ height: '55px', width: '100%' }}></div>
         <div>
-          {user ? 'Logged in as:' + user : ''}
+          {'Logged in as:' + (user.profile ? user.profile.name : user.emails[0].address )}
           {user ? <button className="button-primary" onClick={this.logout}>Logout</button>:""}
         </div>
         {/* Children */}
@@ -51,10 +52,18 @@ class AppLayout extends Component {
       user,
     } = this.props;
 
-    if (user) {
-      return this.renderAuthorized(this.props);
+    if (user !== undefined) {
+      // user ready
+      if (user) {
+        // logged in
+        return this.renderAuthorized(this.props);
+      }
+      // not logged in
+      return this.renderAnonymous();
+    } else {
+      // waiting for user to ready
+      return <div>Loading...</div>
     }
-    return this.renderAnonymous();
   }
 }
 

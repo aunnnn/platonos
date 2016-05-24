@@ -9,10 +9,3 @@
 .sidebarlist-wrapper {
 	background-color: clear;
 }
-
-.link-feed-type {
-	text-decoration: none;
-	:hover {
-		color: #555555;
-	}
-}

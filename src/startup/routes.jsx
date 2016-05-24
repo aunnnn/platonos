@@ -9,8 +9,8 @@ import Store from '../ui/Store.js';
 // import Containers
 import AppContainer from '../ui/app/containers/AppContainer.jsx';
 import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
-import PersonalFeed from '../ui/feed/components/PersonalFeed.jsx';
-import GlobalFeed from '../ui/feed/components/GlobalFeed.jsx';
+import PersonalFeed from '../ui/feed/layouts/PersonalFeed.jsx';
+import GlobalFeed from '../ui/feed/layouts/GlobalFeed.jsx';
 import LoginPageLayout from '../ui/auth/layouts/LoginPageLayout.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 
