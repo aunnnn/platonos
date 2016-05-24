@@ -40,6 +40,7 @@ export const renderRoutes = () => (
         <Route path="profile" component={ProfileLayout} onEnter={requireAuth}/>
       </Route>
       <Route path="/signup" component={SignupPageLayout} />
+      <Route path="*" onEnter={requireAuth}/>
     </Router>
   </Provider>
 );
