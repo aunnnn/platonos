@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
 
 // components
 
-import SidebarSecondaryOption from './SidebarSecondaryOption.jsx';
+import CategoryButton from './CategoryButton.jsx';
 import FeedTypeButton from './FeedTypeButton.jsx';
 // styles
 import './SidebarList.import.css';
@@ -13,18 +11,49 @@ class SidebarList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+  }
+  sidebarOptionClicked(catname) {
+    console.log(catname);
+    // this.setState({
+    //   activeSidebarOption:
+    // });
   }
   render() {
+    const cats = [
+      {
+        id: 0,
+        name: 'Philosophy',
+      },
+      {
+        id: 1,
+        name: 'Politics',
+      },
+    ];
     return (
       <div className="sidebarlist-wrapper">
-        <FeedTypeButton text="Thoughts" toPath=""/>
-        <FeedTypeButton text="Global Debate" toPath="global"/>
+
+        <FeedTypeButton
+          key="pfeed"
+          text="Thoughts"
+          toPath=""
+          isIndexLink={true}
+        />
+        <FeedTypeButton
+          key="gfeed"
+          text="Global Debate"
+          toPath="global"
+        />
 
         <div className="horizontal-divider"></div>
-        <SidebarSecondaryOption text="Philosophy" />
-        <SidebarSecondaryOption text="Politics" />
+        {
+          cats.map(cat => (
+            <CategoryButton
+              key={cat.id}
+              text={cat.name}
+              toPath="category"
+            />
+          ))
+        }
         <a href="/">more...</a>
       </div>
     );

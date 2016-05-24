@@ -11,24 +11,10 @@ import AppContainer from '../ui/app/containers/AppContainer.jsx';
 import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
 import PersonalFeed from '../ui/feed/layouts/PersonalFeed.jsx';
 import GlobalFeed from '../ui/feed/layouts/GlobalFeed.jsx';
-import LoginPageLayout from '../ui/auth/layouts/LoginPageLayout.jsx';
+import CategoryFeed from '../ui/feed/layouts/CategoryFeed.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 
 const history = syncHistoryWithStore(browserHistory, Store);
-
-// check auth
-function requireAuth(nextState, replace) {
-  if (!Meteor.user()) {
-    console.log("no user");
-    replace({
-      pathname: '/login',
-      state: { nextPathname: nextState.location.pathname },
-    });
-    // Store.dispatch(push('/login'));
-  } else {
-    console.log("with user");
-  }
-}
 
 
 export const renderRoutes = () => (
@@ -36,8 +22,9 @@ export const renderRoutes = () => (
     <Router history={history}>
       <Route path="/" component={AppContainer}>
         <Route component={FeedLayout}>
-          <IndexRoute component={PersonalFeed}/>
-          <Route path="global" component={GlobalFeed}/>
+          <IndexRoute component={PersonalFeed} />
+          <Route path="global" component={GlobalFeed} />
+          <Route path="category" component={CategoryFeed} />
         </Route>
       </Route>
       <Route path="/signup" component={SignupPageLayout} />

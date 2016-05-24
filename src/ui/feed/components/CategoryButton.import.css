@@ -1,13 +1,14 @@
-.link-feed-type {
+.category-button {
 	display: block;
 	color: #B6B6B6;
 	text-decoration: none;
 	padding: 6px 6px;
-	font-size: 16px;
+	font-weight: 300;
+	font-size: 14px;
 	&:hover {
-		color: #555555;
+		color: #555555 !important;
 	}
 	&.link-active {
 		color: black;
 	}
-} 
+}
