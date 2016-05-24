@@ -1,41 +1,49 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { Link } from 'react-router';
-
-import Store from '../../../ui/Store.js';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
-
+import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
 // Layout
 class AppLayout extends Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
+    this.renderAnonymous = this.renderAnonymous.bind(this);
+    this.renderAuthorized = this.renderAuthorized.bind(this);
   }
   logout() {
     Meteor.logout( err => {
-      // go to first page automatically
-      // cannnot use '/' because it will not reevaluate requireAuth*
-      console.log('dispatch to login');
-      Store.dispatch(push('/login'));
-
+      if (err) {
+        console.log('logout error: ' + err.reason);
+      }
     });
   }
-  render() {
+  renderAnonymous() {
+    return (
+      <LoginPageLayout />
+    );
+  }
+  renderAuthorized() {
     const {
       user,
       children,
     } = this.props;
+
     return (
       <div>
         {/* Navbar & Padding */}
         <NavbarLayout />
         <div style={{ height: '55px', width: '100%' }}></div>
+      {/* Dummy navigation (To be included in Navbar) */}
         <div>
-          {user ? 'Logged in as:' + user : ''}
+          {'Logged in as:' + (user.profile ? user.profile.name : user.emails[0].address )}
           {user ? <button className="button-primary" onClick={this.logout}>Logout</button>:""}
+          {' '}
+          {<Link to="/profile">Profile</Link>}
+          {' '}
+          {<Link to="/">Feed</Link>}
         </div>
         {/* Children */}
         <div className="child-content">
@@ -43,6 +51,24 @@ class AppLayout extends Component {
         </div>
       </div>
     );
+  }
+  render() {
+    const {
+      user,
+    } = this.props;
+
+    if (user !== undefined) {
+      // user ready
+      if (user) {
+        // logged in
+        return this.renderAuthorized(this.props);
+      }
+      // not logged in
+      return this.renderAnonymous();
+    } else {
+      // waiting for user to ready
+      return <div>Loading...</div>
+    }
   }
 }
 
@@ -61,7 +87,6 @@ const mapStateToProps = (state) => (
 AppLayout.propTypes = {
   user: React.PropTypes.object,
   children: React.PropTypes.object,
-  router: React.PropTypes.object,
 };
 
 export default connect(mapStateToProps)(AppLayout);
