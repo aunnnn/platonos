@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
 import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
@@ -14,10 +14,11 @@ class AppLayout extends Component {
     this.renderAuthorized = this.renderAuthorized.bind(this);
   }
   logout() {
-    Meteor.logout( err => {
+    Meteor.logout(err => {
       if (err) {
         console.log('logout error: ' + err.reason);
       }
+      this.props.router.push('/');
     });
   }
   renderAnonymous() {
@@ -39,7 +40,7 @@ class AppLayout extends Component {
       {/* Dummy navigation (To be included in Navbar) */}
         <div>
           {'Logged in as:' + (user.profile ? user.profile.name : user.emails[0].address )}
-          {user ? <button className="button-primary" onClick={this.logout}>Logout</button>:""}
+          {user ? <button className="button-primary" onClick={this.logout}>Logout</button> : '' }
           {' '}
           {<Link to="/profile">Profile</Link>}
           {' '}
@@ -65,17 +66,11 @@ class AppLayout extends Component {
       }
       // not logged in
       return this.renderAnonymous();
-    } else {
-      // waiting for user to ready
-      return <div>Loading...</div>
     }
+    // waiting for user to ready
+    return <div>Loading...</div>;
   }
 }
-
-AppLayout.propTypes = {
-  children: React.PropTypes.element, // matched child route component
-  location: React.PropTypes.object,  // current router location
-};
 
 // Redux
 const mapStateToProps = (state) => (
@@ -86,7 +81,11 @@ const mapStateToProps = (state) => (
 
 AppLayout.propTypes = {
   user: React.PropTypes.object,
-  children: React.PropTypes.object,
+  children: React.PropTypes.element, // matched child route component
+  location: React.PropTypes.object, // current router location
+  router: React.PropTypes.shape({
+    push: React.PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default connect(mapStateToProps)(AppLayout);
+export default connect(mapStateToProps)(withRouter(AppLayout));
