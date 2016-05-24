@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
 import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
@@ -36,9 +36,14 @@ class AppLayout extends Component {
         {/* Navbar & Padding */}
         <NavbarLayout />
         <div style={{ height: '55px', width: '100%' }}></div>
+      {/* Dummy navigation (To be included in Navbar) */}
         <div>
           {'Logged in as:' + (user.profile ? user.profile.name : user.emails[0].address )}
           {user ? <button className="button-primary" onClick={this.logout}>Logout</button>:""}
+          {' '}
+          {<Link to="/profile">Profile</Link>}
+          {' '}
+          {<Link to="/">Feed</Link>}
         </div>
         {/* Children */}
         <div className="child-content">
