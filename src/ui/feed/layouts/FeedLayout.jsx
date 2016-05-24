@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import SidebarList from '../components/SidebarList.jsx';
 
 class FeedLayout extends Component {
