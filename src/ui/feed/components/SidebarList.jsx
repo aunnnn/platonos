@@ -35,13 +35,13 @@ class SidebarList extends React.Component {
         <FeedTypeButton
           key="pfeed"
           text="Thoughts"
-          toPath=""
+          toPath="/"
           isIndexLink={true}
         />
         <FeedTypeButton
           key="gfeed"
           text="Global Debate"
-          toPath="global"
+          toPath="/global"
         />
 
         <div className="horizontal-divider"></div>
@@ -50,7 +50,7 @@ class SidebarList extends React.Component {
             <CategoryButton
               key={cat.id}
               text={cat.name}
-              toPath="category"
+              toPath={'/category/'+cat.name}
             />
           ))
         }

@@ -11,7 +11,7 @@ import AppContainer from '../ui/app/containers/AppContainer.jsx';
 import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
 import PersonalFeed from '../ui/feed/layouts/PersonalFeed.jsx';
 import GlobalFeed from '../ui/feed/layouts/GlobalFeed.jsx';
-import CategoryFeed from '../ui/feed/layouts/CategoryFeed.jsx';
+import CategoryContainer from '../ui/feed/containers/CategoryContainer.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 
 const history = syncHistoryWithStore(browserHistory, Store);
@@ -24,7 +24,9 @@ export const renderRoutes = () => (
         <Route component={FeedLayout}>
           <IndexRoute component={PersonalFeed} />
           <Route path="global" component={GlobalFeed} />
-          <Route path="category" component={CategoryFeed} />
+          <Route path="category">
+            <Route path=":categoryName" component={CategoryContainer} />
+          </Route>
         </Route>
       </Route>
       <Route path="/signup" component={SignupPageLayout} />
