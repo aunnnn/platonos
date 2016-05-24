@@ -5,7 +5,6 @@ import classNames from 'classnames';
 // components
 import SVGLogo from '../components/SVGLogo.jsx';
 import NotiDropdown from '../components/NotiDropdown.jsx';
-import DiscussDropdown from '../components/DiscussDropdown.jsx';
 import SettingDropdown from '../components/SettingDropdown.jsx';
 
 // actions
@@ -51,7 +50,6 @@ class NavbarLayout extends Component {
               )}
               onClick={() => dispatch(openDropdown('discuss'))}
             ></i>
-            {activeDropdown === 'discuss' ? <DiscussDropdown /> : ''}
 
             <i
               className={classNames(
