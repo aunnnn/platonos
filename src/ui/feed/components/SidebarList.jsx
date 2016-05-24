@@ -8,11 +8,11 @@ export default class SidebarList extends React.Component {
   render() {
     return (
       <div className="sidebarlist-wrapper">
-        <Link to="/">
+        <Link to="" className="link-feed-type">
           <SidebarOption text="Thoughts" />
         </Link>
 
-        <Link to="/global">
+        <Link to="global" className="link-feed-type">
           <SidebarOption text="Global Debate" />
         </Link>
 
