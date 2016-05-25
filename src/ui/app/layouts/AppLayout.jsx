@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Store from '../../Store.js';
+import { push } from 'react-router-redux';
 import { Link, withRouter } from 'react-router';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
@@ -16,9 +18,10 @@ class AppLayout extends Component {
   logout() {
     Meteor.logout(err => {
       if (err) {
-        console.log('logout error: ' + err.reason);
+        console.log(`logout error: ${err.reason}`);
       }
-      this.props.router.push('/');
+      // this.props.router.push('/');
+      Store.dispatch(push('/'));
     });
   }
   renderAnonymous() {

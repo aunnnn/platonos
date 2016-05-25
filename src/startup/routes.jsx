@@ -22,20 +22,20 @@ const history = syncHistoryWithStore(browserHistory, Store);
 //      -However, his browser's url is still 'localhost/global', but with login page shown.
 //      -To fix this, requireAuth onEnter will redirect these *valid* url entered
 //       by non-loggedin user to home page
-const requireAuth = function (nextState, replace) {
+function requireAuth(nextState, replace) {
   if (!Meteor.user()) {
     replace({
       pathname: '/',
       state: { nextPathname: nextState.location.pathname },
     });
   }
-};
-const invalidURL= function (nextState, replace) {
+}
+function invalidURL(nextState, replace) {
   replace({
     pathname: '/',
     state: { nextPathname: nextState.location.pathname },
   });
-};
+}
 
 export const renderRoutes = () => (
   <Provider store={Store}>
@@ -48,12 +48,12 @@ export const renderRoutes = () => (
             <Route path=":categoryName" component={CategoryContainer} />
           </Route>
         </Route>
-        <Route path="profile" component={ProfileLayout} onEnter={requireAuth}/>
+        <Route path="profile" component={ProfileLayout} onEnter={requireAuth} />
       </Route>
       <Route path="/signup" component={SignupPageLayout} />
 
       {/* invalid url, maybe changed to 404 Not Found later */}
-      <Route path="*" onEnter={invalidURL}/>
+      <Route path="*" onEnter={invalidURL} />
     </Router>
   </Provider>
 );
