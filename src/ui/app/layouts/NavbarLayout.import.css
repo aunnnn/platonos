@@ -97,6 +97,12 @@
     }
     .item {
       cursor: pointer;
+      .date {
+        font-size: 9px;
+        font-weight: 600;
+        color: #999;
+        margin-left: 60px;
+      }
     }
     hr {
       margin: 5px 0;
@@ -110,6 +116,53 @@
     }
     &:hover {
       background-color: #f9f9f9;
+    }
+  }
+  .noti .item {
+    height: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #ddd;
+    padding: 9px 10px;
+    font-size: 12px;
+    position: relative;
+    color: #000;
+    &:hover {
+      background-color: #f9f9f9;
+    }
+    &.new {
+      background-color: hexa(#873C58,0.1);
+    }
+    .icon-wrapper {
+      position: absolute;
+      top: 9px;
+      left: 10px;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border: 2px solid #5B142F;
+      background-color: #972952;
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.8;
+    }
+    .detail {
+      height: 37px;
+      width: 280px;
+      padding-left: 60px;
+      line-height: 1.45;
+      .hilight {
+        color: #972952;
+      }
+    }
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      top: 9px;
+      left: 10px;
     }
   }
 }
