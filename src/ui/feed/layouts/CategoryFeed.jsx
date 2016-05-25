@@ -1,4 +1,5 @@
 import React from 'react';
+import './CategoryFeed.import.css';
 
 class CategoryFeed extends React.Component {
 
@@ -12,7 +13,10 @@ class CategoryFeed extends React.Component {
     } = this.props;
     return (
       <div>
-        <h4>Category Feed: {categoryName}</h4>
+        <div className="category-feed-header">
+          <h5>{categoryName}</h5>
+          <div className="unfollow-button">Unfollow</div>
+        </div>
       </div>
     );
   }

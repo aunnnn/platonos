@@ -1,4 +1,5 @@
 import React from 'react';
+import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
 
 export default class PersonalFeed extends React.Component {
 
@@ -9,7 +10,7 @@ export default class PersonalFeed extends React.Component {
   render() {
     return (
       <div>
-        <h4>Personal Thought Feed</h4>
+        <ThoughtCardLayout />
       </div>
     );
   }

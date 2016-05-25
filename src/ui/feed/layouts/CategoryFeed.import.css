@@ -1,0 +1,27 @@
+.category-feed-header {
+	background-color: white;
+	height: 100%;
+	width: 100%;
+	padding-right: 20px;
+	display: table;
+	h5 {
+		display: table-cell;
+		color: #762744;
+		float: left;
+		vertical-align: middle;
+		margin-bottom: 0;
+	}
+	.unfollow-button {
+		display: table-cell;
+		float: right;
+		color: #B6B6B6;
+		cursor: pointer;
+		font-weight: 300;
+		font-size: 12px;
+		margin-top: 12px;
+
+		&:hover {
+			color: black;
+		}
+	}
+}

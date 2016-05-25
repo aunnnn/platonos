@@ -1,0 +1,9 @@
+.global-feed-header {
+	h4 {
+		color: #762744;
+		margin-bottom: 10px;
+	}
+	h6 {
+		color: #B6B6B6;
+	}
+}

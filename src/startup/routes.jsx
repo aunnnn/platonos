@@ -16,24 +16,31 @@ import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 import ProfileLayout from '../ui/profile/layouts/ProfileLayout.jsx';
 const history = syncHistoryWithStore(browserHistory, Store);
 
+// use to prevent manual url enter, so it will be redirected to '/'
+const requireAuth = function (nextState, replace) {
+  if (!Meteor.user()) {
+    replace({
+      pathname: '/',
+      state: { nextPathname: nextState.location.pathname },
+    });
+  }
+};
 
 export const renderRoutes = () => (
   <Provider store={Store}>
     <Router history={history}>
       <Route path="/" component={AppContainer}>
-
         <Route component={FeedLayout}>
           <IndexRoute component={PersonalFeed} />
-          <Route path="global" component={GlobalFeed} />
-          <Route path="category">
+          <Route path="global" component={GlobalFeed} onEnter={requireAuth} />
+          <Route path="category" onEnter={requireAuth}>
             <Route path=":categoryName" component={CategoryContainer} />
           </Route>
         </Route>
-
-        <Route path="profile" component={ProfileLayout} />
-        
+        <Route path="profile" component={ProfileLayout} onEnter={requireAuth}/>
       </Route>
       <Route path="/signup" component={SignupPageLayout} />
+      <Route path="*" onEnter={requireAuth}/>
     </Router>
   </Provider>
 );

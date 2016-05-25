@@ -28,6 +28,10 @@ class SidebarList extends React.Component {
         id: 1,
         name: 'Politics',
       },
+      {
+        id: 2,
+        name: 'Anthrologicalyoocaly',
+      },
     ];
     return (
       <div className="sidebarlist-wrapper">

@@ -13,13 +13,13 @@ export default class FeedLayout extends Component {
     return (
       <div className="feed-wrapper container">
         <div className="row">
-          <div className="three columns">
+          <div className="two columns">
             <SidebarList />
           </div>
           <div className="seven columns">
             {children}
           </div>
-          <div className="two columns">
+          <div className="three columns">
             Message from Founders: fffff...
           </div>
         </div>
