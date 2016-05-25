@@ -1,9 +1,10 @@
 .category-header {
 	width: 100%;
+
 	// display: inline-block;
 	.category-label {
 		display: inline-block;
 		margin-left: 12px;
-		font-size: 12px;
+		font-size: 11px;
 	}
 }
