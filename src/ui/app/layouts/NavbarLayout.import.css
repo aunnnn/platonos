@@ -109,8 +109,9 @@
     }
   }
   .setting .item {
-    padding: 5px 20px;
+    padding: 4px 20px;
     color: #000;
+    font-size: 15px;
     &:first-child {
       color: #972952;
     }
