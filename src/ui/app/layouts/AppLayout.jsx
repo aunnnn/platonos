@@ -62,7 +62,7 @@ class AppLayout extends Component {
       // user ready
       if (user) {
         // logged in
-        return this.renderAuthorized(this.props);
+        return this.renderAuthorized();
       }
       // not logged in
       return this.renderAnonymous();

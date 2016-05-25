@@ -16,7 +16,12 @@ import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 import ProfileLayout from '../ui/profile/layouts/ProfileLayout.jsx';
 const history = syncHistoryWithStore(browserHistory, Store);
 
-// use to prevent manual url enter, so it will be redirected to '/'
+// use to prevent manual *valid* url enter, so it will be redirected to '/'
+// E.g. -Anonymous user enters with 'localhost/global'
+//      -He is not logged in, so AppLayout will show login page correctly.
+//      -However, his browser's url is still 'localhost/global', but with login page shown.
+//      -To fix this, requireAuth onEnter will redirect these *valid* url entered
+//       by non-loggedin user to home page
 const requireAuth = function (nextState, replace) {
   if (!Meteor.user()) {
     replace({
@@ -24,6 +29,12 @@ const requireAuth = function (nextState, replace) {
       state: { nextPathname: nextState.location.pathname },
     });
   }
+};
+const invalidURL= function (nextState, replace) {
+  replace({
+    pathname: '/',
+    state: { nextPathname: nextState.location.pathname },
+  });
 };
 
 export const renderRoutes = () => (
@@ -40,7 +51,9 @@ export const renderRoutes = () => (
         <Route path="profile" component={ProfileLayout} onEnter={requireAuth}/>
       </Route>
       <Route path="/signup" component={SignupPageLayout} />
-      <Route path="*" onEnter={requireAuth}/>
+
+      {/* invalid url, maybe changed to 404 Not Found later */}
+      <Route path="*" onEnter={invalidURL}/>
     </Router>
   </Provider>
 );
