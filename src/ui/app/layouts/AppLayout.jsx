@@ -1,7 +1,6 @@
-import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
 import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
@@ -9,17 +8,8 @@ import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
 class AppLayout extends Component {
   constructor(props) {
     super(props);
-    this.logout = this.logout.bind(this);
     this.renderAnonymous = this.renderAnonymous.bind(this);
     this.renderAuthorized = this.renderAuthorized.bind(this);
-  }
-  logout() {
-    Meteor.logout(err => {
-      if (err) {
-        console.log('logout error: ' + err.reason);
-      }
-      this.props.router.push('/');
-    });
   }
   renderAnonymous() {
     return (
@@ -31,21 +21,11 @@ class AppLayout extends Component {
       user,
       children,
     } = this.props;
-
     return (
       <div>
         {/* Navbar & Padding */}
-        <NavbarLayout />
+        <NavbarLayout user={user} />
         <div style={{ height: '55px', width: '100%' }}></div>
-      {/* Dummy navigation (To be included in Navbar) */}
-        <div>
-          {'Logged in as:' + (user.profile ? user.profile.name : user.emails[0].address )}
-          {user ? <button className="button-primary" onClick={this.logout}>Logout</button> : '' }
-          {' '}
-          {<Link to="/profile">Profile</Link>}
-          {' '}
-          {<Link to="/">Feed</Link>}
-        </div>
         {/* Children */}
         <div className="child-content">
           {children}
@@ -56,19 +36,17 @@ class AppLayout extends Component {
   render() {
     const {
       user,
+      userReady,
     } = this.props;
 
-    if (user !== undefined) {
-      // user ready
-      if (user) {
-        // logged in
-        return this.renderAuthorized(this.props);
-      }
-      // not logged in
-      return this.renderAnonymous();
-    }
     // waiting for user to ready
-    return <div>Loading...</div>;
+    if (!userReady) return <div>Loading...</div>;
+
+    // user ready
+    if (user) return this.renderAuthorized(); // logged in
+
+    return this.renderAnonymous(); // not logged in
+
   }
 }
 
@@ -81,6 +59,7 @@ const mapStateToProps = (state) => (
 
 AppLayout.propTypes = {
   user: React.PropTypes.object,
+  userReady: React.PropTypes.bool,
   children: React.PropTypes.element, // matched child route component
   location: React.PropTypes.object, // current router location
   router: React.PropTypes.shape({

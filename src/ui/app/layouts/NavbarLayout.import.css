@@ -17,9 +17,10 @@
     display: inline-block;
     vertical-align: middle;
     margin: 0 0 0 25px;
-    padding-top: 6px;
+    padding-top: 10px;
     color: #999;
     font-weight: 400;
+    font-size: 14px;
   }
   .right-nav {
     display: inline-block;
@@ -27,7 +28,7 @@
     height: 55px;
     padding: 8px 0;
     position: relative;
-    > .fa {
+    .dropdown-wrapper > .fa {
       font-size: 22px;
       color: #999;
       cursor: pointer;
@@ -35,22 +36,22 @@
         color: #222;
       }
     }
-    > .fa-bell-fix {
+    .dropdown-wrapper > .fa-bell-fix {
       margin-top: 2px;
     }
-    > .fa-bell {
+    .dropdown-wrapper > .fa-bell {
       color: #222;
     }
-    > .fa-comments-fix {
+    .dropdown-wrapper > .fa-comments-fix {
       font-size: 28px;
     }
-    > .fa-comments {
+    .dropdown-wrapper > .fa-comments {
       color: #222;
     }
-    > .fa-caret-up {
+    .dropdown-wrapper > .fa-caret-up {
       color: #222;
     }
-    > i {
+    .dropdown-wrapper > i {
       display: inline-block;
       vertical-align: middle;
       margin: 0 10px
@@ -78,10 +79,15 @@
     color: #999;
     font-size: 16px;
   }
+  .dropdown-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+  }
   .nav-dropdown {
     position: absolute;
-    top: 55px;
-    right: 100px;
+    top: 36px;
+    right: 0;
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0,0,0,0.25);
     background-color: #fff;
