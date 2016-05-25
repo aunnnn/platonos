@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+
 // components
 import NavbarLayout from './NavbarLayout.jsx';
 import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
@@ -46,7 +47,6 @@ class AppLayout extends Component {
     if (user) return this.renderAuthorized(); // logged in
 
     return this.renderAnonymous(); // not logged in
-
   }
 }
 
