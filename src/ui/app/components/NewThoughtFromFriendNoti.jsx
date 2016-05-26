@@ -18,9 +18,9 @@ class NewThoughtFromFriendNoti extends Component {
         <img src={pic} role="presentation" />
         <div className="detail merr-font" ref="clampText">
           <span className="hilight">
-            {`${name} has launched `}
+            {`${name} has launched a new thought `}
           </span>
-          a new thought in {` ${category}: ${thought}`}
+          in {` ${category}: ${thought}`}
         </div>
         <div className="date">{moment(noti.date).fromNow()}</div>
       </div>

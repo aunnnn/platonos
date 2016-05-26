@@ -94,7 +94,7 @@
     color: #848484;
     overflow: hidden;
     &.noti {
-      width: 320px;
+      width: 350px;
     }
     &.setting {
       width: 200px;
@@ -156,7 +156,7 @@
     }
     .detail {
       height: 37px;
-      width: 300px;
+      width: 330px;
       padding-left: 60px;
       line-height: 1.45;
       .hilight {
