@@ -10,5 +10,78 @@
   .upper-padding {
   	padding: 10px;
   }
-  // width: 300px;
+  .category {
+    width: 100%;
+    // display: inline-block;
+    p {
+      display: inline-block;
+      margin-left: 12px;
+      font-size: 11px;
+    }
+  }
+  .content {
+    display: block;
+    padding: 10px;
+  }
+  .header h5 {
+    font-weight: 600;
+    font-size: 1.4em;
+    margin-bottom: 6px;
+  }
+  .description {
+    font-family: 'Merriweather';  
+    font-size: 0.9em;
+    color: #808080;
+  }
+  .action-bar {
+    display: block;
+    width: 100%;
+    height: 36px;
+    .left {
+      padding: 4px 10px;
+      display: inline-block;
+      float: left;
+    }
+    .right {
+      padding: 4px 10px;
+      display: inline-block;
+      float: right;
+    }
+  }
+  .action-button {
+    display: inline-block;
+    margin-right: 10px;
+    i {
+      margin-right: 4px;
+    }
+    p {
+      display: inline-block;
+      margin-bottom: 0;
+      font-size: 10px;
+    }
+  }
+  .action-discuss {
+    display: block;
+    background-color: #FCF8FA;
+    padding: 4px 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    i {
+      margin-right: 8px;
+      color: #999;
+    }
+    p {
+      display: inline-block;
+      font-family: 'Merriweather';
+      font-size: 12px;
+      margin-bottom: 0;
+      color: #B6B6B6;
+    }
+    &:hover {
+      border: 1px solid rgba(0,0,0,0.2);
+      * {
+        color: #;
+      }
+    }
+  }
 }

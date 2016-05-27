@@ -1,8 +1,7 @@
 import React from 'react';
-import './CardAction.import.css';
 
 const CardActionShare = () => (
-  <div className="card-action-button-text">
+  <div className="action-button">
     <i className="fa fa-share"></i>
     <p>Share</p>
   </div>

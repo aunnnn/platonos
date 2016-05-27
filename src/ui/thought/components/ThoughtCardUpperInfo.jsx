@@ -1,17 +1,16 @@
 import React from 'react';
-import './ThoughtCardUpperInfo.import.css';
 
-const ThoughtCardUpperInfo = ({ categoryName }) => (
-  <div className="category-header">
+const ThoughtCardUpperInfo = ({ category }) => (
+  <div className="category">
     <i className="fa fa-lightbulb-o"></i>
-    <div className="category-label">
-      {categoryName}
-    </div>
+    <p>
+      {category}
+    </p>
   </div>
 );
 
 ThoughtCardUpperInfo.propTypes = {
-  categoryName: React.PropTypes.string,
+  category: React.PropTypes.string,
 };
 
 export default ThoughtCardUpperInfo;

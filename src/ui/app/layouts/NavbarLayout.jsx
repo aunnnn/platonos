@@ -24,11 +24,17 @@ class NavbarLayout extends Component {
     return (
       <nav className="main-nav">
         <div className="container">
+          {
+            // logo & motto
+          }
           <Link to="/">
             <SVGLogo />
           </Link>
           <label className="motto">Where Ideas Talk and Connect Us.</label>
 
+          {
+            // right nav
+          }
           <div className="right-nav noselect">
             <div className="dropdown-wrapper">
               <i
@@ -60,6 +66,10 @@ class NavbarLayout extends Component {
               ></i>
               {activeDropdown === 'setting' ? <SettingDropdown /> : ''}
             </div>
+
+            {
+              // profile thumbnail
+            }
             <Link to="/profile" className="user-wrapper">
               <img
                 className="user-pic"
