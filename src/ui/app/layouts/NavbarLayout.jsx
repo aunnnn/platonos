@@ -21,6 +21,14 @@ class NavbarLayout extends Component {
       activeDropdown,
       user,
     } = this.props;
+
+    // try get fb first_name first, then email
+    const tryNameFB = () => (user.services.facebook && user.services.facebook.first_name);
+    const tryNameEmail = () => (user.emails && user.emails[0].address);
+
+    const userName = user ? (tryNameFB() || tryNameEmail()) : 'not a user (impossible!)';
+    const picture = (user && user.appProfile.picture) || 'img/user.jpg';
+
     return (
       <nav className="main-nav">
         <div className="container">
@@ -75,10 +83,10 @@ class NavbarLayout extends Component {
                 className="user-pic"
                 width="40"
                 height="40"
-                src="img/user.jpg"
+                src={picture}
                 role="presentation"
               />
-              <p className="user-name merr-font">{user ? user.services.facebook.first_name : ''}</p>
+              <p className="user-name merr-font">{userName}</p>
             </Link>
           </div>
         </div>
