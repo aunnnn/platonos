@@ -47,7 +47,6 @@ export default class LoginPageLayout extends React.Component {
     });
   }
   render() {
-
     const { errors } = this.state;
     const errorMessages = Object.keys(errors).map(key => errors[key]);
 
@@ -67,7 +66,7 @@ export default class LoginPageLayout extends React.Component {
             <input
               className="u-full-width"
               type="email"
-              placeholder="aun@test.com"
+              placeholder="Your email"
               ref="email"
             />
 
@@ -75,7 +74,7 @@ export default class LoginPageLayout extends React.Component {
             <input
               className="u-full-width"
               type="password"
-              placeholder="1234"
+              placeholder="Your password"
               ref="password"
             />
             <input className="button-primary" type="submit" value="Login" /> or
@@ -83,7 +82,12 @@ export default class LoginPageLayout extends React.Component {
           </div>
         </form>
         <p>or</p>
-        <button className="button-primary" onClick={this.loginWithFacebook}>Login with facebook</button>
+        <button
+          className="button-primary"
+          onClick={this.loginWithFacebook}
+        >
+          Login with facebook
+        </button>
       </div>
     );
   }
