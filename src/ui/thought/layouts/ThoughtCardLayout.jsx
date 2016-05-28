@@ -41,7 +41,9 @@ class ThoughtCardLayout extends React.Component {
           // action & start discuss
         }
         <div className="lower-action">
-          <ThoughtCardActionBar />
+          <ThoughtCardActionBar
+            type={type}
+          />
           <ThoughtCardActionDiscuss />
         </div>
       </div>

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 // components
 import SidebarList from '../components/SidebarList.jsx';
+import MsgFromFounders from '../components/MsgFromFounders.jsx'
+
+import './FeedLayout.import.css';
 
 export default class FeedLayout extends Component {
 
@@ -13,14 +16,14 @@ export default class FeedLayout extends Component {
     return (
       <div className="feed-wrapper container">
         <div className="row">
-          <div className="two columns">
+          <div className="two columns nav">
             <SidebarList />
           </div>
-          <div className="seven columns">
+          <div className="seven columns feed">
             {children}
           </div>
-          <div className="three columns">
-            Message from Founders: fffff...
+          <div className="three columns right">
+            <MsgFromFounders />
           </div>
         </div>
       </div>
