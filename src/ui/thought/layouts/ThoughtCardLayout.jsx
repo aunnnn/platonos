@@ -14,6 +14,7 @@ class ThoughtCardLayout extends React.Component {
       type,
       header,
       description,
+      discussions,
     } = this.props.thought;
 
     return (
@@ -35,7 +36,12 @@ class ThoughtCardLayout extends React.Component {
         {
           // show global discussion
         }
-        {type === 'GLOBAL' ? <ThoughtCardShowDiscussion /> : ''}
+        {type === 'GLOBAL' && discussions.length !== 0 ?
+          <ThoughtCardShowDiscussion
+            discussions={discussions}
+          />
+          : <div style={{ height: '10px' }}></div>
+        }
 
         {
           // action & start discuss

@@ -2,7 +2,7 @@ import React from 'react';
 
 const MsgFromFounders = () => (
   <div className="msg-from-founders">
-    <h5>From Founders</h5>
+    <h5>Msg. from Founders</h5>
     <p className="merr-font">Welcome to Platonos Jirat!<br />
     We are really excited to reveal
     you are very early adopter for us.

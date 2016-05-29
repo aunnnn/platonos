@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { Editor, EditorState } from 'draft-js';
 
 // components
 import NavbarLayout from './NavbarLayout.jsx';
 import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
+
+import './AppLayout.import.css';
+
 // Layout
 class AppLayout extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      editorState: EditorState.createEmpty(),
+    };
+    this.onChange = (editorState) => this.setState({ editorState });
     this.renderAnonymous = this.renderAnonymous.bind(this);
     this.renderAuthorized = this.renderAuthorized.bind(this);
   }
@@ -22,6 +30,7 @@ class AppLayout extends Component {
       user,
       children,
     } = this.props;
+    const { editorState } = this.state;
     return (
       <div>
         {/* Navbar & Padding */}
@@ -31,6 +40,7 @@ class AppLayout extends Component {
         <div className="child-content">
           {children}
         </div>
+        <Editor editorState={editorState} onChange={this.onChange} />
       </div>
     );
   }

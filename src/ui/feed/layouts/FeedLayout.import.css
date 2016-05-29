@@ -1,7 +1,4 @@
-body {
-  background-color: #f9f9f9;
-}
-.feed-wrapper {
+#feed-wrapper {
   margin-top: 20px;
   > .nav.columns {
     width: 160px;

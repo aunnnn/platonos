@@ -67,8 +67,8 @@ class NavbarLayout extends Component {
               <i
                 className={classNames(
                   'fa',
-                  { 'fa-caret-down': activeDropdown !== 'setting' },
-                  { 'fa-caret-up': activeDropdown === 'setting' }
+                  { 'fa-angle-down': activeDropdown !== 'setting' },
+                  { 'fa-angle-up': activeDropdown === 'setting' }
                 )}
                 onClick={() => dispatch(openDropdown('setting'))}
               ></i>

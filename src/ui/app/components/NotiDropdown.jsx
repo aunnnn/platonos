@@ -21,7 +21,7 @@ class NotiDropdown extends Component {
         date: new Date(),
       },
       {
-        type: 'MSG_ON_OTHER_THOUGHT',
+        type: 'MSG_ON_OTHERS_THOUGHT',
         new_msg_count: 2,
         thought: 'Hey i really hate Trump because his hair.',
         date: new Date(),
@@ -92,7 +92,7 @@ class NotiDropdown extends Component {
           switch (noti.type) {
             case 'MSG_ON_MY_THOUGHT':
               return <MsgOnMyThoughtNoti noti={noti} />;
-            case 'MSG_ON_OTHER_THOUGHT':
+            case 'MSG_ON_OTHERS_THOUGHT':
               return <MsgOnOthersThoughtNoti noti={noti} />;
             case 'MSG_FROM_FRIEND':
               return <MsgFromFriendNoti noti={noti} />;
