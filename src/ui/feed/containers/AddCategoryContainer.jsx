@@ -5,7 +5,7 @@ export default createContainer(() => {
   const dumpCategoryData = [
     {
       title: 'Philosophy',
-      description: 'The thing you want to think. Everyone know what it is.',
+      description: 'Things you want to think.',
     },
     {
       title: 'Politics',
@@ -17,7 +17,11 @@ export default createContainer(() => {
     },
     {
       title: 'Productivity',
-      description: 'How to thrive, best.',
+      description: 'How to thrive, at your best.',
+    },
+    {
+      title: 'Mathematics',
+      description: 'Brave, very brave man.',
     },
   ];
   return {
