@@ -4,14 +4,12 @@ import React from 'react';
 
 import CategoryButton from './CategoryButton.jsx';
 import FeedTypeButton from './FeedTypeButton.jsx';
+import { Link } from 'react-router';
 // styles
 import './SidebarList.import.css';
 
 class SidebarList extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
   sidebarOptionClicked(catname) {
     console.log(catname);
     // this.setState({
@@ -44,7 +42,7 @@ class SidebarList extends React.Component {
         />
         <FeedTypeButton
           key="gfeed"
-          text="Global Debate"
+          text="Top Debate"
           toPath="/global"
         />
 
@@ -54,11 +52,11 @@ class SidebarList extends React.Component {
             <CategoryButton
               key={cat.id}
               text={cat.name}
-              toPath={'/category/'+cat.name}
+              toPath={`/category/${cat.name}`}
             />
           ))
         }
-        <a href="/">more...</a>
+        <Link to="/addCategories" className="more-button">More...</Link>
       </div>
     );
   }
