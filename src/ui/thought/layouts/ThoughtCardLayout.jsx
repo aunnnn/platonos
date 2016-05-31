@@ -16,13 +16,15 @@ class ThoughtCardLayout extends React.Component {
       description,
       discussions,
     } = this.props.thought;
-
     return (
       <div className="thought-card-layout">
         {
           // category & thought type
         }
-        <div className="upper-padding">
+        <div
+          className="upper-padding"
+          style={{ paddingBottom: description !== '' ? '10px' : '0' }}
+        >
           <ThoughtCardUpperInfo
             category={category}
             type={type}
@@ -40,7 +42,7 @@ class ThoughtCardLayout extends React.Component {
           <ThoughtCardShowDiscussion
             discussions={discussions}
           />
-          : <div style={{ height: '10px' }}></div>
+          : ''
         }
 
         {

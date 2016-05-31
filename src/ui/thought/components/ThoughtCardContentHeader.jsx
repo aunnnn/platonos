@@ -16,12 +16,9 @@ class ThoughtCardContentHeader extends Component {
         <div className="header">
           <h5>{header}</h5>
         </div>
-        {description !== '' ?
-          <div className="description" ref="clampText">
-            {description}
-          </div>
-          : ''
-        }
+        <div className="description" ref="clampText">
+          {description}
+        </div>
       </div>
     );
   }
