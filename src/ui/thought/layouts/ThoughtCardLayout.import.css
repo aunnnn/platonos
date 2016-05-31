@@ -85,28 +85,51 @@
     }
   }
   .action-discuss {
-    display: block;
     background-color: #FDF9FB;
-    padding: 10px 5.5%;
+    /* padding: 10px 5.5%; */
     border-top: 1px solid rgba(0,0,0,0.1);
-    cursor: pointer;
-    line-height: 1.4;
-    i {
-      margin-right: 8px;
-      color: #B1B1B1;
-      font-size: 17px;
-    }
-    p {
-      display: inline-block;
-      font-family: 'Merriweather';
-      font-size: 13px;
-      margin-bottom: 0;
-      color: #B1B1B1;
-    }
+    color: #777;
+    position: relative;
     &:hover {
       border-top: 1px solid rgba(0,0,0,0.15);
-      * {
-        color: #999;
+      .public-DraftEditor-content {
+        color: #777;
+      }
+    }
+    .DraftEditor-root {
+      font-family: 'Merriweather', serif;
+      line-height: 1.4;
+    }
+    .public-DraftEditorPlaceholder-root {
+      font-size: 14px;
+      top: 12px;
+      left: 5.5%;
+    }
+    .public-DraftEditorPlaceholder-inner::first-letter {
+      font-family: FontAwesome;
+      margin-right: 4px;
+    }
+    .public-DraftEditor-content {
+      font-size: 14px;
+      padding: 12px 5.5%;
+      /* background-color: red; */
+      &:empty {
+        padding: 10px 5.5%;
+      }
+    }
+    .submit {
+      border-top: 1px solid hexa(#000, 0.1);
+      height: 30px;
+      text-align: center;
+      padding-top: 5px;
+      font-size: 12px;
+      color: #972952;
+      cursor: pointer;
+      i {
+        margin-right: 5px;
+      }
+      &:hover {
+        color: #bc3366;
       }
     }
   }
@@ -157,6 +180,7 @@
     right: 5.5%;
     font-size: 13px;
     color: #222;
+    z-index: 990;
     .item {
       padding: 2px 18px;
       cursor: pointer;
