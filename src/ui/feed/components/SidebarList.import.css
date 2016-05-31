@@ -8,4 +8,29 @@
 
 .sidebarlist-wrapper {
 	background-color: clear;
+
+	.feed-button {
+		display: block;
+		color: #B6B6B6;
+		text-decoration: none;
+		padding: 6px 6px;
+		font-size: 16px;
+		font-weight: 300;
+		&:hover {
+			color: #555555;
+		}
+		&.link-active {
+			color: black;
+			font-weight: 400;
+		}
+	} 
+
+	.more-button {
+		display: block;
+		color: #B6B6B6;
+		text-decoration: none;
+		padding: 6px 6px;
+		font-size: 12px;
+		font-weight: 300;
+	}
 }

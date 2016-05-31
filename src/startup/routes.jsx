@@ -12,6 +12,7 @@ import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
 import PersonalFeed from '../ui/feed/layouts/PersonalFeed.jsx';
 import GlobalFeed from '../ui/feed/layouts/GlobalFeed.jsx';
 import CategoryContainer from '../ui/feed/containers/CategoryContainer.jsx';
+import AddCategoryContainer from '../ui/feed/containers/AddCategoryContainer.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 import ProfileLayout from '../ui/profile/layouts/ProfileLayout.jsx';
 const history = syncHistoryWithStore(browserHistory, Store);
@@ -47,6 +48,7 @@ export const renderRoutes = () => (
           <Route path="category" onEnter={requireAuth}>
             <Route path=":categoryName" component={CategoryContainer} />
           </Route>
+          <Route path="addCategories" component={AddCategoryContainer} onEnter={requireAuth} />
         </Route>
         <Route path="profile" component={ProfileLayout} onEnter={requireAuth} />
       </Route>

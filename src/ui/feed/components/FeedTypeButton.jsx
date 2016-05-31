@@ -1,13 +1,13 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
-import './FeedTypeButton.import.css';
+// import './FeedTypeButton.import.css';
 
 const FeedTypeButton = ({ text, toPath, isIndexLink = false }) => (
   // **need to use IndexLink else it will always be active
     isIndexLink ?
       <IndexLink
         to={toPath}
-        className="link-feed-type"
+        className="feed-button"
         activeClassName="link-active"
       >
         <div>{text}</div>
@@ -15,7 +15,7 @@ const FeedTypeButton = ({ text, toPath, isIndexLink = false }) => (
       :
       <Link
         to={toPath}
-        className="link-feed-type"
+        className="feed-button"
         activeClassName="link-active"
       >
         <div>{text}</div>
