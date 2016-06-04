@@ -1,9 +1,7 @@
 .global-feed-header {
-	h4 {
-		color: #972952;
-		margin-bottom: 10px;
-	}
-	h6 {
-		color: #B6B6B6;
+  text-align: center;
+	p {
+		color: #777;
+    font-size: 13px;
 	}
 }

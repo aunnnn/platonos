@@ -1,11 +1,11 @@
 .thought-card-layout {
 	background: #fff;
   border-radius: 2px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.13);
-  display: inline-block;
+  box-shadow: 0 6px 5px -3px hexa(#972952 ,0.12), 0 1px 5px hexa(#000 ,0.14);
   margin: 0 0 20px;
   position: relative;
   width: 100%;
+  overflow: hidden;
   .upper-padding {
   	padding: 10px 5.5%;
   }
@@ -23,6 +23,7 @@
     .type {
       display: inline-block;
       float: right;
+      color: #972952;
     }
   }
   .content {
@@ -36,7 +37,7 @@
   }
   .description {
     font-family: 'Merriweather';  
-    font-size: 0.9em;
+    font-size: 14px;
     color: #5d5d5d;
     padding-top: 5px;
   }

@@ -1,10 +1,10 @@
 import React from 'react';
 
 // components
-
 import CategoryButton from './CategoryButton.jsx';
 import FeedTypeButton from './FeedTypeButton.jsx';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
+
 // styles
 import './SidebarList.import.css';
 
@@ -17,6 +17,11 @@ class SidebarList extends React.Component {
     // });
   }
   render() {
+    const {
+      router,
+    } = this.props;
+    console.log(router);
+    // dummy data
     const cats = [
       {
         id: 0,
@@ -28,7 +33,7 @@ class SidebarList extends React.Component {
       },
       {
         id: 2,
-        name: 'Anthrologicalyoocaly',
+        name: 'Engineering',
       },
     ];
     return (
@@ -39,11 +44,13 @@ class SidebarList extends React.Component {
           text="Thoughts"
           toPath="/"
           isIndexLink={true}
+          isActive={router.isActive('/', true)}
         />
         <FeedTypeButton
           key="gfeed"
-          text="Top Debate"
+          text="Top Debates"
           toPath="/global"
+          isActive={router.isActive('/global', true)}
         />
 
         <div className="horizontal-divider"></div>
@@ -53,6 +60,7 @@ class SidebarList extends React.Component {
               key={cat.id}
               text={cat.name}
               toPath={`/category/${cat.name}`}
+              isActive={router.isActive(`/category/${cat.name}`, true)}
             />
           ))
         }
@@ -62,4 +70,9 @@ class SidebarList extends React.Component {
   }
 }
 
-export default SidebarList;
+SidebarList.propTypes = {
+  router: React.PropTypes.object,
+};
+
+export default withRouter(SidebarList);
+

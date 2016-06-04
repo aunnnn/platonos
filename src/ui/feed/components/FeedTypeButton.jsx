@@ -1,8 +1,7 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
-// import './FeedTypeButton.import.css';
 
-const FeedTypeButton = ({ text, toPath, isIndexLink = false }) => (
+const FeedTypeButton = ({ text, toPath, isIndexLink = false, isActive = false }) => (
   // **need to use IndexLink else it will always be active
     isIndexLink ?
       <IndexLink
@@ -10,7 +9,8 @@ const FeedTypeButton = ({ text, toPath, isIndexLink = false }) => (
         className="feed-button"
         activeClassName="link-active"
       >
-        <div>{text}</div>
+        {text}
+        {isActive ? <i className="fa fa-angle-right"></i> : ''}
       </IndexLink>
       :
       <Link
@@ -18,7 +18,8 @@ const FeedTypeButton = ({ text, toPath, isIndexLink = false }) => (
         className="feed-button"
         activeClassName="link-active"
       >
-        <div>{text}</div>
+        {text}
+        {isActive ? <i className="fa fa-angle-right"></i> : ''}
       </Link>
 );
 
@@ -26,5 +27,6 @@ FeedTypeButton.propTypes = {
   text: React.PropTypes.string,
   toPath: React.PropTypes.string,
   isIndexLink: React.PropTypes.bool,
+  isActive: React.PropTypes.bool,
 };
 export default FeedTypeButton;

@@ -3,7 +3,7 @@
 	background-color: #B6B6B6;
 	width: 90%;
 	height: 1px;
-	margin: 20px 0;
+	margin: 15px 0;
 }
 
 .sidebarlist-wrapper {
@@ -11,26 +11,53 @@
 
 	.feed-button {
 		display: block;
-		color: #B6B6B6;
+		color: #888;
 		text-decoration: none;
 		padding: 6px 6px;
 		font-size: 16px;
-		font-weight: 300;
-		&:hover {
+		position: relative;
+		word-wrap: break-word;
+		padding-right: 20px;
+		&:hover { 
 			color: #555555;
 		}
 		&.link-active {
 			color: black;
-			font-weight: 400;
+			font-weight: 600;
 		}
 	} 
 
+	.category-button {
+		display: block;
+		color: #888;
+		text-decoration: none;
+		padding: 6px 6px;
+		font-size: 16px;
+		position: relative;
+		word-wrap: break-word;
+		padding-right: 20px;
+		&:hover {
+			color: #555555 !important;
+		}
+		&.link-active {
+			color: black;
+			font-weight: 600;
+		}
+	}
+
 	.more-button {
 		display: block;
-		color: #B6B6B6;
+		color: #888;
 		text-decoration: none;
 		padding: 6px 6px;
 		font-size: 12px;
 		font-weight: 300;
+	}
+
+	.fa-angle-right {
+		position: absolute;
+		top: 8px;
+		right: 0;
+		font-size: 20px;	
 	}
 }

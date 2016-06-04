@@ -1,5 +1,5 @@
 #feed-wrapper {
-  margin-top: 20px;
+  margin-top: 25px;
   > .nav.columns {
     width: 160px;
   }
@@ -15,12 +15,18 @@
   }
   /* 160px , 3% + 54% , 3% */
   .msg-from-founders {
-    color: #999;
+    color: #777;
     h5 {
       font-weight: 300;
     }
     p {
       font-size: 12px;
     }
+  }
+  .feed-header {
+    color: #972952;
+    letter-spacing: 0.0rem;
+    font-weight: 400;
+    margin-bottom: 10px;
   }
 }

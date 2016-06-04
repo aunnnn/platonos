@@ -1,6 +1,7 @@
 import React from 'react';
 import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
 import ThoughtCardContainer from '../../thought/containers/ThoughtCardContainer.jsx';
+import WriteThoughtCardLayout from '../../thought/layouts/WriteThoughtCardLayout.jsx';
 
 export default class PersonalFeed extends React.Component {
 
@@ -53,6 +54,7 @@ export default class PersonalFeed extends React.Component {
   render() {
     return (
       <div>
+        <WriteThoughtCardLayout />
         {this.getDummyData().map(thought => <ThoughtCardLayout thought={thought} />)}
         <ThoughtCardContainer />
       </div>

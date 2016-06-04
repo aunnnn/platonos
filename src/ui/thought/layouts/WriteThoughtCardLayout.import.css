@@ -1,0 +1,109 @@
+.write-thought-card-layout {
+  padding: 10px 5.5% 5px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.13);
+  width: 100%;
+  overflow: hidden;
+  margin: 0 0 20px;
+  hr {
+    margin: 10px -5.5% 5px;
+    border-top: 1px solid hexa(#000, 0.1);
+    width: 111%;
+  }
+  .header {
+    padding-bottom: 10px;
+    .public-DraftEditorPlaceholder-inner {
+      color: #bbb;
+      font-size: 21px;
+    }
+    .public-DraftEditor-content {
+      min-height: 68px;
+      font-weight: 600;
+      font-size: 21px;
+      letter-spacing: 0.15px;
+      color: #222;
+    }
+    &.hasDesc {
+      .public-DraftEditor-content {
+        min-height: 0;
+      }
+    }
+  }
+  .description {
+    padding-bottom: 13px;
+    &.hidden {
+      display: none;
+    }
+    .public-DraftEditorPlaceholder-inner {
+      color: #bbb;
+      font-size: 14px;
+    }
+    .public-DraftEditor-content {
+      font-size: 14px;
+      color: #5d5d5d;
+    }
+  }
+  .lower-row {
+    > button {
+      padding: 0 7px;
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 0;
+      &:first-child {
+        padding-left: 0;
+      }
+      &:hover {
+        color: #222; 
+      }
+    }
+  }
+  .right {
+    display: inline-block;
+    float: right;
+    button {
+      margin-bottom: 0;
+    }
+  }
+  .global {
+    font-size: 11px;
+    font-weight: 600;
+    color: #ddd;
+    &.active {
+      color: #222;
+    }
+  }
+  .fa-globe {
+    margin-left: 5px;
+    font-size: 14px;
+  }
+  .launch {
+    font-size: 13px;
+    color: #fff;
+    background-color: #972952;
+    border-radius: 8px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    &:hover {
+      background-color: #bc3366;
+    }
+    &.disabled {
+      background-color: #ddd;
+      cursor: default;
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+  }
+  .fa-paper-plane {
+    margin-right: 5px;
+    font-size: 16px;
+  }
+}
+
+#write-thought-card-category {
+  height: initial;
+  border: 0px solid #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
