@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { push } from 'react-router-redux';
-
+import { Link } from 'react-router';
 import Store from '../../Store.js';
 
 const logout = () => {
@@ -16,6 +16,7 @@ const logout = () => {
 const SettingDropdown = () => (
   <div className="nav-dropdown setting">
     <div className="item">Write Thought</div>
+    <Link to="/write" className="item">(Write Thought)</Link>
     <div className="item">My Drafts</div>
     <div className="item">Saved Thoughts</div>
     <hr />

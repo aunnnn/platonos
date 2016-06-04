@@ -15,6 +15,8 @@ import CategoryContainer from '../ui/feed/containers/CategoryContainer.jsx';
 import AddCategoryContainer from '../ui/feed/containers/AddCategoryContainer.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 import ProfileLayout from '../ui/profile/layouts/ProfileLayout.jsx';
+import WriteThoughtPageLayout from '../ui/thought/layouts/WriteThoughtPageLayout.jsx';
+
 const history = syncHistoryWithStore(browserHistory, Store);
 
 // use to prevent manual *valid* url enter, so it will be redirected to '/'
@@ -54,6 +56,7 @@ export const renderRoutes = () => (
           <Route path="addCategories" component={AddCategoryContainer} onEnter={requireAuth} />
         </Route>
         <Route path="profile" component={ProfileLayout} onEnter={requireAuth} />
+        <Route path="write" component={WriteThoughtPageLayout} onEnter={requireAuth} />
       </Route>
       <Route path="/signup" component={SignupPageLayout} />
 
