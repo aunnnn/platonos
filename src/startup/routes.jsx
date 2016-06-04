@@ -40,7 +40,10 @@ function invalidURL(nextState, replace) {
 
 export const renderRoutes = () => (
   <Provider store={Store}>
-    <Router history={history}>
+    <Router
+      history={history}
+      onUpdate={() => window.scrollTo(0, 0)}
+    >
       <Route path="/" component={AppContainer}>
         <Route component={FeedLayout}>
           <IndexRoute component={PersonalFeed} />

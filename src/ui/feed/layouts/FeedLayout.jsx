@@ -18,6 +18,7 @@ export default class FeedLayout extends Component {
         <div className="row">
           <div className="two columns nav">
             <SidebarList />
+            <p></p>
           </div>
           <div className="seven columns feed">
             {children}
