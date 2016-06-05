@@ -29,9 +29,6 @@ export default class AddCategoryPage extends Component {
       <div>
         <div className="add-category">
           <h4 className="feed-header">All Categories</h4>
-          <h6>
-            {shownDescription}
-          </h6>
           <div className="panel followed">
             <hr />
             <label>Categories you've followed</label>
@@ -52,6 +49,9 @@ export default class AddCategoryPage extends Component {
           <div className="panel all">
             <hr />
             <label>All categories</label>
+            <h6>
+              {shownDescription}
+            </h6>
             <div>
               {
                 allCategories.map(cat =>
