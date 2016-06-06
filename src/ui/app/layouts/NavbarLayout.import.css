@@ -115,9 +115,12 @@
     }
   }
   .setting .item {
+    display: block;
     padding: 4px 20px;
+    width: 100%;
     color: #000;
     font-size: 15px;
+    text-decoration: none;
     &:first-child {
       color: #972952;
     }

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import Store from '../../Store.js';
+
+// actions
+import { openDropdown } from '../actions/openDropdown.js';
 
 const logout = () => {
   Meteor.logout(err => {
@@ -13,10 +16,14 @@ const logout = () => {
   });
 };
 
-const SettingDropdown = () => (
+const SettingDropdown = ({ dispatch }) => (
   <div className="nav-dropdown setting">
-    <div className="item">Write Thought</div>
-    <Link to="/write" className="item">(Write Thought)</Link>
+    <Link
+      to="/write" className="item"
+      onClick={() => dispatch(openDropdown('setting'))}
+    >
+      Write Thought
+    </Link>
     <div className="item">My Drafts</div>
     <div className="item">Saved Thoughts</div>
     <hr />
@@ -25,5 +32,9 @@ const SettingDropdown = () => (
     <div className="item" onClick={logout}>Sign Out</div>
   </div>
 );
+
+SettingDropdown.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default SettingDropdown;

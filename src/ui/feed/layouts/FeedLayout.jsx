@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // components
 import SidebarList from '../components/SidebarList.jsx';
-import MsgFromFounders from '../components/MsgFromFounders.jsx'
+import MsgFromFounders from '../components/MsgFromFounders.jsx';
 
 import './FeedLayout.import.css';
 

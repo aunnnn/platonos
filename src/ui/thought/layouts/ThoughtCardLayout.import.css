@@ -86,7 +86,7 @@
     }
   }
   .action-discuss {
-    background-color: #FDF9FB;
+    background-color: #FEF9FB;
     /* padding: 10px 5.5%; */
     border-top: 1px solid rgba(0,0,0,0.1);
     color: #777;
@@ -140,6 +140,7 @@
     padding: 10px 5.5%;
     .header {
       color: #999;
+      margin-bottom: 10px;
       i {
         font-size: 14px;
         display: inline-block;
@@ -147,13 +148,20 @@
       label {
         font-size: 11px;
         display: inline-block;
-        margin: 0 8px 15px;
+        margin: 0 8px;
         font-weight: 400;
       }
     }
-    p {
-      font-size: 13px;
+    .wrapper {
+      background-color: #FEF9FB;
       margin: 0 0 15px;
+      border-radius: 5px;
+      padding: 8px 10px;
+      border: 1px solid hexa(#000, 0.1);
+      p {
+        font-size: 12px;
+        margin: 0;
+      }
     }
     .see-all {
       margin: 0 auto;

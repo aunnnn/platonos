@@ -72,7 +72,12 @@ class NavbarLayout extends Component {
                 )}
                 onClick={() => dispatch(openDropdown('setting'))}
               ></i>
-              {activeDropdown === 'setting' ? <SettingDropdown /> : ''}
+              {activeDropdown === 'setting' ?
+                <SettingDropdown
+                  dispatch={dispatch}
+                />
+                : ''
+              }
             </div>
 
             {

@@ -14,11 +14,12 @@ export default class GlobalFeed extends React.Component {
       {
         category: 'Science',
         type: 'GLOBAL',
-        header: 'What is your favorite chemical reaction and why?',
+        header: 'I think peter thiel is right about this. Free speech is very important but we cannot ignore the fact that we cannot divide every form of speech in the world into 2 categories, good and bad, then simply say that every bad speech need protection. I think there is variety of bad speech and there is bad speech that deserve protection. and the "false speech" create no use to anyone.',
         description: '',
         discussions: [
-          'Whoa, chill the fuck out man. nuclear cannot solve my money problem duh.',
-          'I think the most important problem in the world right now is not terrorism. but the way people choose to solve it.. look at the past 10 years.. the world was trying to solve it but is it better now ?',
+          'When you say that you cannot say false speech. then it is no free speech at all.',
+          'what is false speech that you were saying.',
+          'I believe that Thiel always thinks about the concept of Free speech all the time. He is Libetarian. The conceptof Free speech is like their fundamental way of thinking about everything. but the method he\'s done has no good to anybody. especially Free Speech itself',
         ],
       },
       {
