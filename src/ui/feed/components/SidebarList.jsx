@@ -20,7 +20,7 @@ class SidebarList extends React.Component {
     const {
       router,
     } = this.props;
-    console.log(router);
+    
     // dummy data
     const cats = [
       {

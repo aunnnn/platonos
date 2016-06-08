@@ -23,7 +23,7 @@
 			color: #555555;
 		}
 		&.link-active {
-			color: black;
+			color: #972952;
 			font-weight: 600;
 		}
 	} 

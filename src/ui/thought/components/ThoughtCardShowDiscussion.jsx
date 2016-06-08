@@ -8,8 +8,8 @@ const ThoughtCardShowDiscussion = ({ discussions }) => (
     </div>
     {discussions.map(
       (discussion, i) =>
-        <div className="wrapper">
-          <p key={i} className="merr-font">
+        <div className="wrapper" key={i}>
+          <p className="merr-font">
             {`" ${discussion} "`}
           </p>
         </div>

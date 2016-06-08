@@ -14,7 +14,7 @@ export default class FeedLayout extends Component {
     } = this.props;
 
     return (
-      <div className="container" id="feed-wrapper">
+      <div className="container" id="feed-layout">
         <div className="row">
           <div className="two columns nav">
             <SidebarList />
