@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
+import { withRouter } from 'react-router';
 
 // components
 import HeaderEditor from '../components/HeaderEditor.jsx';
@@ -21,6 +22,7 @@ class WriteThoughtCard extends Component {
   }
   render() {
     const { hasHead, hasDesc, isGlobal } = this.state;
+    const { router } = this.props;
     return (
       <div className="write-thought-card-layout">
         <UpperRow />
@@ -46,6 +48,10 @@ class WriteThoughtCard extends Component {
     );
   }
 }
+
+WriteThoughtCard.propTypes = {
+  router: PropTypes.object.isRequired,
+};
 
 const UpperRow = () => (
   <div className="upper-row">
@@ -91,4 +97,4 @@ LowerRow.propTypes = {
   toggleGlobal: PropTypes.func.isRequired,
 };
 
-export default WriteThoughtCard;
+export default withRouter(WriteThoughtCard);

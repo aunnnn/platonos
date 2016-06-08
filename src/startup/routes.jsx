@@ -6,7 +6,7 @@ import { Meteor } from 'meteor/meteor';
 // import store
 import Store from '../ui/Store.js';
 
-// import Containers
+// import Layouts
 import AppContainer from '../ui/app/containers/AppContainer.jsx';
 import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
 import PersonalFeed from '../ui/feed/layouts/PersonalFeed.jsx';
@@ -16,6 +16,9 @@ import AddCategoryContainer from '../ui/feed/containers/AddCategoryContainer.jsx
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 import ProfileLayout from '../ui/profile/layouts/ProfileLayout.jsx';
 import WriteThoughtPageLayout from '../ui/thought/layouts/WriteThoughtPageLayout.jsx';
+import ProfileIndexLayout from '../ui/profile/layouts/ProfileIndexLayout.jsx';
+import ProfileFriendsLayout from '../ui/profile/layouts/ProfileFriendsLayout.jsx';
+import ProfileAboutLayout from '../ui/profile/layouts/ProfileAboutLayout.jsx';
 
 const history = syncHistoryWithStore(browserHistory, Store);
 
@@ -33,6 +36,7 @@ function requireAuth(nextState, replace) {
     });
   }
 }
+
 function invalidURL(nextState, replace) {
   replace({
     pathname: '/',
@@ -46,7 +50,14 @@ export const renderRoutes = () => (
       history={history}
       onUpdate={() => window.scrollTo(0, 0)}
     >
+      {
+        // root
+      }
       <Route path="/" component={AppContainer}>
+
+        {
+          // feed
+        }
         <Route component={FeedLayout}>
           <IndexRoute component={PersonalFeed} />
           <Route path="global" component={GlobalFeed} onEnter={requireAuth} />
@@ -55,12 +66,30 @@ export const renderRoutes = () => (
           </Route>
           <Route path="addCategories" component={AddCategoryContainer} onEnter={requireAuth} />
         </Route>
-        <Route path="profile" component={ProfileLayout} onEnter={requireAuth} />
+
+        {
+          // profile
+        }
+        <Route path="profile" component={ProfileLayout} onEnter={requireAuth} >
+          <IndexRoute component={ProfileIndexLayout} />
+          <Route path="friends" component={ProfileFriendsLayout} onEnter={requireAuth} />
+          <Route path="about" component={ProfileAboutLayout} onEnter={requireAuth} />
+        </Route>
+
+        {
+          // write
+        }
         <Route path="write" component={WriteThoughtPageLayout} onEnter={requireAuth} />
       </Route>
+
+      {
+        // signup
+      }
       <Route path="/signup" component={SignupPageLayout} />
 
-      {/* invalid url, maybe changed to 404 Not Found later */}
+      {
+        // invalid url, maybe changed to 404 Not Found later
+      }
       <Route path="*" onEnter={invalidURL} />
     </Router>
   </Provider>

@@ -9,7 +9,7 @@ export default class WriteThoughtPageLayout extends Component {
     return (
       <div className="container" id="write-page">
         <div className="row">
-          <div className="eight columns">
+          <div className="eight columns write">
             <WriteThoughtCardLayout />
           </div>
           <div className="four columns">
