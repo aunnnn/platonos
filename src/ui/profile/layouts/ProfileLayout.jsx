@@ -16,8 +16,16 @@ class ProfileLayout extends Component {
     } = this.props;
     const user = Meteor.user().services.facebook;
     return (
-      <div id="profile-layout">
+      <div id="p-l">
+
+        {
+          // cover
+        }
         <ProfileCover />
+
+        {
+          // name
+        }
         <div className="name">
           <img
             role="presentation"
@@ -26,7 +34,12 @@ class ProfileLayout extends Component {
           <h1>{`${user.first_name} ${user.last_name}`}</h1>
           <h4>Yo what's up jirat is back in town motherfuckerr.</h4>
         </div>
+
+        {
+          // children
+        }
         {children}
+
       </div>
     );
   }

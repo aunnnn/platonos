@@ -1,4 +1,4 @@
-#profile-layout {
+#p-l {
   .cover {
     height: 245px;
     width: 100%;
@@ -19,24 +19,39 @@
     max-width: 630px;
     padding: 0 3%;
     text-align: center;
-    margin: -120px auto 0;
+    margin: -110px auto 0;
     position: relative;
     img {
       width: 140px;
       height: 140px;
       border-radius: 50%;
-      margin: 0 auto 5px;
+      margin: 0 auto 10px;
     }
     h1 {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 600;
-      margin: 0 0 10px;
+      margin: 0 0 15px;
       letter-spacing: 0.0rem;
     }
     h4 {
-      font-size: 18px;
+      font-size: 16px;
       color: #777;
       letter-spacing: 0.0rem;
+      font-weight: 400;
+    }
+  }
+  .card {
+    label {
+      display: inline-block;
+    }
+    button {
+      display: inline-block;
+      float: right;
+    }
+  }
+  .about-card {
+    .content {
+      background-color: #fff;
     }
   }
 }
