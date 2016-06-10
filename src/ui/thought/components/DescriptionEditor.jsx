@@ -10,9 +10,9 @@ export class DescriptionEditor extends Component {
       this.props.setDescriptionText(this.state.editorState.getCurrentContent().getPlainText());
     };
   }
-  
+
   reset() {
-    this.state = { editorState: EditorState.createEmpty() };
+    this.setState({ editorState: EditorState.createEmpty() });
   }
 
   render() {

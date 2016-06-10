@@ -30,4 +30,4 @@ Categories.schema = new SimpleSchema({
 
 Categories.attachSchema(Categories.schema);
 
-export default Categories;
+export { Categories };

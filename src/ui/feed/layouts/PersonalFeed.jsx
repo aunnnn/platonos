@@ -60,7 +60,9 @@ export default class PersonalFeed extends React.Component {
       <div>
         <WriteThoughtCardLayout />
         {thoughtsReady ?
-            thoughts.map(thought => <ThoughtCardLayout thought={thought} />)
+            thoughts.map((thought) => {
+              return <ThoughtCardLayout key={thought._id} thought={thought} />;
+            })
             : (<div>Loading...</div>)}
         {/* this.getDummyData().map(thought => <ThoughtCardLayout thought={thought} />) */}
         {/* <ThoughtCardContainer /> */}

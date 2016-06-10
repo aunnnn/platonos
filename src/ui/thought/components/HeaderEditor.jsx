@@ -16,7 +16,7 @@ export class HeaderEditor extends Component {
     else if (!hasText && this.props.hasHead) this.props.setHeadFalse();
   }
   reset() {
-    this.state = { editorState: EditorState.createEmpty() };
+    this.setState({ editorState: EditorState.createEmpty() });
   }
   render() {
     const { editorState } = this.state;
