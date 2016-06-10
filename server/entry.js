@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
-import '../src/api/users/publications.js';
-
+import './fixtures.js';
+import './register-api.js';
 
 // run with :
 //  meteor --settings development.json

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
-Meteor.publish('userData', function () {
+Meteor.publish('userData', function userData() {
   const user = Meteor.users.find({ _id: this.userId }, {
     fields: {
       'services.password.bcrypt': false,
