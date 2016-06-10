@@ -5,12 +5,18 @@ export class HeaderEditor extends Component {
   constructor(props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
-    this.onChange = (editorState) => this.setState({ editorState });
+    this.onChange = (editorState) => {
+      this.setState({ editorState });
+      this.props.setHeaderText(this.state.editorState.getCurrentContent().getPlainText());
+    };
   }
   componentDidUpdate() {
     const hasText = this.state.editorState.getCurrentContent().hasText();
     if (hasText && !this.props.hasHead) this.props.setHeadTrue();
     else if (!hasText && this.props.hasHead) this.props.setHeadFalse();
+  }
+  reset() {
+    this.state = { editorState: EditorState.createEmpty() };
   }
   render() {
     const { editorState } = this.state;
@@ -25,6 +31,7 @@ export class HeaderEditor extends Component {
 }
 
 HeaderEditor.propTypes = {
+  setHeaderText: PropTypes.func.isRequired,
   setHeadTrue: PropTypes.func.isRequired,
   setHeadFalse: PropTypes.func.isRequired,
   hasHead: PropTypes.bool.isRequired,

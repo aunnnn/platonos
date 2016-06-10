@@ -18,6 +18,7 @@ Thoughts.schema = new SimpleSchema({
   user_id: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
+    label: "User's Id",
   },
 
   type: {
@@ -35,6 +36,7 @@ Thoughts.schema = new SimpleSchema({
   description: {
     type: String,
     label: 'Description of thought',
+    optional: true, // if force to keep empty string -> wasted of space
   },
 
   like_count: {
@@ -51,9 +53,14 @@ Thoughts.schema = new SimpleSchema({
   //   type: String,
   //   regEx: SimpleSchema.RegEx.Id,
   // },
-  // 'category.title': {
-  //   type: String,
-  // },
+  category: {
+    type: Object,
+  },
+
+  'category.title': {
+    type: String,
+    min: 1,
+  },
 
   createdAt: {
     type: Date,
@@ -71,7 +78,7 @@ Thoughts.attachSchema(Thoughts.schema);
 
 Thoughts.publicFields = {
   type: 1,
-  title: 1,
+  header: 1,
   description: 1,
   category: 1,
   createdAt: 1,

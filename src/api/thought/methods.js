@@ -7,7 +7,7 @@ Thoughts.methods = {};
 
 Thoughts.methods.insert = new ValidatedMethod({
   name: 'thoughts.insert',
-  validate: Thoughts.schema.validator(),
+  validate: null,
   run({ thought }) {
     if (!this.userId) {
       throw new Meteor.Error('thoughts.insert.notLoggedIn',
