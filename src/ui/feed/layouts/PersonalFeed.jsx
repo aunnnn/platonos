@@ -52,12 +52,24 @@ export default class PersonalFeed extends React.Component {
     ];
   }
   render() {
+    const {
+      thoughts,
+      thoughtsReady,
+    } = this.props;
     return (
       <div>
         <WriteThoughtCardLayout />
-        {this.getDummyData().map(thought => <ThoughtCardLayout thought={thought} />)}
-        <ThoughtCardContainer />
+        {thoughtsReady ?
+            thoughts.map(thought => <ThoughtCardLayout thought={thought} />)
+            : (<div>Loading...</div>)}
+        {/* this.getDummyData().map(thought => <ThoughtCardLayout thought={thought} />) */}
+        {/* <ThoughtCardContainer /> */}
       </div>
     );
   }
 }
+
+PersonalFeed.propTypes = {
+  thoughts: React.PropTypes.array,
+  thoughtsReady: React.PropTypes.bool,
+};

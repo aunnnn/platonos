@@ -26,9 +26,9 @@ Thoughts.schema = new SimpleSchema({
     label: 'Type of thought',
   },
 
-  title: {
+  header: {
     type: String,
-    label: 'Title of thought',
+    label: 'Header of thought',
     min: 1,
   },
 
@@ -47,13 +47,13 @@ Thoughts.schema = new SimpleSchema({
     defaultValue: 0,
   },
 
-  'category._id': {
-    type: String,
-    regEx: SimpleSchema.RegEx.Id,
-  },
-  'category.title': {
-    type: String,
-  },
+  // 'category._id': {
+  //   type: String,
+  //   regEx: SimpleSchema.RegEx.Id,
+  // },
+  // 'category.title': {
+  //   type: String,
+  // },
 
   createdAt: {
     type: Date,

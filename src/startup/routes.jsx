@@ -9,7 +9,7 @@ import Store from '../ui/Store.js';
 // import Layouts
 import AppContainer from '../ui/app/containers/AppContainer.jsx';
 import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
-import PersonalFeed from '../ui/feed/layouts/PersonalFeed.jsx';
+import PersonalFeedContainer from '../ui/feed/containers/PersonalFeedContainer.jsx';
 import GlobalFeed from '../ui/feed/layouts/GlobalFeed.jsx';
 import CategoryContainer from '../ui/feed/containers/CategoryContainer.jsx';
 import AddCategoryContainer from '../ui/feed/containers/AddCategoryContainer.jsx';
@@ -59,7 +59,7 @@ export const renderRoutes = () => (
           // feed
         }
         <Route component={FeedLayout}>
-          <IndexRoute component={PersonalFeed} />
+          <IndexRoute component={PersonalFeedContainer} />
           <Route path="global" component={GlobalFeed} onEnter={requireAuth} />
           <Route path="category" onEnter={requireAuth}>
             <Route path=":categoryName" component={CategoryContainer} />

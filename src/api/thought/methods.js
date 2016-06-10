@@ -3,7 +3,9 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 import Thoughts from './thoughts.js';
 
-export const insert = new ValidatedMethod({
+Thoughts.methods = {};
+
+Thoughts.methods.insert = new ValidatedMethod({
   name: 'thoughts.insert',
   validate: Thoughts.schema.validator(),
   run({ thought }) {
