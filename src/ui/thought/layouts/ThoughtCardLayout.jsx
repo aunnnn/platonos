@@ -20,15 +20,40 @@ class ThoughtCardLayout extends React.Component {
     this.state = {
       discussionMessage: '',
       discussions: null,
+      myDiscussion: 'not loaded',
     };
 
     this.setDiscussionMessage = (text) => this.setState({ discussionMessage: text });
     this.createDiscussion = this.createDiscussion.bind(this);
     this.loadPreviewDiscussions = this.loadPreviewDiscussions.bind(this);
+    this.loadMyDiscussion = this.loadMyDiscussion.bind(this);
   }
 
   componentDidMount() {
     this.loadPreviewDiscussions();
+    this.loadMyDiscussion();
+  }
+
+  loadMyDiscussion() {
+    const thoughtId = this.props.thought._id;
+    Discussions.methods.getMyDiscussion.call({ thoughtId }, (err, result) => {
+      if (err) {
+        console.log(err.reason);
+        this.setState({
+          myDiscussion: null,
+        });
+      } else {
+        if (typeof result === 'undefined') {
+          this.setState({
+            myDiscussion: null,
+          });
+        } else {
+          this.setState({
+            myDiscussion: result,
+          });
+        }
+      }
+    });
   }
 
   loadPreviewDiscussions() {
@@ -42,7 +67,6 @@ class ThoughtCardLayout extends React.Component {
         if (err) {
           console.log(err.reason);
         } else {
-          console.log(`result is ${result}`);
           this.setState({
             discussions: result,
           });
@@ -54,6 +78,7 @@ class ThoughtCardLayout extends React.Component {
   createDiscussion() {
     const {
       _id,
+      user_id,
       category,
       header,
       description,
@@ -62,6 +87,7 @@ class ThoughtCardLayout extends React.Component {
     const discussion = {
       thought: {
         _id,
+        user_id,
         header,
         description,
         category: category.title,
@@ -85,6 +111,7 @@ class ThoughtCardLayout extends React.Component {
       } else {
         console.log(result);
         this.loadPreviewDiscussions();
+        this.loadMyDiscussion();
       }
     });
   }
@@ -98,25 +125,50 @@ class ThoughtCardLayout extends React.Component {
       user_id: byUserId,
     } = this.props.thought;
 
-    const discussions = this.state.discussions;
+    const {
+      discussions,
+      myDiscussion,
+    } = this.state;
 
     // global discusssions
-    let discussionCmp = null;
+    let previewDiscussionCmp = null;
     if (type === 'GLOBAL') {
       if (discussions !== null) {
         if (discussions.length !== 0) {
-          discussionCmp = <ThoughtCardShowDiscussion discussions={discussions} />;
+          previewDiscussionCmp = <ThoughtCardShowDiscussion discussions={discussions} />;
         } else {
-          discussionCmp = '';
+          previewDiscussionCmp = '';
         }
       } else {
-        discussionCmp = 'Loading Discussions'; // global, but discussions is null == loading
+        // global, but discussions is null == loading
+        previewDiscussionCmp = 'Loading Discussions...';
       }
     } else {
-      discussionCmp = '';
+      previewDiscussionCmp = '';
     }
 
-    console.log(`created by = ${byUserId} ${Meteor.userId()}`);
+    // action discussion
+    let actionDiscussionCmp = null;
+    if (Meteor.userId() !== byUserId) {
+      if (myDiscussion !== 'not loaded') {
+        // myDiscussion not null == already discussed
+        if (myDiscussion !== null) {
+          actionDiscussionCmp = `You: ${myDiscussion.first_message}`;
+        } else {
+          actionDiscussionCmp = (
+            <ThoughtCardActionDiscuss
+              createDiscussion={this.createDiscussion}
+              setDiscussionMessage={this.setDiscussionMessage}
+              ref="cardActionDiscuss"
+            />
+          );
+        }
+      } else {
+        actionDiscussionCmp = 'Loading my discussion...';
+      }
+    } else {
+      actionDiscussionCmp = '';
+    }
 
     return (
       <div className="thought-card-layout">
@@ -140,24 +192,13 @@ class ThoughtCardLayout extends React.Component {
         {
           // show global discussion
         }
-        {discussionCmp}
-
+        {previewDiscussionCmp}
         {
           // action & start discuss
         }
         <div className="lower-action">
-          <ThoughtCardActionBar
-            type={type}
-          />
-          {
-            Meteor.userId() === byUserId ? '' :
-              <ThoughtCardActionDiscuss
-                createDiscussion={this.createDiscussion}
-                setDiscussionMessage={this.setDiscussionMessage}
-                ref="cardActionDiscuss"
-              />
-
-          }
+          <ThoughtCardActionBar type={type} />
+          {actionDiscussionCmp}
         </div>
       </div>
     );

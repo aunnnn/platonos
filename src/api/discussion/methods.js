@@ -13,7 +13,7 @@ Discussions.methods.insert = new ValidatedMethod({
       throw new Meteor.Error('discussions.insert.notLoggedIn',
         'Must be logged in to publish thought.');
     }
-    if (typeof discussion.created_by !== 'undefined' && this.userId === discussion.created_by) {
+    if (discussion && discussion.thought && this.userId === discussion.thought.user_id) {
       throw new Meteor.Error('discussions.insert.noSelfDiscussion',
         'User cannot start a discussion with him/herself');
     }
@@ -25,6 +25,20 @@ Discussions.methods.getDiscussions = new ValidatedMethod({
   name: 'discussions.getDiscussions',
   validate: null,
   run({ thoughtId }) {
-    return Discussions.find({ 'thought._id': thoughtId }, { limit: 3 }).fetch();
+    return Discussions.find({ 'thought._id': thoughtId },
+      { sort: { created_at: -1 },
+      limit: 3 }).fetch();
+  },
+});
+
+Discussions.methods.getMyDiscussion = new ValidatedMethod({
+  name: 'discussions.getMyDiscussion',
+  validate: null,
+  run({ thoughtId }) {
+    if (!this.userId) {
+      throw new Meteor.Error('discussions.getMyDiscussion.notLoggedIn',
+        'Must be logged in to get my discussion.');
+    }
+    return Discussions.findOne({ 'thought._id': thoughtId, created_by: this.userId }) || null;
   },
 });

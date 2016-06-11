@@ -24,6 +24,7 @@ Discussions.schema = new SimpleSchema({
   thought: {
     type: new SimpleSchema({
       _id: { type: String, regEx: SimpleSchema.RegEx.Id },
+      user_id: { type: String, regEx: SimpleSchema.RegEx.Id },
       header: { type: String, min: 1 },
       description: { type: String, optional: true },
       category: { type: String, min: 1 },
