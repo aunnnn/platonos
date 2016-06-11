@@ -19,10 +19,36 @@ class ThoughtCardLayout extends React.Component {
     super(props);
     this.state = {
       discussionMessage: '',
+      discussions: null,
     };
 
     this.setDiscussionMessage = (text) => this.setState({ discussionMessage: text });
     this.createDiscussion = this.createDiscussion.bind(this);
+    this.loadPreviewDiscussions = this.loadPreviewDiscussions.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadPreviewDiscussions();
+  }
+
+  loadPreviewDiscussions() {
+    const {
+      type,
+      _id: thoughtId,
+     } = this.props.thought;
+
+    if (type === 'GLOBAL') {
+      Discussions.methods.getDiscussions.call({ thoughtId }, (err, result) => {
+        if (err) {
+          console.log(err.reason);
+        } else {
+          console.log(`result is ${result}`);
+          this.setState({
+            discussions: result,
+          });
+        }
+      });
+    }
   }
 
   createDiscussion() {
@@ -46,12 +72,10 @@ class ThoughtCardLayout extends React.Component {
       last_active: new Date(),
     };
 
-    console.log(discussion);
-
-    // reset state
-    this.state = {
+    // reset discussion message state
+    this.setState({
       discussionMessage: '',
-    };
+    });
     this.refs.cardActionDiscuss.reset();
 
     // create discussion
@@ -60,6 +84,7 @@ class ThoughtCardLayout extends React.Component {
         console.log(err.reason);
       } else {
         console.log(result);
+        this.loadPreviewDiscussions();
       }
     });
   }
@@ -70,8 +95,29 @@ class ThoughtCardLayout extends React.Component {
       type,
       header,
       description,
-      discussions = [],
+      user_id: byUserId,
     } = this.props.thought;
+
+    const discussions = this.state.discussions;
+
+    // global discusssions
+    let discussionCmp = null;
+    if (type === 'GLOBAL') {
+      if (discussions !== null) {
+        if (discussions.length !== 0) {
+          discussionCmp = <ThoughtCardShowDiscussion discussions={discussions} />;
+        } else {
+          discussionCmp = '';
+        }
+      } else {
+        discussionCmp = 'Loading Discussions'; // global, but discussions is null == loading
+      }
+    } else {
+      discussionCmp = '';
+    }
+
+    console.log(`created by = ${byUserId} ${Meteor.userId()}`);
+
     return (
       <div className="thought-card-layout">
         {
@@ -94,12 +140,7 @@ class ThoughtCardLayout extends React.Component {
         {
           // show global discussion
         }
-        {type === 'GLOBAL' && discussions.length !== 0 ?
-          <ThoughtCardShowDiscussion
-            discussions={discussions}
-          />
-          : ''
-        }
+        {discussionCmp}
 
         {
           // action & start discuss
@@ -108,11 +149,15 @@ class ThoughtCardLayout extends React.Component {
           <ThoughtCardActionBar
             type={type}
           />
-          <ThoughtCardActionDiscuss
-            createDiscussion={this.createDiscussion}
-            setDiscussionMessage={this.setDiscussionMessage}
-            ref="cardActionDiscuss"
-          />
+          {
+            Meteor.userId() === byUserId ? '' :
+              <ThoughtCardActionDiscuss
+                createDiscussion={this.createDiscussion}
+                setDiscussionMessage={this.setDiscussionMessage}
+                ref="cardActionDiscuss"
+              />
+
+          }
         </div>
       </div>
     );

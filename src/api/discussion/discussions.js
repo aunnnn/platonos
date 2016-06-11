@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
@@ -6,6 +7,10 @@ class DiscussionCollection extends Mongo.Collection {
 }
 
 const Discussions = new DiscussionCollection('Discussions');
+
+if (Meteor.isServer) {
+  Discussions._ensureIndex({ 'thought._id': 1 });
+}
 
 Discussions.deny({
   insert() { return true; },
