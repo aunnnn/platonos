@@ -154,6 +154,7 @@ LowerRow.propTypes = {
 
 UpperRow.propTypes = {
   setCategory: PropTypes.func.isRequired,
+  selectedCategory: PropTypes.string.isRequired,
 };
 
 export default withRouter(WriteThoughtCard);
