@@ -11,7 +11,7 @@ Discussions.methods.insert = new ValidatedMethod({
   run({ discussion }) {
     if (!this.userId) {
       throw new Meteor.Error('discussions.insert.notLoggedIn',
-        'Must be logged in to publish thought.');
+        'Must be logged in to create discussion.');
     }
     if (discussion && discussion.thought && this.userId === discussion.thought.user_id) {
       throw new Meteor.Error('discussions.insert.noSelfDiscussion',
@@ -21,13 +21,22 @@ Discussions.methods.insert = new ValidatedMethod({
   },
 });
 
+// get 3 discussions and not from the user himself
 Discussions.methods.getDiscussions = new ValidatedMethod({
   name: 'discussions.getDiscussions',
   validate: null,
   run({ thoughtId }) {
-    return Discussions.find({ 'thought._id': thoughtId },
-      { sort: { created_at: -1 },
-      limit: 3 }).fetch();
+    if (!this.userId) {
+      throw new Meteor.Error('discussions.getDiscussions.notLoggedIn',
+        'Must be logged in.');
+    }
+    return Discussions.find({
+      'thought._id': thoughtId,
+      'created_by': { $ne: this.userId },
+    }, {
+      sort: { created_at: -1 },
+      limit: 3,
+    }).fetch();
   },
 });
 
