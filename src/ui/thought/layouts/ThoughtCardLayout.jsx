@@ -109,7 +109,7 @@ class ThoughtCardLayout extends React.Component {
       if (err) {
         console.log(err.reason);
       } else {
-        console.log(result);
+        // reset all after create a discussion
         this.loadPreviewDiscussions();
         this.loadMyDiscussion();
       }
@@ -151,7 +151,6 @@ class ThoughtCardLayout extends React.Component {
     let actionDiscussionCmp = null;
     if (Meteor.userId() !== byUserId) {
       if (myDiscussion !== 'not loaded') {
-        // myDiscussion not null == already discussed
         if (myDiscussion !== null) {
           actionDiscussionCmp = `You: ${myDiscussion.first_message}`;
         } else {
