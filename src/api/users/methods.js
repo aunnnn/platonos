@@ -23,7 +23,7 @@ Meteor.users.updateAppProfile = new ValidatedMethod({
   name: 'users.updateAppProfile',
   validate: null,
   run({ user_id, appProfile }) {
-    if(!this.userId) {
+    if (!this.userId) {
       throw new Meteor.Error('users.updateAppProfile.notLoggedIn',
         'Must be logged in to update user data.');
     }
