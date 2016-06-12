@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { withRouter } from 'react-router';
 
 // collections
-import Thoughts from '../../../api/thought/thoughts.js';
+import { Thoughts } from '../../../api/thought/thoughts.js';
 
 // components
 import HeaderEditor from '../components/HeaderEditor.jsx';
@@ -58,6 +58,7 @@ class WriteThoughtCard extends Component {
     this.refs.headerEditor.reset();
     this.refs.descriptionEditor.reset();
 
+    // launch thought
     Thoughts.methods.insert.call({ thought }, (err, result) => {
       if (err) {
         console.log(err.reason);

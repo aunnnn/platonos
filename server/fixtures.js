@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import Categories from '../src/api/thought/categories.js';
+import { Categories } from '../src/api/thought/categories.js';
 
 Meteor.startup(() => {
   if (Categories.find().count() === 0) {

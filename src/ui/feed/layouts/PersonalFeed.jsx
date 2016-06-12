@@ -1,6 +1,6 @@
 import React from 'react';
 import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
-import ThoughtCardContainer from '../../thought/containers/ThoughtCardContainer.jsx';
+
 import WriteThoughtCardLayout from '../../thought/layouts/WriteThoughtCardLayout.jsx';
 
 export default class PersonalFeed extends React.Component {
@@ -8,7 +8,7 @@ export default class PersonalFeed extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     const {
       thoughts,
@@ -18,10 +18,10 @@ export default class PersonalFeed extends React.Component {
       <div>
         <WriteThoughtCardLayout />
         {thoughtsReady ?
-            thoughts.map(thought => <ThoughtCardLayout thought={thought} />)
+            thoughts.map((thought) => (
+              <ThoughtCardLayout key={thought._id} thought={thought} />
+            ))
             : (<div>Loading...</div>)}
-        {/* this.getDummyData().map(thought => <ThoughtCardLayout thought={thought} />) */}
-        {/* <ThoughtCardContainer /> */}
       </div>
     );
   }

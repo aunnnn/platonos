@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
-import Thoughts from './thoughts.js';
+import { Thoughts } from './thoughts.js';
 
 Thoughts.methods = {};
 

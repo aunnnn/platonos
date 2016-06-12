@@ -60,9 +60,10 @@ Thoughts.schema = new SimpleSchema({
   'category.title': {
     type: String,
     min: 1,
+    label: "Category's title",
   },
 
-  createdAt: {
+  created_at: {
     type: Date,
     autoValue: function() {
       if (this.isInsert) {
@@ -77,11 +78,12 @@ Thoughts.schema = new SimpleSchema({
 Thoughts.attachSchema(Thoughts.schema);
 
 Thoughts.publicFields = {
+  user_id: 1,
   type: 1,
   header: 1,
   description: 1,
   category: 1,
-  createdAt: 1,
+  created_at: 1,
 };
 
-export default Thoughts;
+export { Thoughts };

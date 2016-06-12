@@ -3,7 +3,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const UserAppProfileSchema = new SimpleSchema({
   picture: {
     type: SimpleSchema.RegEx.Url,
-    label: "Link of user's profile picture.",
+    label: "Link of user's profile picture (e.g. from FB)",
   },
 
   first_name: {

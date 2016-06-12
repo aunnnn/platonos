@@ -10,7 +10,7 @@ const ThoughtCardShowDiscussion = ({ discussions }) => (
       (discussion, i) =>
         <div className="wrapper" key={i}>
           <p className="merr-font">
-            {`" ${discussion} "`}
+            {`" ${discussion.first_message} "`}
           </p>
         </div>
     )}
