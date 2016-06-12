@@ -1,4 +1,8 @@
+import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+
+
+import { Thoughts } from '../../../api/thought/thoughts.js';
 
 // layouts
 import PersonalFeed from '../../feed/layouts/PersonalFeed.jsx';
@@ -57,8 +61,9 @@ export default createContainer(() => {
       ],
     },
   ];
+  const subMyThoughts = Meteor.subscribe('thoughts.getMyThoughts');
   return {
-    thoughts: data,
-    thoughtsReady: true,
+    thoughts: Thoughts.find({ user_id: Meteor.userId() }, { sort: { created_at: -1 } }).fetch(),
+    thoughtsReady: subMyThoughts.ready(),
   };
 }, PersonalFeed);

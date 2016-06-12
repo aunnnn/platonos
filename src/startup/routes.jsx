@@ -48,6 +48,7 @@ export const renderRoutes = () => (
   <Provider store={Store}>
     <Router
       history={history}
+    >
       {
         // root
       }
