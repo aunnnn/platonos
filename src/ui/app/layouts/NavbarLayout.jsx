@@ -53,7 +53,12 @@ class NavbarLayout extends Component {
                 )}
                 onClick={() => dispatch(openDropdown('noti'))}
               ></i>
-              {activeDropdown === 'noti' ? <NotiDropdown /> : ''}
+              {activeDropdown === 'noti' ?
+                <NotiDropdown
+                  outsideClickIgnoreClass={'fa'}
+                  dispatch={dispatch}
+                /> : ''
+              }
 
               <i
                 className={classNames(
@@ -75,6 +80,7 @@ class NavbarLayout extends Component {
               {activeDropdown === 'setting' ?
                 <SettingDropdown
                   dispatch={dispatch}
+                  outsideClickIgnoreClass={'fa'}
                 />
                 : ''
               }

@@ -1,4 +1,29 @@
 #p-l {
+  @media (min-width: 550px) {
+    .four.columns {
+      width: 28.6666666667%;
+      padding-right: 10px;
+    }
+    .six.columns {
+      width: 51%;  
+    }
+    .two.columns {
+      width: 10.3333333333%;
+    }
+  }
+  @media (max-width: 1200px) {
+    .columns.nav {
+      display: none;
+    }
+    .columns.feed {
+      width: 65.3333333333%;
+    }
+  }
+  @media (max-width: 550px) {
+    .columns.feed {
+      width: auto;
+    }
+  }
   .cover {
     height: 245px;
     width: 100%;
@@ -19,7 +44,7 @@
     max-width: 630px;
     padding: 0 3%;
     text-align: center;
-    margin: -110px auto 0;
+    margin: -110px auto 40px;
     position: relative;
     img {
       width: 140px;
@@ -41,17 +66,97 @@
     }
   }
   .card {
+    margin-bottom: 30px;
+    .content {
+      background-color: #fff;
+      padding: 13px 15px 0;
+      color: #999;
+      box-shadow: 0 1px 5px hexa(#000 ,0.14);
+      width: 100%;
+    }
+    .icon, .text {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .text {
+      width: calc(100% - 29px);
+    }
+  }
+  .card-header {
+    margin-bottom: 5px;
+    padding: 0 10px;
     label {
       display: inline-block;
+      vertical-align: middle;
+      font-size: 18px;
     }
-    button {
-      display: inline-block;
+    .header-link {
+      padding-top: 4px;
       float: right;
+      text-decoration: none;
+      color: #999;
+      font-size: 12px;
+      background-color: hexa(#000, 0);
+      &:hover {
+        color: #222;
+      }
     }
   }
   .about-card {
+    .fa {
+      font-size: 17px;
+      width: 25px;
+      text-align: center;
+    }
+    p {
+      padding-left: 13px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+  }
+  .friend-card {
     .content {
-      background-color: #fff;
+      padding: 13px 10px 8px;
+    }
+    .friend {
+      background-color: red;
+      margin: 0 5px;
+      border-radius: 50%;
+      @media (max-width: 550px) {
+        width: calc((100% / 4) - 10px);
+      }
+      @media (min-width: 550px) {
+        width: calc((100% / 2) - 10px);
+      }
+      @media (min-width: 1000px) {
+        width: calc((100% / 3) - 10px);
+      }
+    }
+  }
+  .cat-nav {
+    margin-top: 10px;
+    padding-left: 10px;
+    label {
+      font-size: 10px;
+    }
+    hr {
+      margin: 6px 0;
+    }
+  }
+  .nav {
+    font-size: 16px;
+    color: #888;
+    cursor: pointer;
+    padding: 5px 0;
+    word-wrap: break-word;
+    &:hover {
+      color: #555555 !important;
+    }
+    &.link-active {
+      color: black;
+      font-weight: 600;
     }
   }
 }
+
+

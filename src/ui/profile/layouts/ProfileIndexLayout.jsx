@@ -1,48 +1,47 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 
+// components
 import AboutCard from '../components/AboutCard.jsx';
 import FriendsCard from '../components/FriendsCard.jsx';
+import ProfileCategoriesNav from '../components/ProfileCategoriesNav.jsx';
+
+// containers
+import FeedContainer from '../containers/ProfileIndexFeedContainer.jsx';
 
 export default class ProfileIndexLayout extends Component {
-
+  constructor(props) {
+    super(props);
+    // this.state = { currentCategory: }
+  }
   render() {
     const {
-      children,
+      user,
     } = this.props;
-    const dummyAbout = {
-      categories: ['Politics', 'Science', 'Space'],
-      works: ['Student Yo'],
-      educations: ['Chulalongkorn University'],
-      places: {
-        born: {
-          city: 'Bangkok',
-          country: 'Thailand',
-        },
-        lives: {
-          city: 'California',
-          country: 'United States',
-        },
-      },
-    };
     return (
       <div className="row container">
 
-        <div className="four columns">
+        <div className="four columns left">
           <AboutCard
-            about={dummyAbout}
+            user={user}
           />
-          <FriendsCard />
+          <FriendsCard
+            user={user}
+          />
         </div>
-        <div className="six columns">
-          you
+        <div className="six columns feed">
+          <div className="card-header">
+            <label>24 Thoughts</label>
+          </div>
+          <FeedContainer />
         </div>
-        <div className="two columns">
-          yo
+        <div className="two columns nav">
+          <ProfileCategoriesNav categories={user.followed_categories} />
         </div>
-        <Link to="profile/friends">to friends</Link>
-        <Link to="profile/about">to friends</Link>
       </div>
     );
   }
 }
+
+ProfileIndexLayout.propTypes = {
+  user: PropTypes.object,
+};

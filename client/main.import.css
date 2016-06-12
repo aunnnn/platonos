@@ -487,14 +487,17 @@ div {
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
-    width: 85%;
+    /* width: 85%; */
+    width: 95%;
     padding: 0; }
 }
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
-    width: 80%; }
+    /* width: 80%; */
+    width: 90%;
+  }
   .column,
   .columns {
     margin-left: 2%; }
@@ -553,6 +556,12 @@ div {
   .offset-by-one-half.column,
   .offset-by-one-half.columns     { margin-left: 52%; }
 
+}
+
+@media (min-width: 750px) {
+  .container {
+    width: 80%;
+  }
 }
 
 
@@ -700,6 +709,10 @@ select {
   border-radius: 4px;
   box-shadow: none;
   box-sizing: border-box; }
+select {
+  -webkit-appearance: none;
+  cursor: pointer;
+}
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
 input[type="number"],

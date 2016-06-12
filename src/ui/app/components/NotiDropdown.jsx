@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import onClickOutside from 'react-onclickoutside';
 
 // components
 import MsgOnMyThoughtNoti from './MsgOnMyThoughtNoti.jsx';
@@ -9,6 +10,9 @@ import HighlightGlobalThoughtNoti from './HighlightGlobalThoughtNoti.jsx';
 import NewThoughtFromFriendNoti from './NewThoughtFromFriendNoti.jsx';
 import NewGlobalDebateNoti from './NewGlobalDebateNoti.jsx';
 import NewThoughtNoti from './NewThoughtNoti';
+
+// actions
+import { openDropdown } from '../actions/openDropdown.js';
 
 class NotiDropdown extends Component {
   getDummyData() {
@@ -85,6 +89,9 @@ class NotiDropdown extends Component {
       },
     ];
   }
+  handleClickOutside() {
+    this.props.dispatch(openDropdown('noti'));
+  }
   render() {
     return (
       <div className="nav-dropdown noti">
@@ -115,4 +122,8 @@ class NotiDropdown extends Component {
   }
 }
 
-export default NotiDropdown;
+NotiDropdown.propTypes = {
+  dispatch: React.PropTypes.func,
+};
+
+export default onClickOutside(NotiDropdown);
