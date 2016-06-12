@@ -18,7 +18,7 @@ DraftThoughts.deny({
 DraftThoughts.schema = new SimpleSchema({
   user_id: {
     type: String,
-    regEx: SimpleSchema.RegExp.Id,
+    regEx: SimpleSchema.RegEx.Id,
     label: "User's Id",
   },
 

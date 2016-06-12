@@ -21,7 +21,7 @@ Thoughts.methods.insert = new ValidatedMethod({
 DraftThoughts.methods = {};
 
 DraftThoughts.methods.insert = new ValidatedMethod({
-  naem: 'draftThoughts.insert',
+  name: 'draftThoughts.insert',
   validate: null,
   run({ draftThought }) {
     if (!this.userId) {
