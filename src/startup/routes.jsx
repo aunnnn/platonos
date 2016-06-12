@@ -48,7 +48,6 @@ export const renderRoutes = () => (
   <Provider store={Store}>
     <Router
       history={history}
-      onUpdate={() => window.scrollTo(0, 0)}
     >
       {
         // root

@@ -10,11 +10,40 @@ class ProfileLayout extends Component {
     super(props);
   }
 
+  getDummyUser() {
+    return {
+      appProfile: {
+        picture: Meteor.user().appProfile,
+        first_name: 'Jirat',
+        last_name: 'Onaree',
+        description: 'Yo what\'s up jirat is back in town motherfuckerr.',
+        friends_ids: [],
+        followed_categories: [
+          { id: '', title: 'Politics' },
+          { id: '', title: 'Science' },
+          { id: '', title: 'Space' },
+        ],
+        works: ['Student Yo'],
+        educations: ['Chulalongkorn University'],
+        address: {
+          born: {
+            city: 'Bangkok',
+            country: 'Thailand',
+          },
+          lives: {
+            city: 'California',
+            country: 'United States',
+          },
+        },
+      },
+    };
+  }
+
   render() {
     const {
       children,
     } = this.props;
-    const user = Meteor.user().services.facebook;
+    const user = this.getDummyUser().appProfile;
     return (
       <div id="p-l">
 
@@ -38,7 +67,7 @@ class ProfileLayout extends Component {
         {
           // children
         }
-        {children}
+        {children && React.cloneElement(children, { user })}
 
       </div>
     );
