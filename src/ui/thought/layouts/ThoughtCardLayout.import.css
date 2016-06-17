@@ -85,6 +85,14 @@
       }
     }
   }
+  .already-discussed {
+    background-color: #FEF9FB;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding: 8px;
+    &:hover {
+      border-top: 1px solid rgba(0,0,0,0.15);
+    }
+  }
   .action-discuss {
     background-color: #FEF9FB;
     /* padding: 10px 5.5%; */

@@ -10,6 +10,7 @@ import ThoughtCardContentHeader from '../components/ThoughtCardContentHeader.jsx
 import ThoughtCardActionDiscuss from '../components/ThoughtCardActionDiscuss.jsx';
 import ThoughtCardActionBar from '../components/ThoughtCardActionBar.jsx';
 import ThoughtCardShowDiscussion from '../components/ThoughtCardShowDiscussion.jsx';
+import moment from 'moment';
 
 import './ThoughtCardLayout.import.css';
 
@@ -123,6 +124,7 @@ class ThoughtCardLayout extends React.Component {
       header,
       description,
       user_id: byUserId,
+      created_at,
     } = this.props.thought;
 
     const {
@@ -152,7 +154,11 @@ class ThoughtCardLayout extends React.Component {
     if (Meteor.userId() !== byUserId) {
       if (myDiscussion !== 'not loaded') {
         if (myDiscussion !== null) {
-          actionDiscussionCmp = `You: ${myDiscussion.first_message}`;
+          actionDiscussionCmp = (
+            <div className="already-discussed">
+              You: {myDiscussion.first_message}
+            </div>
+          );
         } else {
           actionDiscussionCmp = (
             <ThoughtCardActionDiscuss
@@ -166,7 +172,7 @@ class ThoughtCardLayout extends React.Component {
         actionDiscussionCmp = 'Loading my discussion...';
       }
     } else {
-      actionDiscussionCmp = '';
+      actionDiscussionCmp = `By you on ${moment(created_at).format('MM/DD/YYYY')}`;
     }
 
     return (
