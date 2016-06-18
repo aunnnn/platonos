@@ -119,7 +119,6 @@
       padding: 13px 10px 8px;
     }
     .friend {
-      background-color: red;
       margin: 0 5px;
       border-radius: 50%;
       @media (max-width: 550px) {
