@@ -20,6 +20,14 @@ export const UserAppProfileSchema = new SimpleSchema({
     type: String,
   },
 
+  'address.born': {
+    type: String,
+  },
+
+  'address.lives': {
+    type: String,
+  },
+
   description: {
     type: String,
   },

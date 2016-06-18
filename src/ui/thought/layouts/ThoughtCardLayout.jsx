@@ -172,7 +172,7 @@ class ThoughtCardLayout extends React.Component {
         actionDiscussionCmp = 'Loading my discussion...';
       }
     } else {
-      actionDiscussionCmp = `By you on ${moment(created_at).format('MM/DD/YYYY')}`;
+      actionDiscussionCmp = `By you ${moment(created_at).fromNow()}`;
     }
 
     return (
