@@ -5,6 +5,7 @@ import { renderRoutes } from '../src/startup/routes.jsx';
 
 import './main.import.css';
 
+import '../src/api/users/methods.js';
 import '../src/api/thought/methods.js';
 import '../src/api/discussion/methods.js';
 

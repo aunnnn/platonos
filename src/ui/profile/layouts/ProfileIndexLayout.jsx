@@ -30,7 +30,7 @@ export default class ProfileIndexLayout extends Component {
         </div>
         <div className="six columns feed">
           <div className="card-header">
-            <label>24 Thoughts</label>
+            <label>Your Thoughts</label>
           </div>
           <FeedContainer />
         </div>
