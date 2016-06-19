@@ -65,6 +65,8 @@ class SidebarList extends React.Component {
           ))
         }
         <Link to="/addCategories" className="more-button">All Categories..</Link>
+        <div className="horizontal-divider"></div>
+        <Link to="/">Discussed</Link>
       </div>
     );
   }

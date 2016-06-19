@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
+import classNames from 'classnames';
 
 // collections
 import { Discussions } from '../../../api/discussion/discussions.js';
@@ -10,7 +11,7 @@ import ThoughtCardContentHeader from '../components/ThoughtCardContentHeader.jsx
 import ThoughtCardActionDiscuss from '../components/ThoughtCardActionDiscuss.jsx';
 import ThoughtCardActionBar from '../components/ThoughtCardActionBar.jsx';
 import ThoughtCardShowDiscussion from '../components/ThoughtCardShowDiscussion.jsx';
-import moment from 'moment';
+import ThoughtCardAlreadyDiscussed from '../components/ThoughtCardAlreadyDiscussed.jsx';
 
 import './ThoughtCardLayout.import.css';
 
@@ -132,6 +133,9 @@ class ThoughtCardLayout extends React.Component {
       myDiscussion,
     } = this.state;
 
+    const currentUser = Meteor.user().appProfile;
+    const isOwner = Meteor.userId() === byUserId;
+
     // global discusssions
     let previewDiscussionCmp = null;
     if (type === 'GLOBAL') {
@@ -151,13 +155,14 @@ class ThoughtCardLayout extends React.Component {
 
     // action discussion
     let actionDiscussionCmp = null;
-    if (Meteor.userId() !== byUserId) {
+    if (!isOwner) {
       if (myDiscussion !== 'not loaded') {
         if (myDiscussion !== null) {
           actionDiscussionCmp = (
-            <div className="already-discussed">
-              You: {myDiscussion.first_message}
-            </div>
+            <ThoughtCardAlreadyDiscussed
+              message={myDiscussion.first_message}
+              currentUser={currentUser}
+            />
           );
         } else {
           actionDiscussionCmp = (
@@ -169,14 +174,18 @@ class ThoughtCardLayout extends React.Component {
           );
         }
       } else {
-        actionDiscussionCmp = 'Loading my discussion...';
+        actionDiscussionCmp = (
+          <div className="action-discuss">
+            <div className="wrapper">
+              'Loading my discussion...'
+            </div>
+          </div>
+        );
       }
-    } else {
-      actionDiscussionCmp = `By you ${moment(created_at).fromNow()}`;
     }
 
     return (
-      <div className="thought-card-layout">
+      <div className={classNames('tcl', { owned: isOwner })}>
         {
           // category & thought type
         }
@@ -187,6 +196,9 @@ class ThoughtCardLayout extends React.Component {
           <ThoughtCardUpperInfo
             category={category.title}
             type={type}
+            currentUser={currentUser}
+            isOwner={isOwner}
+            created_at={created_at}
           />
           <ThoughtCardContentHeader
             header={header}
