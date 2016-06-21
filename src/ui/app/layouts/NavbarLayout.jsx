@@ -23,11 +23,9 @@ class NavbarLayout extends Component {
     } = this.props;
 
     // try get fb first_name first, then email
-    const tryNameFB = () => (user.services.facebook && user.services.facebook.first_name);
-    const tryNameEmail = () => (user.emails && user.emails[0].address);
 
-    const userName = user ? (tryNameFB() || tryNameEmail()) : 'not a user (impossible!)';
-    const picture = (user && user.appProfile.picture) || 'img/user.jpg';
+    const userName = user.appProfile.first_name;
+    const picture = user.appProfile.picture;
 
     return (
       <nav className="main-nav">

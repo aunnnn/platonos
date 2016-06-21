@@ -8,7 +8,7 @@ const MsgFromFounders = ({ name }) => (
       <br /><br />
     Platonos is the place where people can let their thoughts fly around it anonymously and anyone from anywhere can make 1-1 discussion about the thought. Connect each others, and make new friends around the world.
       <br /><br />
-    we make this for you and for anyone like us to connect, to know each other. Now we only have website but mobile app is coming soon if you have any problem or bugs please <a>send it</a> to us.
+    we make this for you and for anyone like us to connect, to know each other. Now we only have website but mobile app is coming soon. If you have any problem or bugs please <a>let us know.</a> 
       <br /><br />
     And please don’t forget to share this to your friend ! any idea to improve, please we love to hear.
       <br /><br />
