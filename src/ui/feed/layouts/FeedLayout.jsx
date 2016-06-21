@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 
 // components
 import SidebarList from '../components/SidebarList.jsx';
@@ -12,7 +13,7 @@ export default class FeedLayout extends Component {
     const {
       children,
     } = this.props;
-
+    console.log(Meteor.user().appProfile);
     return (
       <div className="container" id="feed-layout">
         <div className="row">
@@ -24,7 +25,9 @@ export default class FeedLayout extends Component {
             {children}
           </div>
           <div className="three columns right">
-            <MsgFromFounders />
+            <MsgFromFounders
+              name={Meteor.user().appProfile.first_name}
+            />
           </div>
         </div>
       </div>

@@ -21,6 +21,9 @@
     }
     p {
       font-size: 12px;
+      &::first-letter {
+        font-size: 200%;
+      }
     }
   }
   .feed-header {
