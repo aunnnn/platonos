@@ -80,6 +80,7 @@
     "eslint-plugin-react": "^5.0.1",
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^0.9.1",
+    "faker": "^3.1.0",
     "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",
     "postcss-color-hexa": "^1.2.4",

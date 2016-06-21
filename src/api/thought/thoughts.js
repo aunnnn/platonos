@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Factory } from 'meteor/dburles:factory';
 
 class ThoughtCollection extends Mongo.Collection {
 
@@ -73,6 +74,21 @@ Thoughts.schema = new SimpleSchema({
     denyUpdate: true,
   },
 
+  attachment: {
+    type: new SimpleSchema({
+      type: {
+        type: String,
+        allowedValues: ['THOUGHT', 'DISCUSSION', 'EXTERNAL_URL'],
+        label: 'Type of attachment',
+      },
+      value: {
+        type: String,
+      },
+    }),
+    optional: true,
+    label: 'Attachment of this thought',
+  },
+
 });
 
 Thoughts.attachSchema(Thoughts.schema);
@@ -85,5 +101,6 @@ Thoughts.publicFields = {
   category: 1,
   created_at: 1,
 };
+
 
 export { Thoughts };
