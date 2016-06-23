@@ -1,0 +1,49 @@
+.orbit-loader-wrapper {
+  margin-top: 30px;
+  width: 100px;
+  height: 30px;
+  padding-top: 20px;
+  overflow: hidden;
+}
+.orbit-loader {
+  position: relative;
+  background-color: #a12f36;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  border-radius: 50%;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    left: -5px;
+    top: -5px;
+    background-color: #FFBA1A;
+    transform-origin: 40px 40px;
+    animation: orbital 1s linear infinite;
+    z-index: 0;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    background-color: #f7f7f7;
+    width: 100%;
+    height: 60px;
+    z-index: 1;
+    /* background-color: red; */
+  }
+}
+
+@keyframes orbital {
+  0% {
+    transform: rotateZ(-30deg) translate3d(0,0,0);
+  }
+  100% {
+    transform: rotateZ(120deg) translate3d(0,0,0);
+  }
+  /*  -30 120 */
+}

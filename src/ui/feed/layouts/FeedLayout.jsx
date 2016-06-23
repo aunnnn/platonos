@@ -15,7 +15,7 @@ export default class FeedLayout extends Component {
     } = this.props;
     console.log(Meteor.user().appProfile);
     return (
-      <div className="container" id="feed-layout">
+      <div className="container" id="f-l">
         <div className="row">
           <div className="two columns nav">
             <SidebarList />

@@ -12,6 +12,7 @@ import ThoughtCardActionDiscuss from '../components/ThoughtCardActionDiscuss.jsx
 import ThoughtCardActionBar from '../components/ThoughtCardActionBar.jsx';
 import ThoughtCardShowDiscussion from '../components/ThoughtCardShowDiscussion.jsx';
 import ThoughtCardAlreadyDiscussed from '../components/ThoughtCardAlreadyDiscussed.jsx';
+import { OrbitLoader } from '../../app/components/Loader.jsx';
 
 import './ThoughtCardLayout.import.css';
 
@@ -147,7 +148,7 @@ class ThoughtCardLayout extends React.Component {
         }
       } else {
         // global, but discussions is null == loading
-        previewDiscussionCmp = 'Loading Discussions...';
+        previewDiscussionCmp = <OrbitLoader />;
       }
     } else {
       previewDiscussionCmp = '';

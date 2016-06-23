@@ -52,6 +52,13 @@
 		padding: 6px 6px;
 		font-size: 12px;
 		font-weight: 300;
+		&:hover {
+			color: #555555 !important;
+		}
+		&.link-active {
+			color: black;
+			font-weight: 600;
+		}
 	}
 
 	.fa-angle-right {

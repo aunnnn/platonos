@@ -2,6 +2,7 @@ import React from 'react';
 import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
 
 import WriteThoughtCardLayout from '../../thought/layouts/WriteThoughtCardLayout.jsx';
+import { OrbitLoader } from '../../app/components/Loader.jsx';
 
 export default class PersonalFeed extends React.Component {
 
@@ -21,7 +22,7 @@ export default class PersonalFeed extends React.Component {
             thoughts.map((thought) => (
               <ThoughtCardLayout key={thought._id} thought={thought} />
             ))
-            : (<div>Loading...</div>)}
+            : (<OrbitLoader />)}
       </div>
     );
   }

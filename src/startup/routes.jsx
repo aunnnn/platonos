@@ -63,7 +63,7 @@ export const renderRoutes = () => (
           <Route path="category" onEnter={requireAuth}>
             <Route path=":categoryName" component={CategoryContainer} />
           </Route>
-          <Route path="addCategories" component={AddCategoryContainer} onEnter={requireAuth} />
+          <Route path="categories" component={AddCategoryContainer} onEnter={requireAuth} />
         </Route>
 
         {
