@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import '../../_tools/clamp.js';
 
 class ThoughtCardContentHeader extends Component {
@@ -12,14 +13,14 @@ class ThoughtCardContentHeader extends Component {
       description,
     } = this.props;
     return (
-      <div className="content">
+      <Link className="content" to="/profile">
         <div className="header">
           <h5>{header}</h5>
         </div>
         <div className="description" ref="clampText">
           {description}
         </div>
-      </div>
+      </Link>
     );
   }
 }

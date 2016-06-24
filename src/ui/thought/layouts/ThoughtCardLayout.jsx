@@ -215,7 +215,7 @@ class ThoughtCardLayout extends React.Component {
           // action & start discuss
         }
         <div className="lower-action">
-          <ThoughtCardActionBar type={type} />
+          <ThoughtCardActionBar type={type} isOwner={isOwner} />
           {actionDiscussionCmp}
         </div>
       </div>

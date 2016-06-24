@@ -5,7 +5,7 @@
   margin: 0 0 20px;
   position: relative;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   &.owned {
     box-shadow: 0 6px 5px -3px hexa(#000 ,0.15), 0 1px 5px hexa(#000 ,0.17);
   }
@@ -46,19 +46,26 @@
     vertical-align: middle;
   }
   .content {
-    padding: 16px 0 0;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      .header {
+        text-decoration: underline;
+      }
+    }
   }
   .header h5 {
     font-weight: 600;
     font-size: 21px;
-    margin-bottom: 6px;
+    margin: 16px 0 6px;
     letter-spacing: 0.15px;
+    color: #222;
   }
   .description {
     font-family: 'Merriweather';  
     font-size: 14px;
     color: #5d5d5d;
-    padding-top: 5px;
+    padding: 5px 0 3px;
   }
   .action-bar {
     width: 100%;
@@ -70,6 +77,9 @@
       display: inline-block;
       float: left;
       vertical-align: middle;
+      .action-button:hover {
+        color: #222;
+      }
     }
     .right {
       display: inline-block;
@@ -81,9 +91,6 @@
     display: inline-block;
     margin-right: 10px;
     cursor: pointer;
-    &:hover {
-      color: #222;
-    }
     i {
       margin-right: 4px;
       font-size: 15px;
@@ -95,12 +102,32 @@
     }
     &.right {
       margin-right: 0;
-      margin-left: 10px;
+      /* margin-left: 10px;
       i {
         margin-left: 4px;
+        &:hover {
+          color: #222;
+        }
       }
       .fa-angle-up {
         color: #222;
+      } */
+    }
+    .item   {
+      display: inline-block;
+      padding: 0 5px;
+      &.last {
+        padding-right: 0;
+      }
+      .fa {
+        /* margin-right: 5px; */
+      }
+      &:hover {
+        color: #222;
+      }
+      .text {
+        font-size: 12px;
+
       }
     }
   }
