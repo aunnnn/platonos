@@ -4,6 +4,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { Thoughts } from './thoughts.js';
 import { DraftThoughts } from './draftThoughts.js';
 
+// Thought methods
 Thoughts.methods = {};
 
 Thoughts.methods.insert = new ValidatedMethod({
@@ -18,6 +19,7 @@ Thoughts.methods.insert = new ValidatedMethod({
   },
 });
 
+// Draft methods
 DraftThoughts.methods = {};
 
 DraftThoughts.methods.insert = new ValidatedMethod({

@@ -19,6 +19,7 @@ import WriteThoughtPageLayout from '../ui/thought/layouts/WriteThoughtPageLayout
 import ProfileIndexLayout from '../ui/profile/layouts/ProfileIndexLayout.jsx';
 import ProfileFriendsLayout from '../ui/profile/layouts/ProfileFriendsLayout.jsx';
 import ProfileAboutLayout from '../ui/profile/layouts/ProfileAboutLayout.jsx';
+import ThoughtPageContainer from '../ui/thought/containers/ThoughtPageContainer.jsx';
 
 const history = syncHistoryWithStore(browserHistory, Store);
 
@@ -48,6 +49,7 @@ export const renderRoutes = () => (
   <Provider store={Store}>
     <Router
       history={history}
+      onUpdate={window.scrollTo(0, 0)}
     >
       {
         // root
@@ -65,6 +67,11 @@ export const renderRoutes = () => (
           </Route>
           <Route path="categories" component={AddCategoryContainer} onEnter={requireAuth} />
         </Route>
+
+        {
+          // thought page
+        }
+        <Route path="thought/:thoughtId" component={ThoughtPageContainer} />
 
         {
           // profile

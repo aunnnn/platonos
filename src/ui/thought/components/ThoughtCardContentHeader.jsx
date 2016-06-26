@@ -9,11 +9,12 @@ class ThoughtCardContentHeader extends Component {
   }
   render() {
     const {
+      thoughtId,
       header,
       description,
     } = this.props;
     return (
-      <Link className="content" to="/profile">
+      <Link className="content" to={`/thought/${thoughtId}`}>
         <div className="header">
           <h5>{header}</h5>
         </div>
@@ -26,6 +27,7 @@ class ThoughtCardContentHeader extends Component {
 }
 
 ThoughtCardContentHeader.propTypes = {
+  thoughtId: React.PropTypes.string,
   header: React.PropTypes.string,
   description: React.PropTypes.string,
 };

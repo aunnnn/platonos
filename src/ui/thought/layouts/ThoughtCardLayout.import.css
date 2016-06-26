@@ -49,11 +49,9 @@
     text-decoration: none;
     &:hover {
       cursor: pointer;
-      .header {
-        text-decoration: underline;
-      }
     }
   }
+
   .header h5 {
     font-weight: 600;
     font-size: 21px;
