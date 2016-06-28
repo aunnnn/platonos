@@ -7,7 +7,7 @@
   width: 100%;
   /* overflow: hidden; */
   &.owned {
-    box-shadow: 0 6px 5px -3px hexa(#000 ,0.15), 0 1px 5px hexa(#000 ,0.17);
+    box-shadow: 0 3px 4px -3px hexa(#000 ,0.15), 0 1px 5px hexa(#000 ,0.17);
   }
   .upper-padding {
   	padding: 10px 5.5%;
@@ -49,6 +49,9 @@
     text-decoration: none;
     &:hover {
       cursor: pointer;
+      > .bg {
+        background-color: #f7f7f7;
+      }
     }
   }
 

@@ -10,6 +10,9 @@
   }
   .tcl .content:hover {
     cursor: default;
+    > .bg {
+      background-color: #fff;
+    }
   }
   .discuss-header {
     font-size: 20px;

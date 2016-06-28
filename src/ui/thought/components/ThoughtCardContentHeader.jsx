@@ -15,11 +15,13 @@ class ThoughtCardContentHeader extends Component {
     } = this.props;
     return (
       <Link className="content" to={`/thought/${thoughtId}`}>
+        <div className="bg">
         <div className="header">
           <h5>{header}</h5>
         </div>
         <div className="description" ref="clampText">
           {description}
+        </div>
         </div>
       </Link>
     );

@@ -71,8 +71,10 @@ class SidebarList extends React.Component {
         >
           All Categories..
         </Link>
-        <div className="horizontal-divider"></div>
-        <Link to="/">Discussed</Link>
+        {/*
+          <div className="horizontal-divider"></div>
+          <Link to="/">Discussed</Link>
+        */}
       </div>
     );
   }
