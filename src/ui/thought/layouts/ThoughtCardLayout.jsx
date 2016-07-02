@@ -12,6 +12,7 @@ import ThoughtCardActionDiscuss from '../components/ThoughtCardActionDiscuss.jsx
 import ThoughtCardActionBar from '../components/ThoughtCardActionBar.jsx';
 import ThoughtCardShowDiscussion from '../components/ThoughtCardShowDiscussion.jsx';
 import ThoughtCardAlreadyDiscussed from '../components/ThoughtCardAlreadyDiscussed.jsx';
+import { OrbitLoader } from '../../app/components/Loader.jsx';
 
 import './ThoughtCardLayout.import.css';
 
@@ -65,7 +66,7 @@ class ThoughtCardLayout extends React.Component {
      } = this.props.thought;
 
     if (type === 'GLOBAL') {
-      Discussions.methods.getDiscussions.call({ thoughtId }, (err, result) => {
+      Discussions.methods.getPreviewDiscussions.call({ thoughtId }, (err, result) => {
         if (err) {
           console.log(err.reason);
         } else {
@@ -120,13 +121,17 @@ class ThoughtCardLayout extends React.Component {
 
   render() {
     const {
-      category,
-      type,
-      header,
-      description,
-      user_id: byUserId,
-      created_at,
-    } = this.props.thought;
+      thought: {
+        _id,
+        category,
+        type,
+        header,
+        description,
+        user_id: byUserId,
+        created_at,
+      },
+      isPage,
+    } = this.props;
 
     const {
       discussions,
@@ -147,7 +152,7 @@ class ThoughtCardLayout extends React.Component {
         }
       } else {
         // global, but discussions is null == loading
-        previewDiscussionCmp = 'Loading Discussions...';
+        previewDiscussionCmp = <OrbitLoader />;
       }
     } else {
       previewDiscussionCmp = '';
@@ -203,18 +208,19 @@ class ThoughtCardLayout extends React.Component {
           <ThoughtCardContentHeader
             header={header}
             description={description}
+            thoughtId={_id}
           />
         </div>
 
         {
           // show global discussion
         }
-        {previewDiscussionCmp}
+        {isPage ? '' : previewDiscussionCmp}
         {
           // action & start discuss
         }
         <div className="lower-action">
-          <ThoughtCardActionBar type={type} />
+          <ThoughtCardActionBar type={type} isOwner={isOwner} />
           {actionDiscussionCmp}
         </div>
       </div>
@@ -224,6 +230,7 @@ class ThoughtCardLayout extends React.Component {
 
 ThoughtCardLayout.propTypes = {
   thought: React.PropTypes.object,
+  isPage: React.PropTypes.bool,
 };
 
 export default ThoughtCardLayout;

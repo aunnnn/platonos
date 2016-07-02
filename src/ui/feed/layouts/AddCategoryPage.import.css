@@ -1,4 +1,7 @@
 .add-category {
+	@media (max-width: 550px) {
+		padding: 0 3%;
+	}
 	.panel {
 		position: relative;
 	}

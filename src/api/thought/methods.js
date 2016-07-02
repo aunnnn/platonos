@@ -6,6 +6,7 @@ import { DraftThoughts } from './draftThoughts.js';
 import { Connections } from '../users/connections.js';
 import { Actions } from '../feed/actions.js';
 
+// Thought methods
 Thoughts.methods = {};
 
 Thoughts.methods.insert = new ValidatedMethod({
@@ -72,6 +73,7 @@ Thoughts.methods.insert = new ValidatedMethod({
   },
 });
 
+// Draft methods
 DraftThoughts.methods = {};
 
 DraftThoughts.methods.insert = new ValidatedMethod({

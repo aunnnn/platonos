@@ -1,8 +1,12 @@
-import React from 'react';
-import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
 import { Meteor } from 'meteor/meteor';
-import WriteThoughtCardLayout from '../../thought/layouts/WriteThoughtCardLayout.jsx';
+import React from 'react';
 import moment from 'moment';
+
+// components
+import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
+import WriteThoughtCardLayout from '../../thought/layouts/WriteThoughtCardLayout.jsx';
+import { OrbitLoader } from '../../app/components/Loader.jsx';
+
 
 export default class PersonalFeed extends React.Component {
 
@@ -30,11 +34,12 @@ export default class PersonalFeed extends React.Component {
       return (
         <div>
           <img width="40" height="40" src={friendThought.user_picture} role="presentation" />
-          <h4>{friendThought.user_fullname} {moment(friendThought.created_at).fromNow()}</h4>
+          <h5>{friendThought.user_fullname}</h5>
           <p>{friendThought.type} {friendThought.category.title}</p>
-          <hr />
-          <h3>{friendThought.header}</h3>
+          <h5>{friendThought.header}</h5>
           <p>{friendThought.description}</p>
+          <p>{moment(friendThought.created_at).fromNow()}</p>
+          <hr />
         </div>
       );
     } else if (post.type === 'ACTIVITY') {
@@ -44,7 +49,7 @@ export default class PersonalFeed extends React.Component {
         <div>{JSON.stringify(activity)}</div>
       );
     } else {
-      console.log("Something wrong, what type is this?");
+      console.log(`Something wrong, what type is this? ${post.type}`);
       return <div>Something wrong</div>;
     }
   }
@@ -64,7 +69,7 @@ export default class PersonalFeed extends React.Component {
         <WriteThoughtCardLayout />
         {feedsReady ?
             userPosts.map((post) => this.renderPost(post))
-            : (<div>Loading...</div>)}
+            : (<OrbitLoader />)}
       </div>
     );
   }

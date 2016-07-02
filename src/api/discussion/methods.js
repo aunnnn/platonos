@@ -22,12 +22,12 @@ Discussions.methods.insert = new ValidatedMethod({
 });
 
 // get 3 discussions and not from the user himself
-Discussions.methods.getDiscussions = new ValidatedMethod({
-  name: 'discussions.getDiscussions',
+Discussions.methods.getPreviewDiscussions = new ValidatedMethod({
+  name: 'discussions.getPreviewDiscussions',
   validate: null,
   run({ thoughtId }) {
     if (!this.userId) {
-      throw new Meteor.Error('discussions.getDiscussions.notLoggedIn',
+      throw new Meteor.Error('discussions.getPreviewDiscussions.notLoggedIn',
         'Must be logged in.');
     }
     return Discussions.find({
@@ -36,6 +36,21 @@ Discussions.methods.getDiscussions = new ValidatedMethod({
     }, {
       sort: { created_at: -1 },
       limit: 3,
+    }).fetch();
+  },
+});
+
+Discussions.methods.getAllDiscussions = new ValidatedMethod({
+  name: 'discussions.getAllDiscussions',
+  validate: null,
+  run(thoughtIdString) {
+    const { thoughtId } = JSON.parse(thoughtIdString);
+    if (!this.userId) {
+      throw new Meteor.Error('discussions.getDiscussions.notLoggedIn',
+        'Must be logged in.');
+    }
+    return Discussions.find({
+      'thought._id': thoughtId,
     }).fetch();
   },
 });

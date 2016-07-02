@@ -1,8 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-import PersonalFeed from '../layouts/PersonalFeed.jsx';
-import { Feeds } from '../../../api/feed/feeds.js';
 import moment from 'moment';
+
+// collections
+import { Feeds } from '../../../api/feed/feeds.js';
+
+// components
+import PersonalFeed from '../layouts/PersonalFeed.jsx';
 
 export default createContainer(() => {
   const subPersonalFeed = Meteor.subscribe('feed.personalFeed');

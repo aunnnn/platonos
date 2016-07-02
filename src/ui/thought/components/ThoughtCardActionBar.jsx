@@ -17,7 +17,7 @@ class ThoughtCardActionBar extends Component {
     this.setState({ activeDrop: !this.state.activeDrop });
   }
   render() {
-    const { type } = this.props;
+    const { type, isOwner } = this.props;
     const { activeDrop } = this.state;
     return (
       <div className="action-bar">
@@ -28,15 +28,29 @@ class ThoughtCardActionBar extends Component {
           </div>
           : ''
         }
-        <div className="right action-button" onClick={this.toggleDrop}>
-          <i
-            className={classNames(
-              'fa',
-              { 'fa-angle-down': !activeDrop },
-              { 'fa-angle-up': activeDrop }
-            )}
-          ></i>
-        </div>
+        {!isOwner ?
+          <div className="right action-button">
+            <div className="item">
+              <i className="fa fa-bookmark-o"></i>
+              {/*<span className="text">Save</span>*/}
+            </div>
+            <div className="item last">
+              <i className="fa fa-exclamation-triangle"></i>
+              
+            </div>
+            {/*
+            <i
+              className={classNames(
+                'fa',
+                { 'fa-angle-down': !activeDrop },
+                { 'fa-angle-up': activeDrop }
+              )}
+              onClick={this.toggleDrop}
+            ></i>
+            */}
+          </div>
+          : ''
+        }
         {this.state.activeDrop ?
           <Dropdown />
           : ''
@@ -48,6 +62,7 @@ class ThoughtCardActionBar extends Component {
 
 ThoughtCardActionBar.propTypes = {
   type: React.PropTypes.string,
+  isOwner: React.PropTypes.bool,
 };
 
 const Dropdown = () => (

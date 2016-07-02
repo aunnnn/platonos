@@ -13,22 +13,26 @@ function dumpDiscussions(embedThought) {
     _.times(10, () => {
       if (Math.random() >= 0.4) {
         const created_by = _.sample(Meteor.users.find().fetch())._id;
-        const first_message = faker.lorem.sentence();
 
-        const discussion = {
-          thought: embedThought,
-          created_by,
-          first_message,
-          latest_message: first_message,
-          last_active: faker.date.recent(10),
-        };
-        Discussions.insert(discussion);
+        // not a discussion with yourself!
+        if (embedThought.user_id !== created_by) {
+          const first_message = faker.lorem.sentence();
+
+          const discussion = {
+            thought: embedThought,
+            created_by,
+            first_message,
+            latest_message: first_message,
+            last_active: faker.date.recent(10),
+          };
+          Discussions.insert(discussion);
+        }
       }
     });
   }
 }
 
-function dumpThoughts(userId) {  
+function dumpThoughts(userId) {
   if (Thoughts.find({ user_id: userId }).count() < 10) {
     _.times(10, () => {
       if (Math.random() >= 0.5) {
@@ -224,7 +228,6 @@ function resetFeeds() {
 }
 
 Meteor.startup(() => {
-
   dumpCategories();
   dumpUsers();
   resetUserConnection();

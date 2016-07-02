@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 // components
 import NavbarLayout from './NavbarLayout.jsx';
 import LoginPageLayout from '../../auth/layouts/LoginPageLayout.jsx';
+import { OrbitLoader } from '../components/Loader.jsx';
 
 import './AppLayout.import.css';
 
@@ -44,7 +45,7 @@ class AppLayout extends Component {
     } = this.props;
 
     // waiting for user to ready
-    if (!userReady) return <div>Loading...</div>;
+    if (!userReady) return <OrbitLoader />;
 
     // user ready
     if (user) return this.renderAuthorized(); // logged in

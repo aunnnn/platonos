@@ -35,12 +35,13 @@ Feeds.schema = new SimpleSchema({
   },
 
   posts: {
-    type: [Actions.schema],
+    type: [Object],
     label: 'Post (Action) on feed',
     defaultValue: [],
+    blackbox: true, // to make simple-schema ignore strict checking here...
   },
 });
 
-// Feeds.attachSchema(Feeds.schema);
+Feeds.attachSchema(Feeds.schema);
 
 export { Feeds };

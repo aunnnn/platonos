@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import '../../_tools/clamp.js';
 
 class ThoughtCardContentHeader extends Component {
@@ -8,23 +9,27 @@ class ThoughtCardContentHeader extends Component {
   }
   render() {
     const {
+      thoughtId,
       header,
       description,
     } = this.props;
     return (
-      <div className="content">
+      <Link className="content" to={`/thought/${thoughtId}`}>
+        <div className="bg">
         <div className="header">
           <h5>{header}</h5>
         </div>
         <div className="description" ref="clampText">
           {description}
         </div>
-      </div>
+        </div>
+      </Link>
     );
   }
 }
 
 ThoughtCardContentHeader.propTypes = {
+  thoughtId: React.PropTypes.string,
   header: React.PropTypes.string,
   description: React.PropTypes.string,
 };

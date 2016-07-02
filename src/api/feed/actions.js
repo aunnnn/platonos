@@ -121,55 +121,88 @@ const FriendActivitySchema = new SimpleSchema({
   },
 });
 
-// Currently these aren't used to check anything, they are just for references.
-// We can be more safe later.
 Actions.subSchema_FriendActivity = FriendActivitySchema;
 Actions.subSchema_FriendThought = FriendThoughtSchema;
 Actions.subSchema_AnonymousThought = AnonymousThoughtSchema;
 
-Actions.schema = new SimpleSchema({
-  user_id: {
-    type: String,
-    regEx: SimpleSchema.RegEx.Id,
-    label: 'User that will receive this action',
-  },
+Actions.makeSchema = (type) => {
 
-  type: {
-    type: String,
-    allowedValues: [
-      'THOUGHT',
-      'FRIEND_THOUGHT',
-      'ACTIVITY', // activity of friends, e.g., likes, respond.
-      // etc... can be added in future
-    ],
-    label: 'Type of Action (THOUGHT, FRIEND_THOUGHT or ACTIVITY)',
-  },
-
-  content: {
-    type: Object,
-    label: 'Content, depends on type of action',
-  },
-
-  dispatched: {
-    type: Boolean,
-    label: 'Whether this action is already dispatched to user feed or not',
-    autoValue: function() {
-      if (this.isInsert) {
-        return false;
-      }
+  var contentSchemaType = null;
+  if (type === 'THOUGHT') {
+    contentSchemaType = AnonymousThoughtSchema;
+  } else if (type === 'FRIEND_THOUGHT') {
+    contentSchemaType = FriendThoughtSchema;
+  } else if (type === 'ACTIVITY') {
+    contentSchemaType = FriendActivitySchema;
+  } else {
+    console.log('Invalid type in "Actions.makeSchema".');
+    return null;
+  }
+  return (new SimpleSchema({
+    user_id: {
+      type: String,
+      regEx: SimpleSchema.RegEx.Id,
+      label: 'User that will receive this action',
     },
-  },
-  created_at: {
-    type: Date,
-    autoValue: function() {
-      if (this.isInsert) {
-        return new Date;
-      }
+
+    type: {
+      type: String,
+      label: 'Type of Action (THOUGHT, FRIEND_THOUGHT or ACTIVITY)',
+      autoValue: function() {
+        if (this.isInsert) {
+          return type;
+        }
+      },
+      denyUpdate: true,
     },
-  },
 
-});
+    // type: {
+    //   type: String,
+    //   allowedValues: [
+    //     'THOUGHT',
+    //     'FRIEND_THOUGHT',
+    //     'ACTIVITY', // activity of friends, e.g., likes, respond.
+    //     // etc... can be added in future
+    //   ],
+    //   label: 'Type of Action (THOUGHT, FRIEND_THOUGHT or ACTIVITY)',
+    // },
 
-// Actions.attachSchema(Actions.schema);
+    content: {
+      type: contentSchemaType,
+      label: 'Content, depends on type of action',
+    },
+
+    dispatched: {
+      type: Boolean,
+      label: 'Whether this action is already dispatched to user feed or not',
+      autoValue: function() {
+        if (this.isInsert) {
+          return false;
+        }
+      },
+    },
+    created_at: {
+      type: Date,
+      autoValue: function() {
+        if (this.isInsert) {
+          return new Date;
+        }
+      },
+    },
+  })
+  );
+  // *-- End new SimpleSchema --*
+};
+
+// we can have multiple schemas here dynamically based on type
+const type1 = 'THOUGHT';
+
+console.log(`type 1 schema is ${JSON.stringify(Actions.makeSchema(type1))}`);
+
+Actions.attachSchema(Actions.makeSchema(type1), { selector: { type: type1 } });
+const type2 = 'FRIEND_THOUGHT';
+Actions.attachSchema(Actions.makeSchema(type2), { selector: { type: type2 } });
+const type3 = 'ACTIVITY';
+Actions.attachSchema(Actions.makeSchema(type3), { selector: { type: type3 } });
 
 export { Actions };

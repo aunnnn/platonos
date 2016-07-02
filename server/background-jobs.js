@@ -18,7 +18,6 @@ Meteor.startup(() => {
       const allActions = Actions.find(
         { user_id: user._id, dispatched: false },
         { sort: { created_at: 1 } }).fetch();
-
       if (allActions.length > 0) {
         // *update user's feed
         // e.g. insert earliest one that is not dispatched.
@@ -26,7 +25,7 @@ Meteor.startup(() => {
 
         // remove 'dispatched' before push into feed
         delete targetAction.dispatched;
-
+        console.log('--- --- Updating Feeds...');
         Feeds.update(
           { user_id: user._id, year_month: currentYM },
           { $push: { posts: targetAction } },
@@ -34,7 +33,17 @@ Meteor.startup(() => {
             if (err) {
               console.log(`Update error: ${err.reason}`);
             } else {
-              Actions.update({ _id: targetAction._id }, { $set: { dispatched: true } });
+              console.log(`..........will set dispatched of ${targetAction._id} to true `);
+              Actions.update(
+                { _id: targetAction._id },
+                { $set:
+                  { dispatched: true },
+                },
+                { selector: {
+                  type: targetAction.type,
+                },
+              }
+              );
               console.log(`Action => Feed, user: ${user.appProfile.first_name}`);
             }
           });

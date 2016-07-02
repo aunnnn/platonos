@@ -4,7 +4,7 @@ import React from 'react';
 import CategoryButton from './CategoryButton.jsx';
 import FeedTypeButton from './FeedTypeButton.jsx';
 import { Link, withRouter } from 'react-router';
-
+// import { OrbitLoader } from '../../app/components/Loader.jsx';
 // styles
 import './SidebarList.import.css';
 
@@ -64,9 +64,17 @@ class SidebarList extends React.Component {
             />
           ))
         }
-        <Link to="/addCategories" className="more-button">All Categories..</Link>
-        <div className="horizontal-divider"></div>
-        <Link to="/">Discussed</Link>
+        <Link
+          to="/categories"
+          className="more-button"
+          activeClassName="link-active"
+        >
+          All Categories..
+        </Link>
+        {/*
+          <div className="horizontal-divider"></div>
+          <Link to="/">Discussed</Link>
+        */}
       </div>
     );
   }
