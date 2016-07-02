@@ -5,6 +5,8 @@ import { Thoughts } from './thoughts.js';
 Meteor.publish('thoughts.all', function thoughtsAll() {
   return Thoughts.find({}, {
     fields: Thoughts.publicFields,
+    limit: 20,
+    sort: { created_at: -1 },
   });
 });
 

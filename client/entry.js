@@ -9,6 +9,8 @@ import '../src/api/users/methods.js';
 import '../src/api/thought/methods.js';
 import '../src/api/discussion/methods.js';
 
+import './randomThoughtPolling.js';
+
 Meteor.startup(() => {
   render(renderRoutes(), document.getElementById('react-root'));
 });

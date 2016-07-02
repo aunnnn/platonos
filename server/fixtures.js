@@ -1,9 +1,10 @@
 import { Meteor } from 'meteor/meteor';
+import { Feeds } from '../src/api/feed/feeds.js';
 import { Categories } from '../src/api/thought/categories.js';
 import { Accounts } from 'meteor/accounts-base';
 import { Thoughts } from '../src/api/thought/thoughts.js';
 import { Discussions } from '../src/api/discussion/discussions.js';
-
+import { Connections } from '../src/api/users/connections.js';
 import { _ } from 'meteor/underscore';
 import faker from 'faker';
 
@@ -27,7 +28,7 @@ function dumpDiscussions(embedThought) {
   }
 }
 
-function dumpThoughts(userId) {
+function dumpThoughts(userId) {  
   if (Thoughts.find({ user_id: userId }).count() < 10) {
     _.times(10, () => {
       if (Math.random() >= 0.5) {
@@ -58,6 +59,7 @@ function dumpThoughts(userId) {
 }
 
 function dumpUsers() {
+  console.log("dump Users");
   // if number of users less than 30
   if (Meteor.users.find().count() < 30) {
     _.times(20, (n) => {
@@ -97,6 +99,7 @@ function dumpUsers() {
 }
 
 function dumpCategories() {
+  console.log("dump Categories");
   if (Categories.find().count() === 0) {
     const dummyCategoryData = [
       {
@@ -155,10 +158,76 @@ function dumpCategories() {
   }
 }
 
+// connect two user in discussion
+function dumpConnection(discussion) {
+  const user1 = discussion.thought.user_id;
+  const user2 = discussion.created_by;
+  const initiator = Math.random() >= 0.5 ? user1 : user2;
+  const connected_at = faker.date.recent(10);
+  const connectionForUser1 = {
+    user_id: user2,
+    connected_at,
+    discussion_id: discussion._id,
+    initiator_id: initiator,
+  };
+  const connectionForUser2 = {
+    user_id: user1,
+    connected_at,
+    discussion_id: discussion._id,
+    initiator_id: initiator,
+  };
+  const user1_friends = Connections.findOne({ user_id: user1 }).friends;
+  const user1_friend_ids = _.map(user1_friends, (friend) => { friend.user_id });
+
+  const user2_friends = Connections.findOne({ user_id: user2 }).friends;
+  const user2_friend_ids = _.map(user2_friends, (friend) => { friend.user_id });
+  // console.log(`${user2_friend_ids} ${user1} ${_.contains(user2_friend_ids, user1)}`);
+  if (!_.contains(user1_friend_ids, user2)) {
+    Connections.update(
+      { user_id: user1 }, 
+      { $push: { friends: connectionForUser1 } });
+  }
+  if (!_.contains(user2_friend_ids, user1)) {
+    Connections.update(
+      { user_id: user2 }, 
+      { $push: { friends: connectionForUser2 } });
+  }
+}
+
+function dumpConnections() {
+  console.log("dump Connections");
+  const allDiscussions = Discussions.find().fetch();
+  allDiscussions.forEach((discussion) => {
+    if (Math.random() >= 0.8) {
+      dumpConnection(discussion);
+    }
+  });
+}
+
+function resetUserConnection() {
+  console.log("reset Connections collection");
+  const allUsers = Meteor.users.find().fetch();
+  allUsers.forEach((user) => {
+    if (!Connections.findOne({ user_id: user._id })) {
+      Connections.insert({ user_id: user._id, friends: [] });
+    }
+  });
+}
+function resetFeeds() {
+ console.log('reset Feeds');
+ const allUsers = Meteor.users.find().fetch();
+ allUsers.forEach((user) => {
+   if (!Feeds.findOne({ user_id: user._id })) {
+     Feeds.insert({ user_id: user._id });
+   }
+ });
+}
 
 Meteor.startup(() => {
+
   dumpCategories();
   dumpUsers();
-  // console.log(_.sample(Categories.find().fetch()).title);
-  // console.log(_.sample(Categories.find({}, { fields: { 'title': 1 } })));
+  resetUserConnection();
+  dumpConnections();
+  resetFeeds();
 });
