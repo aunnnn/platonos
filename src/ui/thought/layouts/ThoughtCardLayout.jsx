@@ -22,7 +22,7 @@ class ThoughtCardLayout extends React.Component {
     super(props);
     this.state = {
       discussionMessage: '',
-      discussions: null,
+      previewDiscussions: null,
       myDiscussion: 'not loaded',
     };
 
@@ -71,7 +71,7 @@ class ThoughtCardLayout extends React.Component {
           console.log(err.reason);
         } else {
           this.setState({
-            discussions: result,
+            previewDiscussions: result,
           });
         }
       });
@@ -134,7 +134,7 @@ class ThoughtCardLayout extends React.Component {
     } = this.props;
 
     const {
-      discussions,
+      previewDiscussions,
       myDiscussion,
     } = this.state;
 
@@ -144,9 +144,9 @@ class ThoughtCardLayout extends React.Component {
     // global discusssions
     let previewDiscussionCmp = null;
     if (type === 'GLOBAL') {
-      if (discussions !== null) {
-        if (discussions.length !== 0) {
-          previewDiscussionCmp = <ThoughtCardShowDiscussion discussions={discussions} />;
+      if (previewDiscussions !== null) {
+        if (previewDiscussions.length !== 0) {
+          previewDiscussionCmp = <ThoughtCardShowDiscussion discussions={previewDiscussions} />;
         } else {
           previewDiscussionCmp = '';
         }
