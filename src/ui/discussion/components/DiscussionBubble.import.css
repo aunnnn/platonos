@@ -1,0 +1,10 @@
+.db {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 15px 10px;
+  color: #222;
+  &.self {
+    background-color: #fef9fb;
+  }
+}

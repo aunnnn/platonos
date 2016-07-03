@@ -21,13 +21,9 @@ class ThoughtCardLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      discussionMessage: '',
       previewDiscussions: null,
       myDiscussion: 'not loaded',
     };
-
-    this.setDiscussionMessage = (text) => this.setState({ discussionMessage: text });
-    this.createDiscussion = this.createDiscussion.bind(this);
     this.loadPreviewDiscussions = this.loadPreviewDiscussions.bind(this);
     this.loadMyDiscussion = this.loadMyDiscussion.bind(this);
   }
@@ -95,7 +91,6 @@ class ThoughtCardLayout extends React.Component {
             loadPreviewDiscussions={this.loadPreviewDiscussions}
             loadMyDiscussion={this.loadMyDiscussion}
             currentUser={currentUser}
-            ref="cardActionDiscuss"
           />
         );
       }

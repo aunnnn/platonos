@@ -16,6 +16,9 @@
     .public-DraftEditorPlaceholder-inner {
       color: #bbb;
       font-size: 21px;
+      @media (max-width: 550px) {
+        font-size: 19px;
+      }
     }
     .public-DraftEditor-content {
       min-height: 68px;
@@ -23,6 +26,10 @@
       font-size: 21px;
       letter-spacing: 0.15px;
       color: #222;
+      @media (max-width: 550px) {
+        font-size: 19px;
+        letter-spacing: 0.1px;
+      }
     }
     &.hasDesc {
       .public-DraftEditor-content {

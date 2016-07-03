@@ -2,13 +2,14 @@ import { Meteor } from 'meteor/meteor';
 
 import { Thoughts } from './thoughts.js';
 
-Meteor.publish('thoughts.all', function thoughtsAll() {
-  return Thoughts.find({}, {
+Meteor.publish('thoughts.all', () => (
+  Thoughts.find({}, {
     fields: Thoughts.publicFields,
-    limit: 20,
-    sort: { created_at: -1 },
-  });
-});
+    disableOplog: true,
+    pollingIntervalMs: 30000,
+    pollingThrottleMs: 30000,
+  })
+));
 
 // all user's thoughts for profile page
 Meteor.publish('thoughts.getMyThoughts', function getMyThoughts() {
