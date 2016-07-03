@@ -163,6 +163,7 @@
 
   }
   .show-discussion {
+    background-color: #fcfcfc;
     border-top: 1px solid #ddd;
     margin: 10px 0;
     padding: 10px 5.5%;
@@ -181,7 +182,7 @@
       }
     }
     .wrapper {
-      background-color: #FEF9FB;
+      background-color: #fff;
       margin: 0 0 15px;
       border-radius: 5px;
       padding: 8px 10px;
@@ -197,13 +198,11 @@
       width: 145px;
       color: #972952;
       font-size: 12px;
-      border-bottom: 1px solid #972952;
       text-align: center;
-      padding: 3px 0 6px;
+      padding: 0 0 6px;
       cursor: pointer;
       &:hover {
         color: #bc3366;
-        border-color: #bc3366;
       }
     }
   }

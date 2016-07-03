@@ -42,7 +42,13 @@ export default class ThoughtPageLayout extends Component {
     return this.state.discussions.map(
       discussion => {
         if (discussion.created_by === this.props.currentUser._id) return '';
-        return <DiscussionCardLayout discussion={discussion} key={discussion._id} />;
+        return (
+          <DiscussionCardLayout
+            discussion={discussion}
+            key={discussion._id}
+            currentUser={this.props.currentUser}
+          />
+        );
       }
     );
   }

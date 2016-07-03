@@ -19,6 +19,7 @@ class ThoughtCardActionDiscuss extends Component {
       });
     };
     this.createDiscussion = this.createDiscussion.bind(this);
+    this.createSubDiscussion = this.createSubDiscussion.bind(this);
     this.reset = this.reset.bind(this);
   }
 
@@ -68,12 +69,16 @@ class ThoughtCardActionDiscuss extends Component {
       });
   }
 
+  createSubDiscussion() {
+  }
+
   reset() {
     this.setState({ editorState: EditorState.createEmpty() });
   }
 
   render() {
     const { editorState } = this.state;
+    const { isSubDiscuss } = this.props;
     const hasText = editorState.getCurrentContent().hasText();
     return (
       <div className="action-discuss">
@@ -84,7 +89,11 @@ class ThoughtCardActionDiscuss extends Component {
           ref="fuck"
         />
         {hasText ?
-          <div className="submit" onClick={this.createDiscussion}>
+          <div
+            className="submit"
+            onClick={isSubDiscuss ?
+              this.createSubDiscussion : this.createDiscussion}
+          >
             <i className="fa fa-paper-plane"></i>Start Discussion
           </div>
           : ''
@@ -97,8 +106,9 @@ class ThoughtCardActionDiscuss extends Component {
 ThoughtCardActionDiscuss.propTypes = {
   loadPreviewDiscussions: React.PropTypes.func,
   loadMyDiscussion: React.PropTypes.func,
-  thought: React.PropTypes.object.isRequired,
+  thought: React.PropTypes.object,
   currentUser: React.PropTypes.object,
+  isSubDiscuss: React.PropTypes.bool,
 };
 
 export default ThoughtCardActionDiscuss;
