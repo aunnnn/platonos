@@ -217,20 +217,20 @@ function resetUserConnection() {
     }
   });
 }
-function resetFeeds() {
- console.log('reset Feeds');
- const allUsers = Meteor.users.find().fetch();
- allUsers.forEach((user) => {
-   if (!Feeds.findOne({ user_id: user._id })) {
-     Feeds.insert({ user_id: user._id });
-   }
- });
-}
+// function resetFeeds() {
+//  console.log('reset Feeds');
+//  const allUsers = Meteor.users.find().fetch();
+//  allUsers.forEach((user) => {
+//    if (!Feeds.findOne({ user_id: user._id })) {
+//      Feeds.insert({ user_id: user._id });
+//    }
+//  });
+// }
 
 Meteor.startup(() => {
   dumpCategories();
   dumpUsers();
   resetUserConnection();
   dumpConnections();
-  resetFeeds();
+  // resetFeeds();
 });
