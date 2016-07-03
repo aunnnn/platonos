@@ -2,5 +2,5 @@
 ThoughtPageLayout - #tpl
 
 // discussion
-DiscussionCardLayout - .dcl
+DiscussionCardLayout - .dcl, .dcl-content
 DiscussionBubble - .db
