@@ -11,7 +11,7 @@ import AppContainer from '../ui/app/containers/AppContainer.jsx';
 import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
 import PersonalFeedContainer from '../ui/feed/containers/PersonalFeedContainer.jsx';
 import GlobalFeedContainer from '../ui/feed/containers/GlobalFeedContainer.jsx';
-import CategoryContainer from '../ui/feed/containers/CategoryContainer.jsx';
+import CategoryFeedContainer from '../ui/feed/containers/CategoryFeedContainer.jsx';
 import AddCategoryContainer from '../ui/feed/containers/AddCategoryContainer.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 import ProfileLayout from '../ui/profile/layouts/ProfileLayout.jsx';
@@ -63,7 +63,7 @@ export const renderRoutes = () => (
           <IndexRoute component={PersonalFeedContainer} />
           <Route path="global" component={GlobalFeedContainer} onEnter={requireAuth} />
           <Route path="category" onEnter={requireAuth}>
-            <Route path=":categoryName" component={CategoryContainer} />
+            <Route path=":categoryName" component={CategoryFeedContainer} />
           </Route>
           <Route path="categories" component={AddCategoryContainer} onEnter={requireAuth} />
         </Route>
