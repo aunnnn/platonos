@@ -156,17 +156,6 @@ Actions.makeSchema = (type) => {
       denyUpdate: true,
     },
 
-    // type: {
-    //   type: String,
-    //   allowedValues: [
-    //     'THOUGHT',
-    //     'FRIEND_THOUGHT',
-    //     'ACTIVITY', // activity of friends, e.g., likes, respond.
-    //     // etc... can be added in future
-    //   ],
-    //   label: 'Type of Action (THOUGHT, FRIEND_THOUGHT or ACTIVITY)',
-    // },
-
     content: {
       type: contentSchemaType,
       label: 'Content, depends on type of action',

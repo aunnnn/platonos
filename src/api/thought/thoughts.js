@@ -88,6 +88,12 @@ Thoughts.schema = new SimpleSchema({
     label: 'Attachment of this thought',
   },
 
+  dispatched_to: {
+    type: [Number],
+    label: 'User ids who already received this thought',
+    defaultValue: [],
+  },
+
 });
 
 Thoughts.attachSchema(Thoughts.schema);

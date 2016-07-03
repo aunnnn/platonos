@@ -22,11 +22,7 @@ export default class PersonalFeed extends React.Component {
       const thought = content;
       // return <ThoughtCardLayout key={thought._id} thought={thought} />;
       return (
-        <div>
-          <p>{thought.category.title}</p>
-          <h3>{thought.header}</h3>
-          <h4>{thought.description}</h4>
-        </div>
+        <ThoughtCardLayout thought={thought} isPage={false} />
       );
     } else if (post.type === 'FRIEND_THOUGHT') {
       const friendThought = content;
