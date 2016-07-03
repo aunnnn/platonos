@@ -49,7 +49,7 @@ class AppLayout extends Component {
       currentUser,
       currentUserReady,
     } = this.props;
-    console.log(currentUserReady);
+    console.log(`current user ready:${currentUserReady}`);
     // waiting for currentUser to ready
     if (!currentUserReady) return <OrbitLoader />;
 

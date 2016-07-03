@@ -1,6 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Thoughts } from '../thought/thoughts.js';
 
 class ActionCollection extends Mongo.Collection {
 
@@ -15,7 +14,81 @@ Actions.deny({
   remove() { return true; },
 });
 
-const AnonymousThoughtSchema = Thoughts.schema;
+// **if we just use Thoughts.schema, _id wouldn't exist!!!
+const AnonymousThoughtSchema = new SimpleSchema({
+  _id: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+  },
+
+  user_id: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    label: "User's Id",
+  },
+
+  type: {
+    type: String,
+    allowedValues: ['NORMAL', 'GLOBAL'],
+    label: 'Type of thought',
+  },
+
+  header: {
+    type: String,
+    label: 'Header of thought',
+    min: 1,
+  },
+
+  description: {
+    type: String,
+    label: 'Description of thought',
+    optional: true, // if force to keep empty string -> wasted of space
+  },
+
+  like_count: {
+    type: Number,
+    defaultValue: 0,
+  },
+
+  seen_count: {
+    type: Number,
+    defaultValue: 0,
+  },
+
+  // 'category._id': {
+  //   type: String,
+  //   regEx: SimpleSchema.RegEx.Id,
+  // },
+  category: {
+    type: Object,
+  },
+
+  'category.title': {
+    type: String,
+    min: 1,
+    label: "Category's title",
+  },
+
+  created_at: {
+    type: Date,
+  },
+
+  attachment: {
+    type: new SimpleSchema({
+      type: {
+        type: String,
+        allowedValues: ['THOUGHT', 'DISCUSSION', 'EXTERNAL_URL'],
+        label: 'Type of attachment',
+      },
+      value: {
+        type: String,
+      },
+    }),
+    optional: true,
+    label: 'Attachment of this thought',
+  },
+});
+
 const FriendThoughtSchema = new SimpleSchema({
   thought_id: {
     type: String,
@@ -25,7 +98,7 @@ const FriendThoughtSchema = new SimpleSchema({
   user_id: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
-    label: "User who launched this thought",
+    label: 'User who launched this thought',
   },
   user_picture: {
     type: String,
@@ -185,8 +258,6 @@ Actions.makeSchema = (type) => {
 
 // we can have multiple schemas here dynamically based on type
 const type1 = 'THOUGHT';
-
-console.log(`type 1 schema is ${JSON.stringify(Actions.makeSchema(type1))}`);
 
 Actions.attachSchema(Actions.makeSchema(type1), { selector: { type: type1 } });
 const type2 = 'FRIEND_THOUGHT';

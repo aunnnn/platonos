@@ -99,6 +99,7 @@ Thoughts.schema = new SimpleSchema({
 Thoughts.attachSchema(Thoughts.schema);
 
 Thoughts.publicFields = {
+  _id: 1,
   user_id: 1,
   type: 1,
   header: 1,

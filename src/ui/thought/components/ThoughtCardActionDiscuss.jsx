@@ -34,6 +34,7 @@ class ThoughtCardActionDiscuss extends Component {
       currentUser,
     } = this.props;
 
+
     const discussion = {
       thought: {
         _id,
@@ -47,7 +48,7 @@ class ThoughtCardActionDiscuss extends Component {
       latest_message: this.state.discussionMessage,
       last_active: new Date(),
     };
-
+    console.log(`will create discussion ${discussion}`);
     // reset discussion message state
     this.setState({
       discussionMessage: '',

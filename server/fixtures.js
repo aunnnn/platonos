@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-// import { Feeds } from '../src/api/feed/feeds.js';
+import { Feeds } from '../src/api/feed/feeds.js';
 // import { Categories } from '../src/api/thought/categories.js';
 // import { Accounts } from 'meteor/accounts-base';
 // import { Thoughts } from '../src/api/thought/thoughts.js';
@@ -217,20 +217,20 @@ import { Meteor } from 'meteor/meteor';
 //     }
 //   });
 // }
-// function resetFeeds() {
-//  console.log('reset Feeds');
-//  const allUsers = Meteor.users.find().fetch();
-//  allUsers.forEach((user) => {
-//    if (!Feeds.findOne({ user_id: user._id })) {
-//      Feeds.insert({ user_id: user._id });
-//    }
-//  });
-// }
+function resetFeeds() {
+ console.log('reset Feeds');
+ const allUsers = Meteor.users.find().fetch();
+ allUsers.forEach((user) => {
+   if (!Feeds.findOne({ user_id: user._id })) {
+     Feeds.insert({ user_id: user._id });
+   }
+ });
+}
 
 Meteor.startup(() => {
   // dumpCategories();
   // dumpUsers();
   // resetUserConnection();
   // dumpConnections();
-  // resetFeeds();
+  resetFeeds();
 });

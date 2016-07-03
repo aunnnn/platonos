@@ -72,7 +72,7 @@ Meteor.startup(() => {
                 },
               }
               );
-              console.log(`Action => Feed, user: ${user.appProfile.first_name}`);
+              // console.log(`Action => Feed, user: ${user.appProfile.first_name}`);
             }
           });
       }
@@ -88,6 +88,7 @@ Meteor.startup(() => {
   // For every 20 seconds
   const anonymousThoughtToActionsJob = new CronJob('*/20 * * * * *', Meteor.bindEnvironment(
     () => {
+      console.log('Fetching anonymous thoughts into actions...');
       const allThoughtsCount = Thoughts.find().count();
       Meteor.users.find().forEach((user) => {
         const i = Math.floor(Math.random() * allThoughtsCount);
@@ -106,7 +107,7 @@ Meteor.startup(() => {
             content: thought,
           };
           Actions.insert(action);
-          console.log(`Thought => Action, user: ${user.appProfile.first_name}`);
+          // console.log(`Thought => Action, user: ${user.appProfile.first_name}`);
         }
       });
     }

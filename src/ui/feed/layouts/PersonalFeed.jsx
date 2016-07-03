@@ -21,6 +21,7 @@ export default class PersonalFeed extends React.Component {
     const content = post.content;
     if (post.type === 'THOUGHT') {
       const thought = content;
+      console.log(`render anon. thought ${JSON.stringify(thought)}`);
       return (
         <ThoughtCardLayout
           key={thought._id}

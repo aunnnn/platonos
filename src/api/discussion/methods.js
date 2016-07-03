@@ -46,7 +46,7 @@ Discussions.methods.getThoughtPageDiscussions = new ValidatedMethod({
   run(stringify) {
     const { thoughtId, currentUserId } = JSON.parse(stringify);
     if (!this.userId) {
-      throw new Meteor.Error('discussions.getDiscussions.notLoggedIn',
+      throw new Meteor.Error('discussions.getThoughtPageDiscussions.notLoggedIn',
         'Must be logged in.');
     }
     return Discussions.find({
