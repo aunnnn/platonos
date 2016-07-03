@@ -19,13 +19,13 @@ class NavbarLayout extends Component {
     const {
       dispatch,
       activeDropdown,
-      user,
+      currentUser,
     } = this.props;
 
     // try get fb first_name first, then email
 
-    const userName = user.appProfile.first_name;
-    const picture = user.appProfile.picture;
+    const currentUserName = currentUser.appProfile.first_name;
+    const picture = currentUser.appProfile.picture;
 
     return (
       <nav className="main-nav">
@@ -95,7 +95,7 @@ class NavbarLayout extends Component {
                 src={picture}
                 role="presentation"
               />
-              <p className="user-name merr-font">{userName}</p>
+              <p className="user-name merr-font">{currentUserName}</p>
             </Link>
           </div>
         </div>
@@ -107,7 +107,7 @@ class NavbarLayout extends Component {
 NavbarLayout.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   activeDropdown: React.PropTypes.string.isRequired,
-  user: React.PropTypes.object.isRequired,
+  currentUser: React.PropTypes.object.isRequired,
 };
 
 // redux

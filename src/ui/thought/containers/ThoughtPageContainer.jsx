@@ -5,10 +5,11 @@ import ThoughtPageLayout from '../layouts/ThoughtPageLayout.jsx';
 // collection
 import { Thoughts } from '../../../api/thought/thoughts.js';
 
-export default createContainer(({ params: { thoughtId } }) => {
+export default createContainer(({ params: { thoughtId }, currentUser }) => {
   const sub = Meteor.subscribe('thoughts.all');
   return {
     ready: sub.ready(),
     thought: Thoughts.findOne({ _id: thoughtId }),
+    currentUser,
   };
 }, ThoughtPageLayout);

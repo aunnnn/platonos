@@ -1,6 +1,5 @@
 import React from 'react';
 import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
-import ThoughtCardContainer from '../../thought/containers/ThoughtCardContainer.jsx';
 import './CategoryFeed.import.css';
 
 class CategoryFeed extends React.Component {
@@ -55,6 +54,7 @@ class CategoryFeed extends React.Component {
   render() {
     const {
       categoryName,
+      currentUser,
     } = this.props;
     return (
       <div>
@@ -63,8 +63,13 @@ class CategoryFeed extends React.Component {
           <div className="unfollow-button">Unfollow</div>
           <p className="merr-font">Interesting thoughts in {` ${categoryName}`}</p>
         </div>
-        {this.getDummyData().map(thought => <ThoughtCardLayout thought={thought} />)}
-        <ThoughtCardContainer />
+        {this.getDummyData().map(
+          thought =>
+            <ThoughtCardLayout
+              thought={thought}
+              currentUser={currentUser}
+            />
+        )}
       </div>
     );
   }
@@ -72,6 +77,7 @@ class CategoryFeed extends React.Component {
 
 CategoryFeed.propTypes = {
   categoryName: React.PropTypes.string,
+  currentUser: React.PropTypes.object,
 };
 
 export default CategoryFeed;

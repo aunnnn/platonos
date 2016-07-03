@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Meteor } from 'meteor/meteor';
 
 // components
 import SidebarList from '../components/SidebarList.jsx';
@@ -8,12 +7,11 @@ import MsgFromFounders from '../components/MsgFromFounders.jsx';
 import './FeedLayout.import.css';
 
 export default class FeedLayout extends Component {
-
   render() {
     const {
       children,
+      currentUser,
     } = this.props;
-    console.log(Meteor.user().appProfile);
     return (
       <div className="container" id="f-l">
         <div className="row">
@@ -22,11 +20,16 @@ export default class FeedLayout extends Component {
             <p></p>
           </div>
           <div className="seven columns feed">
-            {children}
+            { // PersonalFeedContainer, GlobalFeedContainer,
+              // CategoryFeedContainer, AddCategoriesPage
+              children && React.cloneElement(children, {
+                currentUser,
+              })
+            }
           </div>
           <div className="three columns right">
             <MsgFromFounders
-              name={Meteor.user().appProfile.first_name}
+              name={currentUser.first_name}
             />
           </div>
         </div>
@@ -38,4 +41,5 @@ export default class FeedLayout extends Component {
 
 FeedLayout.propTypes = {
   children: React.PropTypes.object,
+  currentUser: React.PropTypes.object,
 };

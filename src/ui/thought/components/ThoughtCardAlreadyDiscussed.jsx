@@ -23,7 +23,7 @@ const ThoughtCardAlreadyDiscussed =
 
 ThoughtCardAlreadyDiscussed.propTypes = {
   message: PropTypes.string,
-  currentUser: PropTypes.string,
+  currentUser: PropTypes.object,
 };
 
 export default ThoughtCardAlreadyDiscussed;

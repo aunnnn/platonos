@@ -14,13 +14,18 @@ export default class PersonalFeed extends React.Component {
     const {
       thoughts,
       thoughtsReady,
+      currentUser,
     } = this.props;
     return (
       <div>
         <WriteThoughtCardLayout />
         {thoughtsReady ?
             thoughts.map((thought) => (
-              <ThoughtCardLayout key={thought._id} thought={thought} />
+              <ThoughtCardLayout
+                key={thought._id}
+                thought={thought}
+                currentUser={currentUser}
+              />
             ))
             : (<OrbitLoader />)}
       </div>
@@ -31,4 +36,5 @@ export default class PersonalFeed extends React.Component {
 PersonalFeed.propTypes = {
   thoughts: React.PropTypes.array,
   thoughtsReady: React.PropTypes.bool,
+  currentUser: React.PropTypes.object,
 };
