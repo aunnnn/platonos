@@ -4,8 +4,9 @@ import AppLayout from '../layouts/AppLayout.jsx';
 
 export default createContainer(() => {
   const subUserData = Meteor.subscribe('userData');
+  console.log(Meteor.user());
   return {
-    user: Meteor.user(),
-    userReady: subUserData.ready(),
+    currentUser: Meteor.user(),
+    currentUserReady: subUserData.ready(),
   };
 }, AppLayout);

@@ -23,32 +23,38 @@ class AppLayout extends Component {
   }
   renderAuthorized() {
     const {
-      user,
+      currentUser,
       children,
     } = this.props;
     return (
       <div>
-        {/* Navbar & Padding */}
-        <NavbarLayout user={user} />
+        {
+          // Navbar & Padding
+        }
+        <NavbarLayout currentUser={currentUser} />
         <div style={{ height: '55px', width: '100%' }}></div>
-        {/* Children */}
+        {
+          // Children
+        }
         <div className="child-content">
-          {children}
+          {children && React.cloneElement(children, {
+            currentUser,
+          })}
         </div>
       </div>
     );
   }
   render() {
     const {
-      user,
-      userReady,
+      currentUser,
+      currentUserReady,
     } = this.props;
+    console.log(currentUserReady);
+    // waiting for currentUser to ready
+    if (!currentUserReady) return <OrbitLoader />;
 
-    // waiting for user to ready
-    if (!userReady) return <OrbitLoader />;
-
-    // user ready
-    if (user) return this.renderAuthorized(); // logged in
+    // currentUser ready
+    if (currentUser) return this.renderAuthorized(); // logged in
 
     return this.renderAnonymous(); // not logged in
   }
@@ -62,8 +68,8 @@ const mapStateToProps = (state) => (
 );
 
 AppLayout.propTypes = {
-  user: React.PropTypes.object,
-  userReady: React.PropTypes.bool,
+  currentUser: React.PropTypes.object,
+  currentUserReady: React.PropTypes.bool,
   children: React.PropTypes.element, // matched child route component
   location: React.PropTypes.object, // current router location
   router: React.PropTypes.shape({

@@ -15,5 +15,6 @@ export default createContainer(() => {
     // cannot use findOne because Meteor only allow us to pass 'Mongodb cursor' between pub/sub.
     feeds: Feeds.find({ user_id: Meteor.userId(), year_month: currentYM }).fetch(),
     feedsReady: subPersonalFeed.ready(),
+    currentUser,
   };
 }, PersonalFeed);

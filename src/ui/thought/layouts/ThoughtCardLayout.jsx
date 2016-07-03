@@ -22,7 +22,7 @@ class ThoughtCardLayout extends React.Component {
     super(props);
     this.state = {
       discussionMessage: '',
-      discussions: null,
+      previewDiscussions: null,
       myDiscussion: 'not loaded',
     };
 
@@ -41,7 +41,6 @@ class ThoughtCardLayout extends React.Component {
     const thoughtId = this.props.thought._id;
     Discussions.methods.getMyDiscussion.call({ thoughtId }, (err, result) => {
       if (err) {
-        console.log(err.reason);
         this.setState({
           myDiscussion: null,
         });
@@ -71,52 +70,44 @@ class ThoughtCardLayout extends React.Component {
           console.log(err.reason);
         } else {
           this.setState({
-            discussions: result,
+            previewDiscussions: result,
           });
         }
       });
     }
   }
 
-  createDiscussion() {
-    const {
-      _id,
-      user_id,
-      category,
-      header,
-      description,
-    } = this.props.thought;
-
-    const discussion = {
-      thought: {
-        _id,
-        user_id,
-        header,
-        description,
-        category: category.title,
-      },
-      created_by: Meteor.userId(),
-      first_message: this.state.discussionMessage,
-      latest_message: this.state.discussionMessage,
-      last_active: new Date(),
-    };
-
-    // reset discussion message state
-    this.setState({
-      discussionMessage: '',
-    });
-    this.refs.cardActionDiscuss.reset();
-
-    // create discussion
-    Discussions.methods.insert.call({ discussion }, (err, result) => {
-      if (err) {
-        console.log(err.reason);
-      } else {
-        // reset all after create a discussion
-        this.loadPreviewDiscussions();
-        this.loadMyDiscussion();
+  renderActionDiscussComponent(isOwner, currentUser) {
+    const { myDiscussion } = this.state;
+    if (!isOwner) {
+      if (myDiscussion !== 'not loaded') {
+        if (myDiscussion !== null) {
+          return (
+            <ThoughtCardAlreadyDiscussed
+              message={myDiscussion.first_message}
+              currentUser={currentUser}
+            />
+          );
+        }
+        return (
+          <ThoughtCardActionDiscuss
+            thought={this.props.thought}
+            loadPreviewDiscussions={this.loadPreviewDiscussions}
+            loadMyDiscussion={this.loadMyDiscussion}
+            currentUser={currentUser}
+            ref="cardActionDiscuss"
+          />
+        );
       }
-    });
+      return (
+        <div className="action-discuss">
+          <div className="wrapper">
+            <OrbitLoader />
+          </div>
+        </div>
+      );
+    }
+    return '';
   }
 
   render() {
@@ -131,22 +122,21 @@ class ThoughtCardLayout extends React.Component {
         created_at,
       },
       isPage,
+      currentUser,
     } = this.props;
 
     const {
-      discussions,
-      myDiscussion,
+      previewDiscussions,
     } = this.state;
 
-    const currentUser = Meteor.user().appProfile;
-    const isOwner = Meteor.userId() === byUserId;
+    const isOwner = currentUser._id === byUserId;
 
     // global discusssions
     let previewDiscussionCmp = null;
     if (type === 'GLOBAL') {
-      if (discussions !== null) {
-        if (discussions.length !== 0) {
-          previewDiscussionCmp = <ThoughtCardShowDiscussion discussions={discussions} />;
+      if (previewDiscussions !== null) {
+        if (previewDiscussions.length !== 0) {
+          previewDiscussionCmp = <ThoughtCardShowDiscussion discussions={previewDiscussions} />;
         } else {
           previewDiscussionCmp = '';
         }
@@ -156,37 +146,6 @@ class ThoughtCardLayout extends React.Component {
       }
     } else {
       previewDiscussionCmp = '';
-    }
-
-    // action discussion
-    let actionDiscussionCmp = null;
-    if (!isOwner) {
-      if (myDiscussion !== 'not loaded') {
-        if (myDiscussion !== null) {
-          actionDiscussionCmp = (
-            <ThoughtCardAlreadyDiscussed
-              message={myDiscussion.first_message}
-              currentUser={currentUser}
-            />
-          );
-        } else {
-          actionDiscussionCmp = (
-            <ThoughtCardActionDiscuss
-              createDiscussion={this.createDiscussion}
-              setDiscussionMessage={this.setDiscussionMessage}
-              ref="cardActionDiscuss"
-            />
-          );
-        }
-      } else {
-        actionDiscussionCmp = (
-          <div className="action-discuss">
-            <div className="wrapper">
-              'Loading my discussion...'
-            </div>
-          </div>
-        );
-      }
     }
 
     return (
@@ -221,7 +180,7 @@ class ThoughtCardLayout extends React.Component {
         }
         <div className="lower-action">
           <ThoughtCardActionBar type={type} isOwner={isOwner} />
-          {actionDiscussionCmp}
+          {this.renderActionDiscussComponent(isOwner, currentUser)}
         </div>
       </div>
     );
@@ -231,6 +190,7 @@ class ThoughtCardLayout extends React.Component {
 ThoughtCardLayout.propTypes = {
   thought: React.PropTypes.object,
   isPage: React.PropTypes.bool,
+  currentUser: React.PropTypes.object,
 };
 
 export default ThoughtCardLayout;

@@ -16,13 +16,17 @@ export default class PersonalFeed extends React.Component {
     this.renderPost = this.renderPost.bind(this);
   }
 
+  // Render posts by its type
   renderPost(post) {
     const content = post.content;
     if (post.type === 'THOUGHT') {
       const thought = content;
-      // return <ThoughtCardLayout key={thought._id} thought={thought} />;
       return (
-        <ThoughtCardLayout thought={thought} isPage={false} />
+        <ThoughtCardLayout
+          key={thought._id}
+          thought={thought}
+          currentUser={this.props.currentUser}
+        />
       );
     } else if (post.type === 'FRIEND_THOUGHT') {
       const friendThought = content;
@@ -74,4 +78,5 @@ export default class PersonalFeed extends React.Component {
 PersonalFeed.propTypes = {
   feeds: React.PropTypes.array,
   feedsReady: React.PropTypes.bool,
+  currentUser: React.PropTypes.object,
 };
