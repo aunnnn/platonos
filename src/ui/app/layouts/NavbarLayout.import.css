@@ -13,14 +13,19 @@
     }
   }
   @media (max-width: 550px) {
+    position: absolute;
+    top: 0;
+    left: 0;
     .container {
       width: 95%;
+      padding: 0;
     }
   }
   .container {
     height: 55px;
   }
   .main-logo {
+    margin-left: 5px;
     display: inline-block;
     vertical-align: middle;
     -webkit-backface-visibility: hidden;

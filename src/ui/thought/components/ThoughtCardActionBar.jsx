@@ -35,7 +35,7 @@ class ThoughtCardActionBar extends Component {
               {/*<span className="text">Save</span>*/}
             </div>
             <div className="item last">
-              <i className="fa fa-exclamation-triangle"></i>
+              <i className="fa fa-exclamation"></i>
               
             </div>
             {/*

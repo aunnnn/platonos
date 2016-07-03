@@ -7,7 +7,7 @@ const ThoughtCardAlreadyDiscussed =
         <div style={{ marginBottom: '10px' }}>
           <div
             className="already-pic"
-            style={{ backgroundImage: `url(${currentUser.picture})` }}
+            style={{ backgroundImage: `url(${currentUser.appProfile.picture})` }}
           ></div>
           <span className="already-time">2 days ago</span>
         </div>

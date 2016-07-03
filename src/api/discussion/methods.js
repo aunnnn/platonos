@@ -40,11 +40,11 @@ Discussions.methods.getPreviewDiscussions = new ValidatedMethod({
   },
 });
 
-Discussions.methods.getAllDiscussions = new ValidatedMethod({
-  name: 'discussions.getAllDiscussions',
+Discussions.methods.getThoughtPageDiscussions = new ValidatedMethod({
+  name: 'discussions.getThoughtPageDiscussions',
   validate: null,
-  run(thoughtIdString) {
-    const { thoughtId } = JSON.parse(thoughtIdString);
+  run(stringify) {
+    const { thoughtId, currentUserId } = JSON.parse(stringify);
     if (!this.userId) {
       throw new Meteor.Error('discussions.getDiscussions.notLoggedIn',
         'Must be logged in.');
