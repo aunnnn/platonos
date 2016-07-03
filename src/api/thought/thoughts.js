@@ -1,6 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Factory } from 'meteor/dburles:factory';
 
 class ThoughtCollection extends Mongo.Collection {
 
@@ -89,11 +88,18 @@ Thoughts.schema = new SimpleSchema({
     label: 'Attachment of this thought',
   },
 
+  dispatched_to: {
+    type: [Number],
+    label: 'User ids who already received this thought',
+    defaultValue: [],
+  },
+
 });
 
 Thoughts.attachSchema(Thoughts.schema);
 
 Thoughts.publicFields = {
+  _id: 1,
   user_id: 1,
   type: 1,
   header: 1,

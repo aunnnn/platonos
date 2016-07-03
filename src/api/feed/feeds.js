@@ -1,80 +1,19 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
+import { Actions } from './actions';
+import moment from 'moment';
 
 class FeedCollection extends Mongo.Collection {
 
 }
 
-const FriendActivitySchema = new SimpleSchema({
-  friend_info: {
-    type: new SimpleSchema({
-      user_id: {
-        type: String,
-        regEx: SimpleSchema.RegEx.Id,
-        label: "Friend's Id",
-      },
-      picture: {
-        type: String,
-        regEx: SimpleSchema.RegEx.Url,
-        label: "Friend's picture url",
-      },
-      first_name: {
-        type: String,
-        min: 0,
-        label: "Friend's first name",
-      },
-      last_name: {
-        type: String,
-        min: 0,
-        label: "Friend's last name",
-      },
-    }),
-  },
-  action: {
-    type: String,
-    allowedValues: [
-      'respond', // respond to Thought
-      'like', // like Thought or Discussion
-      // etc. change profile, thought featured on Top Global Debate
-    ],
-    label: "Action of friend's activity",
-  },
-  object_id: {
-    type: String,
-    regEx: SimpleSchema.RegEx.Id,
-    label: 'Referenced Thought or Discussion Id (or any Id in the future)',
-  },
-});
-
-const FeedPostSchema = new SimpleSchema({
-  type: {
-    type: String,
-    allowedValues: [
-      'THOUGHT', // personal /global thought
-      'ACTIVITY', // activity of friends, e.g., likes, respond.
-      // etc. SPECIAL: special, custom content from our website
-    ],
-    label: "Type of Feed's Post (THOUGHT or ACTIVITY)",
-  },
-  content: {
-    type: Object,
-    label: 'Content of post, either Thought or Activity',
-  },
-
-});
-
-
-const Feeds = new CategoryCollection('Categories');
+const Feeds = new FeedCollection('Feeds');
 
 Feeds.deny({
   insert() { return true; },
   update() { return true; },
   remove() { return true; },
 });
-
-Feeds.subSchema_FeedPost = FeedPostSchema;
-Feeds.subSchema_FriendActivity = FriendActivitySchema;
 
 Feeds.schema = new SimpleSchema({
   user_id: {
@@ -87,11 +26,20 @@ Feeds.schema = new SimpleSchema({
     type: String,
     regEx: /^[0-9]+$/,
     label: 'YEARMONTH code (e.g. 201606)',
+    autoValue: function() {
+      if (this.isInsert) {
+        return moment().format('YYYYMM');
+      }
+    },
+    denyUpdate: true,
   },
 
-  posts: [FeedPostSchema],
-
-
+  posts: {
+    type: [Object],
+    label: 'Post (Action) on feed',
+    defaultValue: [],
+    blackbox: true, // to make simple-schema ignore strict checking here...
+  },
 });
 
 Feeds.attachSchema(Feeds.schema);

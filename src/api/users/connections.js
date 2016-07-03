@@ -9,6 +9,11 @@ class ConnectionCollection extends Mongo.Collection {
 
 const Connections = new ConnectionCollection('Connections');
 
+if (Meteor.isServer) {
+  Connections._ensureIndex({ 'user_id': 1 });
+}
+
+
 Connections.deny({
   insert() { return true; },
   update() { return true; },
@@ -23,12 +28,12 @@ const ConnectedFriendSchema = new SimpleSchema({
   },
   connected_at: {
     type: Date,
-    autoValue: function() {
-      if (this.isInsert) {
-        return new Date;
-      }
-    },
-    denyUpdate: true,
+    // autoValue: function() {
+    //   if (this.isInsert) {
+    //     return new Date;
+    //   }
+    // },
+    // denyUpdate: true,
     label: 'Date of connection',
   },
   discussion_id: {
@@ -51,6 +56,7 @@ Connections.schema = new SimpleSchema({
   friends: {
     type: [ConnectedFriendSchema],
     label: 'Bucket of connected friends',
+    defaultValue: [],
   },
 });
 
