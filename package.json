@@ -34,31 +34,48 @@
             "^meteor/"
           ]
         }
+      ],
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allow": [
+            "_id"
+          ]
+        }
       ]
     }
   },
   "dependencies": {
+    "babel-core": "^6.10.4",
+    "babel-preset-react": "^6.11.1",
     "classnames": "^2.2.5",
     "draft-js": "^0.7.0",
+    "eslint": "^2.13.1",
+    "eslint-plugin-import": "^1.10.0",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-meteor": "^3.6.0",
+    "eslint-plugin-react": "^5.2.2",
     "meteor-node-stubs": "~0.2.0",
     "moment": "^2.13.0",
-    "react": "^15.0.2",
-    "react-addons-create-fragment": "^15.0.2",
-    "react-addons-css-transition-group": "^15.0.2",
-    "react-addons-linked-state-mixin": "^15.0.2",
-    "react-addons-perf": "^15.0.2",
-    "react-addons-pure-render-mixin": "^15.0.2",
-    "react-addons-test-utils": "^15.0.2",
-    "react-addons-transition-group": "^15.0.2",
-    "react-addons-update": "^15.0.2",
-    "react-dom": "^15.0.2",
-    "react-onclickoutside": "^5.2.0",
+    "react": "^15.2.0",
+    "react-addons-create-fragment": "^15.2.0",
+    "react-addons-css-transition-group": "^15.2.0",
+    "react-addons-linked-state-mixin": "^15.2.0",
+    "react-addons-perf": "^15.2.0",
+    "react-addons-pure-render-mixin": "^15.2.0",
+    "react-addons-test-utils": "^15.2.0",
+    "react-addons-transition-group": "^15.2.0",
+    "react-addons-update": "^15.2.0",
+    "react-dom": "^15.2.0",
+    "react-onclickoutside": "^5.3.1",
     "react-redux": "^4.4.5",
-    "react-router": "^2.4.0",
-    "react-router-redux": "^4.0.4",
+    "react-router": "^2.5.2",
+    "react-router-redux": "^4.0.5",
+    "redbox-react": "^1.2.10",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "webpack-hot-middleware": "^2.12.0"
   },
   "devDependencies": {
     "babel": "^6.3.26",
