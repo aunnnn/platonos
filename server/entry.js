@@ -4,12 +4,10 @@ import { Meteor } from 'meteor/meteor';
 import './register-api.js';
 
 // =========BACKGROUND JOBS=====================
-// : Comment if not needed
-import './background-jobs/feed-update.js';
-import './background-jobs/anonthought-fetch.js';
+// : uncomment if needed
+import './background-jobs/feed-update.js'; // Undispatched Action => Feed
+// import './background-jobs/anonthought-fetch.js'; // Anonymous Thought => Undispatched Action
 // =============================================
-
-
 
 // run with :
 //  meteor --settings development.json
