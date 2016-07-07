@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import './FlowingThoughts.import.css';
 
@@ -47,7 +48,7 @@ export default class FlowingThoughts extends Component {
   }
   render() {
     return (
-      <div className="flowing-thoughts">
+      <div className="fl-t">
         <h4>Thoughts that flowing right now.</h4>
         {this.getDummyData().map(thought =>
           <div className="thought">
@@ -55,9 +56,12 @@ export default class FlowingThoughts extends Component {
               <i className="fa fa-lightbulb-o"></i>
               <label>{thought.category}</label>
             </div>
-            <h5>{thought.header}</h5>
+            <Link to="/" className="h-link">
+              <h5>{thought.header}</h5>
+            </Link>
           </div>
         )}
+        <button>See more</button>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-.flowing-thoughts {
+.fl-t {
   h4 {
     font-size: 20px;
     letter-spacing: 0.0rem;
@@ -9,17 +9,20 @@
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
   }
+  .h-link {
+    text-decoration: none;
+  }
   h5 {
     margin: 0 0 7px;
     font-weight: 600;
     font-size: 18px;
     letter-spacing: 0.0rem;
+    color: #222;
+    &:hover {
+      background-color: #FEF9FB;
+    }
   }
-  p {
-    margin: 0;
-    font-size: 12px;
-  }
-  i {
+  .fa-lightbulb-o {
     /* vertical-align: middle; */
     /* margin-right: 8px; */
   }

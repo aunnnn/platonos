@@ -6,6 +6,7 @@ import { Discussions } from '../../../api/discussion/discussions.js';
 // component
 import ThoughtCardLayout from './ThoughtCardLayout.jsx';
 import DiscussionCardLayout from '../../discussion/layouts/DiscussionCardLayout.jsx';
+import FlowingThoughts from '../components/FlowingThoughts.jsx';
 import { OrbitLoader } from '../../app/components/Loader.jsx';
 
 import './ThoughtPageLayout.import.css';
@@ -106,7 +107,7 @@ export default class ThoughtPageLayout extends Component {
             }
           </div>
           <div className="four columns">
-
+            <FlowingThoughts />
           </div>
         </div>
       </div>

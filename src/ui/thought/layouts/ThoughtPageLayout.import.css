@@ -1,3 +1,4 @@
+/* thought page layout */
 #tpl {
   padding: 30px 0;
   /* .thought.columns {
@@ -37,5 +38,8 @@
     @media (max-width: 750px) {
       padding-left: 0;
     }
+  }
+  .fl-t {
+    padding-left: 20px;
   }
 }
