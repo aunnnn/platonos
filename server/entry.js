@@ -1,8 +1,16 @@
 import { Meteor } from 'meteor/meteor';
 
-import './fixtures.js';
+// import './fixtures.js';
 import './register-api.js';
-import './background-jobs.js';
+
+// =========BACKGROUND JOBS=====================
+// : Comment if not needed
+import './background-jobs/feed-update.js';
+import './background-jobs/anonthought-fetch.js';
+// =============================================
+
+
+
 // run with :
 //  meteor --settings development.json
 
