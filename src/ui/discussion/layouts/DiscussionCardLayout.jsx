@@ -6,12 +6,14 @@ import './DiscussionCardLayout.import.css';
 // components
 import DiscussionBubble from '../components/DiscussionBubble.jsx';
 import ThoughtCardActionDiscuss from '../../thought/components/ThoughtCardActionDiscuss.jsx';
+import DiscussionCardFriendHeader from '../components/DiscussionCardFriendHeader.jsx';
 
 export default class DiscussionCardLayout extends Component {
   render() {
     const {
       discussion,
       currentUser,
+      isFriend,
     } = this.props;
 
     return (
@@ -19,12 +21,27 @@ export default class DiscussionCardLayout extends Component {
         <div className="dcl-content">
           {
             // header
+            isFriend ?
+              <DiscussionCardFriendHeader
+                friend={{
+                  picture: 'https://randomuser.me/api/portraits/thumb/women/0.jpg',
+                  first_name: 'Bret',
+                  last_name: 'Jones',
+                  address: {
+                    born: '70709-1710 Mellie Roads',
+                    lives: '37181 Dominique Cape',
+                  },
+                  description: 'Consectetur quod voluptatem necessitatibus aut numquam. My name is Bret',
+                }}
+                created_at={discussion.created_at}
+              />
+              :
+              <div className="time">
+                {moment(discussion.created_at).fromNow()}
+              </div>
           }
-          <div className="time">
-          {moment(discussion.created_at).fromNow()}
-          </div>
           {
-            // bubble
+            // bubble 4aqd8JMahSXPnX9Tb
           }
           <Link to="/" className="bubble-link">
             <DiscussionBubble text={discussion.first_message} />
@@ -45,4 +62,6 @@ export default class DiscussionCardLayout extends Component {
 
 DiscussionCardLayout.propTypes = {
   discussion: React.PropTypes.object,
+  currentUser: React.PropTypes.object,
+  isFriend: React.PropTypes.bool,
 };

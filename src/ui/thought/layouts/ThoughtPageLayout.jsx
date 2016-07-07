@@ -93,9 +93,29 @@ export default class ThoughtPageLayout extends Component {
                   </div>
                   <div className="discuss-list">
                     <div className="friend">
-                      <label></label>
+                      <label className="count-label">3 Friend discussions</label>
+                      <DiscussionCardLayout
+                        discussion={{
+                          _id: 'pLCW2MCJw5Nc7kFX9',
+                          thought: {
+                            _id: 'GWiSJpmk7QvE9M2nT',
+                            user_id: '4aqd8JMahSXPnX9Tb',
+                            header: 'Est alias esse.',
+                            description: 'Molestiae maxime voluptas aut. Est quaerat aut saepe quis voluptatem minima. Enim eum molestiae voluptas ratione quo at.',
+                            category: 'Philosophy',
+                          },
+                          created_by: 'MCAxRn7cZ3FXEkM47',
+                          first_message: 'We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.--That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed.',
+                          latest_message: 'We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.--That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed.',
+                          created_at: '2016-07-06T12:50:48.781Z',
+                        }}
+                        key="ksdjfhjksdlfjksaldfjkasdlfjas"
+                        currentUser={this.props.currentUser}
+                        isFriend
+                      />
                     </div>
                     <div className="anonymous">
+                      <label className="count-label">6 Anonymous discussions</label>
                       {doneLoadingDiscussions ?
                         this.renderDiscussions() : ''
                       }
