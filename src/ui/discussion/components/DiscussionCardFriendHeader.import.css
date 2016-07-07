@@ -1,0 +1,31 @@
+/* discussion card friend header */
+.dc-fh {
+  padding: 4px 0;
+  .link:hover {
+    .name {
+      color: #bc3366;
+    }
+  }
+  img {
+    width: 40px;
+    height: 40px;
+    vertical-align: top;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  .detail {
+    vertical-align: top;
+    display: inline-block;
+  }
+  .name {
+    font-size: 14px;
+    color: #972952;
+  }
+  .address {
+    font-size: 12px;
+    color: #999;
+  }
+  .fa-map-marker {
+    margin-right: 2px;
+  }
+}
