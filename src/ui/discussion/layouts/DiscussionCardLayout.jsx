@@ -7,6 +7,7 @@ import './DiscussionCardLayout.import.css';
 import DiscussionBubble from '../components/DiscussionBubble.jsx';
 import ThoughtCardActionDiscuss from '../../thought/components/ThoughtCardActionDiscuss.jsx';
 import DiscussionCardFriendHeader from '../components/DiscussionCardFriendHeader.jsx';
+import ThoughtCardActionBar from '../../thought/components/ThoughtCardActionBar';
 
 export default class DiscussionCardLayout extends Component {
   render() {
@@ -41,13 +42,19 @@ export default class DiscussionCardLayout extends Component {
               </div>
           }
           {
-            // bubble 4aqd8JMahSXPnX9Tb
+            // bubble
           }
           <Link to="/" className="bubble-link">
             <DiscussionBubble text={discussion.first_message} />
             <div className="see-full">See Full Discussion</div>
           </Link>
         </div>
+        {
+          // action bar
+          <ThoughtCardActionBar
+            type="GLOBAL"
+          />
+        }
         {
           // action discuss
         }
