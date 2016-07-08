@@ -11,8 +11,8 @@ export default class AddCategoryPage extends Component {
     this.showCategoryDescription = this.showCategoryDescription.bind(this);
     this.defaultDescription = this.defaultDescription.bind(this);
   }
-  showCategoryDescription(categoryData) {
-    this.setState({ shownDescription: `${categoryData.title}: ${categoryData.description}` });
+  showCategoryDescription(category) {
+    this.setState({ shownDescription: `${category.title}: ${category.description}` });
   }
   defaultDescription() {
     this.setState({ shownDescription: 'What are you interested in.' });
@@ -34,10 +34,10 @@ export default class AddCategoryPage extends Component {
             <label>Categories you've followed</label>
             <div>
               {followedCategories.length !== 0 ?
-                followedCategories.map(cat =>
+                followedCategories.map(category =>
                   <CategoryCard
-                    key={cat.title}
-                    categoryData={cat}
+                    key={category.title}
+                    category={category}
                     actionMouseOver={this.showCategoryDescription}
                     actionMouseOut={this.defaultDescription}
                   />
@@ -54,10 +54,10 @@ export default class AddCategoryPage extends Component {
             </h6>
             <div>
               {
-                allCategories.map(cat =>
+                allCategories.map(category =>
                   <CategoryCard
-                    key={cat.title}
-                    categoryData={cat}
+                    key={category._id}
+                    category={category}
                     actionMouseOver={this.showCategoryDescription}
                     actionMouseOut={this.defaultDescription}
                   />

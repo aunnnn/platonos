@@ -2,11 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 import { Thoughts } from './thoughts.js';
+import { Categories } from './categories.js';
 import { DraftThoughts } from './draftThoughts.js';
 import { Connections } from '../connection/connections.js';
 import { Actions } from '../feed/actions.js';
 
-// Thought methods
+/*
+======= Thought methods =======
+*/
 Thoughts.methods = {};
 
 Thoughts.methods.insert = new ValidatedMethod({
@@ -73,7 +76,23 @@ Thoughts.methods.insert = new ValidatedMethod({
   },
 });
 
-// Draft methods
+/*
+======= Category methods =========
+*/
+Categories.methods = {};
+
+Categories.methods.getAllCategories = new ValidatedMethod({
+  name: 'categories.getAllCategories',
+  validate: null,
+  run() {
+    return Categories.find({}).fetch();
+  },
+});
+
+
+/*
+======= Draft methods =========
+*/
 DraftThoughts.methods = {};
 
 DraftThoughts.methods.insert = new ValidatedMethod({

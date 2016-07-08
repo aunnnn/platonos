@@ -8,7 +8,7 @@ export default class CategoryCard extends React.Component {
     this.actionMouseOut = this.actionMouseOut.bind(this);
   }
   actionMouseOver() {
-    this.props.actionMouseOver(this.props.categoryData);
+    this.props.actionMouseOver(this.props.category);
   }
   actionMouseOut() {
     this.props.actionMouseOut();
@@ -16,14 +16,14 @@ export default class CategoryCard extends React.Component {
   render() {
     return (
       <div className="card" onMouseOver={this.actionMouseOver} onMouseOut={this.actionMouseOut}>
-        {this.props.categoryData.title}
+        {this.props.category.title}
       </div>
     );
   }
 }
 
 CategoryCard.propTypes = {
-  categoryData: React.PropTypes.object,
+  category: React.PropTypes.object,
   actionMouseOver: React.PropTypes.func,
   actionMouseOut: React.PropTypes.func,
 };
