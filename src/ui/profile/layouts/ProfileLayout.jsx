@@ -42,8 +42,9 @@ class ProfileLayout extends Component {
   render() {
     const {
       children,
+      currentUser
     } = this.props;
-    const user = this.getDummyUser().appProfile;
+    console.log(currentUser);
     return (
       <div id="p-l">
 
@@ -58,16 +59,18 @@ class ProfileLayout extends Component {
         <div className="name">
           <img
             role="presentation"
-            src={Meteor.user().appProfile.picture}
+            src={currentUser.appProfile.picture}
           />
-          <h1>{`${user.first_name} ${user.last_name}`}</h1>
+          <h1>
+            {`${currentUser.appProfile.first_name} ${currentUser.appProfile.last_name}`}
+          </h1>
           <h4>Yo what's up jirat is back in town motherfuckerr.</h4>
         </div>
 
         {
           // children
         }
-        {children && React.cloneElement(children, { user })}
+        {/* children && React.cloneElement(children, { currentUser }) */}
 
       </div>
     );

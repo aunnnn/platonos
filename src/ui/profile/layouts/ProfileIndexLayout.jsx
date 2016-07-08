@@ -15,17 +15,17 @@ export default class ProfileIndexLayout extends Component {
   }
   render() {
     const {
-      user,
+      currentUser,
     } = this.props;
     return (
       <div className="row container">
 
         <div className="four columns left">
           <AboutCard
-            user={user}
+            currentUser={currentUser}
           />
           <FriendsCard
-            user={user}
+            currentUser={currentUser}
           />
         </div>
         <div className="six columns feed">
@@ -35,7 +35,7 @@ export default class ProfileIndexLayout extends Component {
           <FeedContainer />
         </div>
         <div className="two columns nav">
-          <ProfileCategoriesNav categories={user.followed_categories} />
+          <ProfileCategoriesNav categories={currentUser.followed_categories} />
         </div>
       </div>
     );
@@ -43,5 +43,5 @@ export default class ProfileIndexLayout extends Component {
 }
 
 ProfileIndexLayout.propTypes = {
-  user: PropTypes.object,
+  currentUser: PropTypes.object,
 };
