@@ -3,10 +3,8 @@ import { CronJob } from 'meteor/justinumesh:cron';
 import moment from 'moment';
 
 // Collections
-import { Actions } from '../src/api/feed/actions.js';
-import { Feeds } from '../src/api/feed/feeds.js';
-import { Thoughts } from '../src/api/thought/thoughts.js';
-import { Connections } from '../src/api/users/connections.js';
+import { Actions } from '../../src/api/feed/actions.js';
+import { Feeds } from '../../src/api/feed/feeds.js';
 
 
 Meteor.startup(() => {
@@ -42,7 +40,7 @@ Meteor.startup(() => {
   const undispatchedActionsToFeedJob = new CronJob('*/5 * * * * *', Meteor.bindEnvironment(() => {
     console.log('Checking undispatched actions...');
     const currentYM = moment().format('YYYYMM');
-    Meteor.users.find().forEach(function(user) {
+    Meteor.users.find().forEach((user) => {
       // find all actions directed to this user
       const allActions = Actions.find(
         { user_id: user._id, dispatched: false },
@@ -61,7 +59,7 @@ Meteor.startup(() => {
           (err) => {
             if (err) {
               console.log(`Update error: ${err.reason}`);
-            } else { 
+            } else {
               Actions.update(
                 { _id: targetAction._id },
                 { $set:
@@ -78,41 +76,6 @@ Meteor.startup(() => {
       }
     });
   }), null, true, 'Asia/Bangkok');
-
-
-  // ===================================================
-  // *          Anonymous Thought --> Action           *
-  // ===================================================
-  // Description: "fetch anonymous thought, make it an action for every user"
-  // ------------
-  // For every 20 seconds
-  const anonymousThoughtToActionsJob = new CronJob('*/20 * * * * *', Meteor.bindEnvironment(
-    () => {
-      console.log('Fetching anonymous thoughts into actions...');
-      const allThoughtsCount = Thoughts.find().count();
-      Meteor.users.find().forEach((user) => {
-        const i = Math.floor(Math.random() * allThoughtsCount);
-        const thought = Thoughts.find({}, { skip: i, limit: 1 }).fetch()[0];
-        const userId = user._id;
-        const friendIds = Connections.findOne({ user_id: userId }).friends.map(
-          (friend) => (friend.user_id)
-        );
-        // not by him/herself, not by friends and not received yet
-        if (thought.user_id !== userId &&
-            friendIds.indexOf(thought.user_id) === -1 &&
-            thought.dispatched_to.indexOf(userId) === -1) {
-          const action = {
-            user_id: userId,
-            type: 'THOUGHT',
-            content: thought,
-          };
-          Actions.insert(action);
-          // console.log(`Thought => Action, user: ${user.appProfile.first_name}`);
-        }
-      });
-    }
-  ), null, true, 'Asia/Bangkok');
-
   undispatchedActionsToFeedJob.start();
-  anonymousThoughtToActionsJob.start();
+  console.log("BG-Job: 'feed-update'");
 });

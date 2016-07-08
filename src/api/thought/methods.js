@@ -3,7 +3,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 import { Thoughts } from './thoughts.js';
 import { DraftThoughts } from './draftThoughts.js';
-import { Connections } from '../users/connections.js';
+import { Connections } from '../connection/connections.js';
 import { Actions } from '../feed/actions.js';
 
 // Thought methods

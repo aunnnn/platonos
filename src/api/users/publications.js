@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import { Connections } from './connections.js';
+import { Connections } from '../connection/connections.js';
 import { Feeds } from '../feed/feeds.js';
 Accounts.onCreateUser((options, user) => {
   // add app-related user data to a new field
