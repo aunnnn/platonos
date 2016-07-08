@@ -1,4 +1,8 @@
+// feed 
+FeedLayout - #f-l
+
 // thought
+ThoughtCardLayout - .tcl
 ThoughtPageLayout - #tpl
 FlowingThought - .fl-t
 
