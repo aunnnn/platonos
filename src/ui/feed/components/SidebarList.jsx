@@ -18,24 +18,10 @@ class SidebarList extends React.Component {
   }
   render() {
     const {
+      categories,
       router,
     } = this.props;
-    
-    // dummy data
-    const cats = [
-      {
-        id: 0,
-        name: 'Philosophy',
-      },
-      {
-        id: 1,
-        name: 'Politics',
-      },
-      {
-        id: 2,
-        name: 'Engineering',
-      },
-    ];
+
     return (
       <div className="sidebarlist-wrapper">
 
@@ -43,7 +29,7 @@ class SidebarList extends React.Component {
           key="pfeed"
           text="Thoughts"
           toPath="/"
-          isIndexLink={true}
+          isIndexLink
           isActive={router.isActive('/', true)}
         />
         <FeedTypeButton
@@ -55,14 +41,15 @@ class SidebarList extends React.Component {
 
         <div className="horizontal-divider"></div>
         {
-          cats.map(cat => (
+          categories ?
+          categories.map(cat => (
             <CategoryButton
               key={cat.id}
               text={cat.name}
               toPath={`/category/${cat.name}`}
               isActive={router.isActive(`/category/${cat.name}`, true)}
             />
-          ))
+          )) : ''
         }
         <Link
           to="/categories"
@@ -81,6 +68,7 @@ class SidebarList extends React.Component {
 }
 
 SidebarList.propTypes = {
+  categories: React.PropTypes.array,
   router: React.PropTypes.object,
 };
 

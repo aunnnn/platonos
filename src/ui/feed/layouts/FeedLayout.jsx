@@ -12,11 +12,14 @@ export default class FeedLayout extends Component {
       children,
       currentUser,
     } = this.props;
+    console.log(currentUser.appProfile.followed_categories);
     return (
       <div className="container" id="f-l">
         <div className="row">
           <div className="two columns nav">
-            <SidebarList />
+            <SidebarList
+              categories={currentUser.appProfile.followed_categories}
+            />
             <p></p>
           </div>
           <div className="seven columns feed">
