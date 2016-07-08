@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import CardActionStar from './CardActionStar.jsx';
 import CardActionShare from './CardActionShare.jsx';
 
+import './ThoughtCardActionBar.import.css';
+
 class ThoughtCardActionBar extends Component {
   constructor(props) {
     super(props);
