@@ -9,7 +9,7 @@ const ThoughtCardUpperInfo = ({ category, type, currentUser, isOwner, created_at
       <div className="owner">
         <div
           className="owner-pic"
-          style={{ backgroundImage: `url(${currentUser.picture})` }}
+          style={{ backgroundImage: `url(${currentUser.appProfile.picture})` }}
         ></div>
         <label>{moment(created_at).fromNow()}</label>
       </div>
@@ -30,6 +30,7 @@ ThoughtCardUpperInfo.propTypes = {
   type: React.PropTypes.string.isRequired,
   currentUser: React.PropTypes.object,
   isOwner: React.PropTypes.bool,
+  created_at: React.PropTypes.string,
 };
 
 export default ThoughtCardUpperInfo;
