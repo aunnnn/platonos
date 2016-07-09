@@ -1,13 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
+// components
 import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
+// collections
+import { Categories } from '../../../api/category/categories';
+// actions
+import { followCategory } from '../actions/following.js';
+
 import './CategoryFeed.import.css';
 
 class CategoryFeed extends React.Component {
-
   constructor(props) {
     super(props);
+    this.state = {
+      categoryObj: {},
+    };
   }
-
+  componentDidMount() {
+    Categories.methods.getCategory.call(
+      this.props.categoryTitle,
+      (err, result) => {
+        if (err) {
+          console.log('error getting category data');
+          return;
+        }
+        this.setState({
+          categoryObj: result,
+        });
+      }
+    );
+  }
   getDummyData() {
     return [
       {
@@ -52,16 +74,41 @@ class CategoryFeed extends React.Component {
   }
 
   render() {
-    const {
-      categoryName,
-      currentUser,
-    } = this.props;
+    const { categoryTitle, currentUser, dispatch } = this.props;
+    const { categoryObj } = this.state;
+
+    let isFollowed = false;
+    currentUser.appProfile.followed_categories.forEach(
+      (category) => {
+        if (category.title === categoryTitle) isFollowed = true;
+      }
+    );
+
     return (
       <div>
-        <div className="category-feed-header">
-          <h4 className="feed-header">{categoryName}</h4>
-          <div className="unfollow-button">Unfollow</div>
-          <p className="merr-font">Interesting thoughts in {` ${categoryName}`}</p>
+        <div className="cfh">
+          <h4 className="feed-header">{categoryTitle}</h4>
+          {
+            isFollowed ?
+              <div
+                className="button"
+                onClick={() => {
+                  
+                }}
+              >
+                Unfollow
+              </div>
+              :
+              <div
+                className="button follow"
+                onClick={() => {
+                  dispatch(followCategory(categoryObj));
+                }}
+              >
+                Follow
+              </div>
+          }
+          <p className="merr-font">Interesting thoughts in {` ${categoryTitle}`}</p>
         </div>
         {this.getDummyData().map(
           thought =>
@@ -76,8 +123,9 @@ class CategoryFeed extends React.Component {
 }
 
 CategoryFeed.propTypes = {
-  categoryName: React.PropTypes.string,
+  categoryTitle: React.PropTypes.string,
   currentUser: React.PropTypes.object,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
-export default CategoryFeed;
+export default connect()(CategoryFeed);

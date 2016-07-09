@@ -14,3 +14,13 @@ Categories.methods.getAllCategories = new ValidatedMethod({
     return Categories.find({}).fetch();
   },
 });
+
+Categories.methods.getCategory = new ValidatedMethod({
+  name: 'categories.getCategory',
+  validate: null,
+  run(CategoryTitle) {
+    return Categories.findOne({
+      title: CategoryTitle,
+    });
+  },
+});
