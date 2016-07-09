@@ -74,41 +74,16 @@ class CategoryFeed extends React.Component {
   }
 
   render() {
-    const { categoryTitle, currentUser, dispatch } = this.props;
-    const { categoryObj } = this.state;
-
-    let isFollowed = false;
-    currentUser.appProfile.followed_categories.forEach(
-      (category) => {
-        if (category.title === categoryTitle) isFollowed = true;
-      }
-    );
-
+    const {
+      categoryName,
+      currentUser,
+    } = this.props;
     return (
       <div>
-        <div className="cfh">
-          <h4 className="feed-header">{categoryTitle}</h4>
-          {
-            isFollowed ?
-              <div
-                className="button"
-                onClick={() => {
-                  
-                }}
-              >
-                Unfollow
-              </div>
-              :
-              <div
-                className="button follow"
-                onClick={() => {
-                  dispatch(followCategory(categoryObj));
-                }}
-              >
-                Follow
-              </div>
-          }
-          <p className="merr-font">Interesting thoughts in {` ${categoryTitle}`}</p>
+        <div className="category-feed-header">
+          <h4 className="feed-header">{categoryName}</h4>
+          <div className="unfollow-button">Unfollow</div>
+          <p className="merr-font">Interesting thoughts in {` ${categoryName}`}</p>
         </div>
         {this.getDummyData().map(
           thought =>

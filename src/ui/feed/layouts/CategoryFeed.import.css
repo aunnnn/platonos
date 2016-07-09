@@ -1,23 +1,39 @@
-.category-feed-header {
-	/* background-color: white; */
-	/* height: 100%; */
+.cfh {
 	width: 100%;
-	padding-right: 20px;
-	/* padding-top: 10px; */
+	padding-right: 70px;
 	position: relative;
-	p {
+	@media (max-width: 550px) {
+		padding: 0 4%;
+	}
+	.merr-font {
 		font-size: 13px;
 		color: #777;
 	}
-	.unfollow-button {
+	.button {
 		position: absolute;
-		top: 10px;
+		top: 6px;
 		right: 10px;
 		color: #777;
 		cursor: pointer;
 		font-size: 12px;
+		border: 1px solid #ddd;
+		background-color: #ddd;
+		border-radius: 5px;
+		padding: 4px 10px;
+		@media (max-width: 550px) {
+			right: 20px;
+		}
 		&:hover {
 			color: #000;
+		}
+		&.follow {
+			color: #bc3366;
+			border-color: #bc3366;
+			background-color: transparent;
+			&:hover {
+				color: #972952;
+				border-color: #972952;
+			}
 		}
 	}
 }

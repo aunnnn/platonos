@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { Component } from 'react';
 // components
 import CategoryButton from './CategoryButton.jsx';
 import FeedTypeButton from './FeedTypeButton.jsx';
@@ -8,14 +7,7 @@ import { Link, withRouter } from 'react-router';
 // styles
 import './SidebarList.import.css';
 
-class SidebarList extends React.Component {
-
-  sidebarOptionClicked(catname) {
-    console.log(catname);
-    // this.setState({
-    //   activeSidebarOption:
-    // });
-  }
+class SidebarList extends Component {
   render() {
     const {
       categories,

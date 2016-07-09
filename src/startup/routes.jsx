@@ -63,7 +63,7 @@ export const renderRoutes = () => (
           <IndexRoute component={PersonalFeedContainer} />
           <Route path="global" component={GlobalFeedContainer} onEnter={requireAuth} />
           <Route path="category" onEnter={requireAuth}>
-            <Route path=":categoryName" component={CategoryFeedContainer} />
+            <Route path=":categoryTitle" component={CategoryFeedContainer} />
           </Route>
           <Route path="categories" component={AddCategoryLayout} onEnter={requireAuth} />
         </Route>

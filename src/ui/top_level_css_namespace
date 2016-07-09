@@ -1,5 +1,6 @@
 // feed 
 FeedLayout - #f-l
+CategoryFeedHeader - .cfh
 
 // thought
 ThoughtCardLayout - .tcl
