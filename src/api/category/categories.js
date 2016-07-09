@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
@@ -14,6 +15,10 @@ Categories.deny({
   update() { return true; },
   remove() { return true; },
 });
+
+if (Meteor.isServer) {
+  Categories._ensureIndex({ title: 1 });
+}
 
 Categories.schema = new SimpleSchema({
   title: {
