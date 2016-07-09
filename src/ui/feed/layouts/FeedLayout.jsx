@@ -12,7 +12,7 @@ export default class FeedLayout extends Component {
       children,
       currentUser,
     } = this.props;
-    console.log(currentUser.appProfile.followed_categories);
+
     return (
       <div className="container" id="f-l">
         <div className="row">

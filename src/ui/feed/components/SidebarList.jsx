@@ -21,7 +21,6 @@ class SidebarList extends React.Component {
       categories,
       router,
     } = this.props;
-
     return (
       <div className="sidebarlist-wrapper">
 
@@ -44,9 +43,9 @@ class SidebarList extends React.Component {
           categories ?
           categories.map(cat => (
             <CategoryButton
-              key={cat.id}
-              text={cat.name}
-              toPath={`/category/${cat.name}`}
+              key={cat._id}
+              text={cat.title}
+              toPath={`/category/${cat.title}`}
               isActive={router.isActive(`/category/${cat.name}`, true)}
             />
           )) : ''

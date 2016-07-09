@@ -1,29 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-
-export default class CategoryCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.actionMouseOver = this.actionMouseOver.bind(this);
-    this.actionMouseOut = this.actionMouseOut.bind(this);
-  }
-  actionMouseOver() {
-    this.props.actionMouseOver(this.props.category);
-  }
-  actionMouseOut() {
-    this.props.actionMouseOut();
-  }
-  render() {
-    return (
-      <div className="card" onMouseOver={this.actionMouseOver} onMouseOut={this.actionMouseOut}>
-        {this.props.category.title}
-      </div>
-    );
-  }
-}
+const CategoryCard = ({ category: { title } }) => (
+  <Link to={`/category/${title}`}>
+    <div className="card">
+      {title}
+    </div>
+  </Link>
+);
 
 CategoryCard.propTypes = {
-  category: React.PropTypes.object,
-  actionMouseOver: React.PropTypes.func,
-  actionMouseOut: React.PropTypes.func,
+  category: React.PropTypes.object.isRequired,
 };
+
+export default CategoryCard;

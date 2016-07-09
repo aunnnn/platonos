@@ -35,7 +35,7 @@ export class CategoryCardSection extends Component {
         <div>
           {this.state.categories.map((category) => (
             <CategoryCard
-              key={category.title}
+              key={category._id}
               category={category}
             />
           ))}
@@ -48,7 +48,7 @@ export class CategoryCardSection extends Component {
         <div>
           {this.props.followedCategories.map((category) => (
             <CategoryCard
-              key={category.title}
+              key={category._id}
               category={category}
             />
           ))}
