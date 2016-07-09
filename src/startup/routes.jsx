@@ -12,7 +12,7 @@ import FeedLayout from '../ui/feed/layouts/FeedLayout.jsx';
 import PersonalFeedContainer from '../ui/feed/containers/PersonalFeedContainer.jsx';
 import GlobalFeedContainer from '../ui/feed/containers/GlobalFeedContainer.jsx';
 import CategoryFeedContainer from '../ui/feed/containers/CategoryFeedContainer.jsx';
-import AddCategoryContainer from '../ui/feed/containers/AddCategoryContainer.jsx';
+import AddCategoryLayout from '../ui/feed/layouts/AddCategoryLayout.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
 import ProfileLayout from '../ui/profile/layouts/ProfileLayout.jsx';
 import WriteThoughtPageLayout from '../ui/thought/layouts/WriteThoughtPageLayout.jsx';
@@ -65,7 +65,7 @@ export const renderRoutes = () => (
           <Route path="category" onEnter={requireAuth}>
             <Route path=":categoryName" component={CategoryFeedContainer} />
           </Route>
-          <Route path="categories" component={AddCategoryContainer} onEnter={requireAuth} />
+          <Route path="categories" component={AddCategoryLayout} onEnter={requireAuth} />
         </Route>
 
         {
