@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 import { Thoughts } from './thoughts.js';
-import { Categories } from './categories.js';
 import { DraftThoughts } from './draftThoughts.js';
 import { Connections } from '../connection/connections.js';
 import { Actions } from '../feed/actions.js';
@@ -75,20 +74,6 @@ Thoughts.methods.insert = new ValidatedMethod({
     return thoughtId;
   },
 });
-
-/*
-======= Category methods =========
-*/
-Categories.methods = {};
-
-Categories.methods.getAllCategories = new ValidatedMethod({
-  name: 'categories.getAllCategories',
-  validate: null,
-  run() {
-    return Categories.find({}).fetch();
-  },
-});
-
 
 /*
 ======= Draft methods =========
