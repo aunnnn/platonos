@@ -41,16 +41,14 @@ export const UserAppProfileSchema = new SimpleSchema({
 Accounts.onCreateUser((options, user) => {
   // add app-related user data to a new field
 
-  const isFacebook = check(user.services.facebook, Object);
-
+  const isFacebook = user.services.facebook;
+  console.log(isFacebook);
   const picture = isFacebook ?
       `http://graph.facebook.com/${user.services.facebook.id}/picture/?type=large`
       :
       'http://i.memeful.com/media/post/3M2b6M2_700w_0.jpg';
-
   const first_name = isFacebook ?
       user.services.facebook.first_name : '';
-
   const last_name = isFacebook ?
       user.services.facebook.last_name : '';
 
@@ -58,10 +56,28 @@ Accounts.onCreateUser((options, user) => {
     picture,
     first_name,
     last_name,
-  };
 
-  // make first time connection bucket
+    last_active: new Date(),
+    last_sub_thought: new Date(),
+    last_thought: new Date(),
+
+    active_discussions: '',
+    draft_thoughts: [],
+
+    friend_ids: [],
+    followed_categories: [],
+    works: [],
+    educations: [],
+    places: {
+      born: '',
+      lives: '',
+    },
+  };
+  console.log(user.appProfile);
+
+  // make first time connection & feed bucket
   Connections.insert({ user_id: user._id });
   Feeds.insert({ user_id: user._id });
+
   return user;
 });
