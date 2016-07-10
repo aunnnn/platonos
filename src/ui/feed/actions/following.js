@@ -6,4 +6,11 @@ function followCategory(categoryObj) {
   };
 }
 
-export { followCategory };
+function unfollowCategory(categoryId) {
+  return () => {
+    console.log(categoryId);
+    Meteor.users.methods.unfollowCategory.call(categoryId);
+  };
+}
+
+export { followCategory, unfollowCategory };

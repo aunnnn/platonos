@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 // components
 import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
 // collections
 import { Categories } from '../../../api/category/categories';
 // actions
-import { followCategory } from '../actions/following.js';
+import { followCategory, unfollowCategory } from '../actions/following.js';
 
 import './CategoryFeed.import.css';
 
@@ -88,26 +89,11 @@ class CategoryFeed extends React.Component {
       <div>
         <div className="cfh">
           <h4 className="feed-header">{categoryTitle}</h4>
-          {
-            isFollowed ?
-              <div
-                className="button"
-                onClick={() => {
-
-                }}
-              >
-                Unfollow
-              </div>
-              :
-              <div
-                className="button follow"
-                onClick={() => {
-                  dispatch(followCategory(categoryObj));
-                }}
-              >
-                Follow
-              </div>
-          }
+          <FollowButton
+            categoryObj={categoryObj}
+            isFollowed={isFollowed}
+            dispatch={dispatch}
+          />
           <p className="merr-font">Interesting thoughts in {` ${categoryTitle}`}</p>
         </div>
         {this.getDummyData().map(
@@ -126,6 +112,31 @@ CategoryFeed.propTypes = {
   categoryTitle: React.PropTypes.string,
   currentUser: React.PropTypes.object,
   dispatch: React.PropTypes.func.isRequired,
+};
+
+/*
+  Follow Button
+*/
+const FollowButton = ({ categoryObj, isFollowed, dispatch }) => {
+  console.log(categoryObj);
+  return (<div
+    className={classNames('button', { follow: !isFollowed })}
+    onClick={() => {
+      if (isFollowed) {
+        dispatch(unfollowCategory(categoryObj._id));
+      } else {
+        dispatch(followCategory(categoryObj));
+      }
+    }}
+  >
+    {isFollowed ? 'Unfollow' : 'Follow'}
+  </div>);
+};
+
+FollowButton.propTypes = {
+  categoryObj: React.PropTypes.object,
+  isFollowed: React.PropTypes.bool,
+  dispatch: React.PropTypes.func,
 };
 
 export default connect()(CategoryFeed);
