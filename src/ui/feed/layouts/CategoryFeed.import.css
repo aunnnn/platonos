@@ -16,7 +16,6 @@
 		color: #777;
 		cursor: pointer;
 		font-size: 12px;
-		border: 1px solid #ddd;
 		background-color: #ddd;
 		border-radius: 5px;
 		padding: 4px 10px;
@@ -27,12 +26,10 @@
 			color: #000;
 		}
 		&.follow {
-			color: #bc3366;
-			border-color: #bc3366;
-			background-color: transparent;
+			color: #f7f7f7;
+			background-color: #bc3366;
 			&:hover {
-				color: #972952;
-				border-color: #972952;
+				background-color: #972952;
 			}
 		}
 	}

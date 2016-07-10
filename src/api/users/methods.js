@@ -67,7 +67,7 @@ Meteor.users.methods.unfollowCategory = new ValidatedMethod({
         },
       },
     };
-    console.log(obj);
+
     Meteor.users.update(
       { _id: this.userId },
       obj,

@@ -1,5 +1,4 @@
 import { Accounts } from 'meteor/accounts-base';
-import { check } from 'meteor/check';
 import { Connections } from '../connection/connections.js';
 import { Feeds } from '../feed/feeds.js';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
@@ -73,7 +72,6 @@ Accounts.onCreateUser((options, user) => {
       lives: '',
     },
   };
-  console.log(user.appProfile);
 
   // make first time connection & feed bucket
   Connections.insert({ user_id: user._id });

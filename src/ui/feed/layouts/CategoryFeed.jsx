@@ -31,6 +31,22 @@ class CategoryFeed extends React.Component {
       }
     );
   }
+  componentDidUpdate() {
+    if (this.props.categoryTitle !== this.state.categoryObj.title) {
+      Categories.methods.getCategory.call(
+        this.props.categoryTitle,
+        (err, result) => {
+          if (err) {
+            console.log('error getting category data');
+            return;
+          }
+          this.setState({
+            categoryObj: result,
+          });
+        }
+      );
+    }
+  }
   getDummyData() {
     return [
       {
