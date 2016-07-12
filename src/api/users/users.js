@@ -55,13 +55,7 @@ Accounts.onCreateUser((options, user) => {
     picture,
     first_name,
     last_name,
-
-    last_active: new Date(),
-    last_sub_thought: new Date(),
-    last_thought: new Date(),
-
-    active_discussions: '',
-    draft_thoughts: [],
+    description: '',
 
     friend_ids: [],
     followed_categories: [],
@@ -71,6 +65,13 @@ Accounts.onCreateUser((options, user) => {
       born: '',
       lives: '',
     },
+
+    active_discussions: '',
+    draft_thoughts: [],
+
+    last_active: new Date(),
+    last_sub_thought: new Date(),
+    last_thought: new Date(),
   };
 
   // make first time connection & feed bucket
