@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class ProfileCover extends Component {
   render() {
-    const coverSrc = 'img/profile-cover-2.jpg';
+    const coverSrc = '/img/profile-cover-2.jpg';
     return (
       <div
         className="cover"
