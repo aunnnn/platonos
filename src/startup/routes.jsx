@@ -49,7 +49,7 @@ export const renderRoutes = () => (
   <Provider store={Store}>
     <Router
       history={history}
-      onUpdate={window.scrollTo(0, 0)}
+      onUpdate={() => { window.scrollTo(0, 0); }}
     >
       {
         // root
@@ -57,39 +57,54 @@ export const renderRoutes = () => (
       <Route path="/" component={AppContainer}>
 
         {
-          // feed
+          // platonos.com/
         }
         <Route component={FeedLayout}>
           <IndexRoute component={PersonalFeedContainer} />
+          {
+            // platonos.com/global
+          }
           <Route path="global" component={GlobalFeedContainer} onEnter={requireAuth} />
+          {
+            // platonos.com/category/:categoryTitle
+          }
           <Route path="category" onEnter={requireAuth}>
             <Route path=":categoryTitle" component={CategoryFeedContainer} />
           </Route>
+          {
+            // platonos.com/categories
+          }
           <Route path="categories" component={AddCategoryLayout} onEnter={requireAuth} />
         </Route>
 
         {
-          // thought page
+          // platonos.com/thought/:thoughtId
         }
         <Route path="thought/:thoughtId" component={ThoughtPageContainer} />
 
         {
-          // profile
+          // platonos.com/profile/:userId
         }
-        <Route path="profile" component={ProfileLayout} onEnter={requireAuth} >
+        <Route path="profile/:userId" component={ProfileLayout} onEnter={requireAuth} >
           <IndexRoute component={ProfileIndexLayout} />
+          {
+            // platonos.com/profile/:userId/friends
+          }
           <Route path="friends" component={ProfileFriendsLayout} onEnter={requireAuth} />
+          {
+            // platonos.com/profile/:userId/about
+          }
           <Route path="about" component={ProfileAboutLayout} onEnter={requireAuth} />
         </Route>
 
         {
-          // write
+          // platonos.com/write
         }
         <Route path="write" component={WriteThoughtPageLayout} onEnter={requireAuth} />
       </Route>
 
       {
-        // signup
+        // platonos.com/signup
       }
       <Route path="/signup" component={SignupPageLayout} />
 
