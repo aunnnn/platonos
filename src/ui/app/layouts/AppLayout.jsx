@@ -11,16 +11,19 @@ import './AppLayout.import.css';
 
 // Layout
 class AppLayout extends Component {
+
   constructor(props) {
     super(props);
     this.renderAnonymous = this.renderAnonymous.bind(this);
     this.renderAuthorized = this.renderAuthorized.bind(this);
   }
+
   renderAnonymous() {
     return (
       <LoginPageLayout />
     );
   }
+
   renderAuthorized() {
     const {
       currentUser,
@@ -44,12 +47,13 @@ class AppLayout extends Component {
       </div>
     );
   }
+
   render() {
     const {
       currentUser,
       currentUserReady,
     } = this.props;
-    console.log(`current user ready:${currentUserReady}`);
+
     // waiting for currentUser to ready
     if (!currentUserReady) return <OrbitLoader />;
 
