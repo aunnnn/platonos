@@ -41,7 +41,6 @@ Accounts.onCreateUser((options, user) => {
   // add app-related user data to a new field
 
   const isFacebook = user.services.facebook;
-  console.log(isFacebook);
   const picture = isFacebook ?
       `http://graph.facebook.com/${user.services.facebook.id}/picture/?type=large`
       :

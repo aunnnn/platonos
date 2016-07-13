@@ -4,6 +4,15 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 Meteor.users.methods = {};
 
+// for profile page
+Meteor.users.methods.getUserForProfile = new ValidatedMethod({
+  name: 'users.getUserForProfile',
+  validate: null,
+  run({ userId, isFriend }) {
+    return Meteor.users.findOne({ _id: userId });
+  },
+});
+
 Meteor.users.methods.updateAppProfile = new ValidatedMethod({
   name: 'users.updateAppProfile',
   validate: null,
@@ -12,13 +21,14 @@ Meteor.users.methods.updateAppProfile = new ValidatedMethod({
       throw new Meteor.Error('users.updateAppProfile.notLoggedIn',
         'Must be logged in to update user data.');
     }
-    return Meteor.users.upsert({
-      _id: user_id,
-    }, {
-      $set: {
-        appProfile,
-      },
-    });
+    return Meteor.users.upsert(
+      { _id: user_id },
+      {
+        $set: {
+          appProfile,
+        },
+      }
+    );
   },
 });
 

@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import ProfileCover from '../components/ProfileCover.jsx';
 import './ProfileLayout.import.css';
@@ -8,43 +9,22 @@ class ProfileLayout extends Component {
 
   constructor(props) {
     super(props);
-  }
-
-  getDummyUser() {
-    return {
-      appProfile: {
-        picture: Meteor.user().appProfile,
-        first_name: 'Jirat',
-        last_name: 'Onaree',
-        description: 'Yo what\'s up jirat is back in town motherfuckerr.',
-        friends_ids: [],
-        followed_categories: [
-          { id: '', title: 'Politics' },
-          { id: '', title: 'Science' },
-          { id: '', title: 'Space' },
-        ],
-        works: ['Student Yo'],
-        educations: ['Chulalongkorn University'],
-        address: {
-          born: {
-            city: 'Bangkok',
-            country: 'Thailand',
-          },
-          lives: {
-            city: 'California',
-            country: 'United States',
-          },
-        },
-      },
+    this.state = {
+      profilePicLoaded: false,
     };
   }
 
   render() {
     const {
+      isFriend,
       children,
-      currentUser
+      currentUser,
+      profileUser,
     } = this.props;
-    console.log(currentUser);
+    const {
+      profilePicLoaded,
+    } = this.state;
+
     return (
       <div id="p-l">
 
@@ -59,10 +39,12 @@ class ProfileLayout extends Component {
         <div className="name">
           <img
             role="presentation"
-            src={currentUser.appProfile.picture}
+            className={classNames({ loading: profilePicLoaded })}
+            src={profileUser.appProfile.picture}
+            onLoad={() => { this.setState({ profilePicLoaded: true }); }}
           />
           <h1>
-            {`${currentUser.appProfile.first_name} ${currentUser.appProfile.last_name}`}
+            {`${profileUser.appProfile.first_name} ${profileUser.appProfile.last_name}`}
           </h1>
           <h4>Yo what's up jirat is back in town motherfuckerr.</h4>
         </div>
@@ -78,8 +60,10 @@ class ProfileLayout extends Component {
 }
 
 ProfileLayout.propTypes = {
-  categoryName: React.PropTypes.string,
-  children: React.PropTypes.element,
+  currentUser: React.PropTypes.object.isRequired,
+  profileUser: React.PropTypes.object.isRequired,
+  children: React.PropTypes.element.isRequired,
+  isFriend: React.PropTypes.bool,
 };
 
 export default ProfileLayout;

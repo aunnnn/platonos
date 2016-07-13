@@ -14,7 +14,7 @@ import GlobalFeedContainer from '../ui/feed/containers/GlobalFeedContainer.jsx';
 import CategoryFeedContainer from '../ui/feed/containers/CategoryFeedContainer.jsx';
 import AddCategoryLayout from '../ui/feed/layouts/AddCategoryLayout.jsx';
 import SignupPageLayout from '../ui/auth/layouts/SignupPageLayout.jsx';
-import ProfileLayout from '../ui/profile/layouts/ProfileLayout.jsx';
+import ProfileContainer from '../ui/profile/containers/ProfileContainer.jsx';
 import WriteThoughtPageLayout from '../ui/thought/layouts/WriteThoughtPageLayout.jsx';
 import ProfileIndexLayout from '../ui/profile/layouts/ProfileIndexLayout.jsx';
 import ProfileFriendsLayout from '../ui/profile/layouts/ProfileFriendsLayout.jsx';
@@ -85,7 +85,7 @@ export const renderRoutes = () => (
         {
           // platonos.com/profile/:userId
         }
-        <Route path="profile/:userId" component={ProfileLayout} onEnter={requireAuth} >
+        <Route path="profile/:userId" component={ProfileContainer} onEnter={requireAuth} >
           <IndexRoute component={ProfileIndexLayout} />
           {
             // platonos.com/profile/:userId/friends
