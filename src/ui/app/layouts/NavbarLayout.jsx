@@ -19,13 +19,14 @@ class NavbarLayout extends Component {
     const {
       dispatch,
       activeDropdown,
-      currentUser,
+      currentUser: {
+        _id,
+        appProfile: {
+          first_name,
+          picture,
+        },
+      },
     } = this.props;
-
-    // try get fb first_name first, then email
-
-    const currentUserName = currentUser.appProfile.first_name;
-    const picture = currentUser.appProfile.picture;
 
     return (
       <nav className="main-nav">
@@ -87,7 +88,7 @@ class NavbarLayout extends Component {
             {
               // profile thumbnail
             }
-            <Link to="/profile" className="user-wrapper">
+            <Link to={`/profile/${_id}`} className="user-wrapper">
               <img
                 className="user-pic"
                 width="40"
@@ -95,7 +96,7 @@ class NavbarLayout extends Component {
                 src={picture}
                 role="presentation"
               />
-              <p className="user-name merr-font">{currentUserName}</p>
+              <p className="user-name merr-font">{first_name}</p>
             </Link>
           </div>
         </div>
