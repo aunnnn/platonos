@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
@@ -10,7 +11,7 @@ class ConnectionCollection extends Mongo.Collection {
 const Connections = new ConnectionCollection('Connections');
 
 if (Meteor.isServer) {
-  Connections._ensureIndex({ 'user_id': 1 });
+  Connections._ensureIndex({ user_id: 1 });
 }
 
 
