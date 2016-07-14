@@ -64,28 +64,28 @@ export const renderRoutes = () => (
           {
             // platonos.com/global
           }
-          <Route path="global" component={GlobalFeedContainer} onEnter={requireAuth} />
+          <Route path="/global" component={GlobalFeedContainer} onEnter={requireAuth} />
           {
             // platonos.com/category/:categoryTitle
           }
-          <Route path="category" onEnter={requireAuth}>
+          <Route path="/category" onEnter={requireAuth}>
             <Route path=":categoryTitle" component={CategoryFeedContainer} />
           </Route>
           {
             // platonos.com/categories
           }
-          <Route path="categories" component={AddCategoryLayout} onEnter={requireAuth} />
+          <Route path="/categories" component={AddCategoryLayout} onEnter={requireAuth} />
         </Route>
 
         {
           // platonos.com/thought/:thoughtId
         }
-        <Route path="thought/:thoughtId" component={ThoughtPageContainer} />
+        <Route path="/thought/:thoughtId" component={ThoughtPageContainer} />
 
         {
           // platonos.com/profile/:userId
         }
-        <Route path="profile/:userId" component={ProfileContainer} onEnter={requireAuth} >
+        <Route path="/profile/:userId" component={ProfileContainer} onEnter={requireAuth} >
           <IndexRoute component={ProfileIndexLayout} />
           {
             // platonos.com/profile/:userId/friends
@@ -100,7 +100,7 @@ export const renderRoutes = () => (
         {
           // platonos.com/write
         }
-        <Route path="write" component={WriteThoughtPageLayout} onEnter={requireAuth} />
+        <Route path="/write" component={WriteThoughtPageLayout} onEnter={requireAuth} />
       </Route>
 
       {
