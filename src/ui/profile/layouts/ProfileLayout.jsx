@@ -46,13 +46,15 @@ class ProfileLayout extends Component {
           <h1>
             {`${profileUser.appProfile.first_name} ${profileUser.appProfile.last_name}`}
           </h1>
-          <h4>Yo what's up jirat is back in town motherfuckerr.</h4>
+          <h4>{profileUser.appProfile.description}</h4>
         </div>
 
         {
           // children
         }
-        {/* children && React.cloneElement(children, { currentUser }) */}
+        {children && React.cloneElement(children, {
+          profileUser,
+        })}
 
       </div>
     );

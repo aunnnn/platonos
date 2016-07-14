@@ -1,70 +1,106 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
-export default class AboutCard extends Component {
-  render() {
-    const { followed_categories, works, educations, addresses } = this.props.user;
-    return (
-      <div className="about-card card">
-        <div className="card-header">
-          <label>About</label>
-          <Link to="profile/about" className="header-link">Edit</Link>
-        </div>
-        <div className="content merr-font">
-          {
-            // categories
-          }
-          <div className="line categories">
-            <div className="icon">
-              <i className="fa fa-lightbulb-o"></i>
-            </div>
-            <div className="text">
-              <p>
-                {followed_categories.map(({ id, title }, i) => {
-                  if (i === 0) return `Follows ${title}`;
-                  return `, ${title}`;
-                })}
-              </p>
-            </div>
-          </div>
-          {
-            // works
-          }
-          <div className="line work">
-            <div className="icon">
-              <i className="fa fa-briefcase"></i>
-            </div>
-            <div className="text">
-              <p>
-                {works.map((work, i) => {
-                  if (i === 0) return work;
-                  return `, ${work}`;
-                })}
-              </p>
-            </div>
-          </div>
-          {
-            // educations
-          }
-          <div className="line edu">
-            <div className="icon">
-              <i className="fa fa-university"></i>
-            </div>
-            <div className="text">
-              <p>
-                {educations.map((edu, i) => {
-                  if (i === 0) return edu;
-                  return `, ${edu}`;
-                })}
-              </p>
-            </div>
-          </div>
-        </div>
+const AboutCard = ({ followed_categories, work, education, places, userId }) => {
+  const eduTemp = {
+    highschool: 'Suankularb',
+    college: [
+      'Chulalongkorn University',
+    ],
+  };
+  return (
+    <div className="about-card card">
+      <div className="card-header">
+        <label>About</label>
+        <Link to={`/profile/${userId}/about`} className="header-link">Edit</Link>
       </div>
-    );
-  }
-}
+      <div className="content merr-font">
+        {
+          // categories
+        }
+        <div className="line categories">
+          <div className="icon">
+            <i className="fa fa-lightbulb-o"></i>
+          </div>
+          <div className="text-wrapper">
+            <p className="text">
+              {
+                followed_categories.length === 0 ?
+                  '' : 'Follows'
+              }
+              {
+                followed_categories.length === 0 ?
+                  'No following categories'
+                  :
+                  followed_categories.map(({ _id, title }, i) => {
+                    if (i === 0) {
+                      return (
+                        <Link
+                          to={`/category/${title}`} key={_id}
+                          className="cat-link"
+                        >
+                          {` ${title}`}
+                        </Link>
+                      );
+                    }
+                    return (
+                      <Link
+                        to={`/category/${title}`} key={_id}
+                        className="cat-link"
+                      >
+                        {`, ${title}`}
+                      </Link>
+                    );
+                  })
+              }
+            </p>
+          </div>
+        </div>
+        {
+          // work
+          // work.length === 0 ?
+            // ''
+            // :
+            <div className="line work">
+              <div className="icon">
+                <i className="fa fa-briefcase"></i>
+              </div>
+              <div className="text-wrapper">
+                <p className="text">
+                  {/* work[0] */}
+                  Platonos Inc.
+                </p>
+              </div>
+            </div>
+        }
+        {
+          // education
+          eduTemp.highschool === '' && eduTemp.college.length === 0 ?
+            ''
+            :
+            <div className="line edu">
+              <div className="icon">
+                <i className="fa fa-university"></i>
+              </div>
+              <div className="text-wrapper">
+                <p className="text">
+                  {eduTemp.college.length !== 0 ?
+                    eduTemp.college[0] : eduTemp.highschool
+                  }
+                </p>
+              </div>
+            </div>
+          }
+      </div>
+    </div>);
+};
 
 AboutCard.propTypes = {
-  user: PropTypes.object,
+  followed_categories: React.PropTypes.array,
+  work: React.PropTypes.array,
+  education: React.PropTypes.array,
+  places: React.PropTypes.object,
+  userId: React.PropTypes.string,
 };
+
+export default AboutCard;

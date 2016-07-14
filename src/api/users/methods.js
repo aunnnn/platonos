@@ -13,6 +13,19 @@ Meteor.users.methods.getUserForProfile = new ValidatedMethod({
   },
 });
 
+Meteor.users.methods.getFriendData = new ValidatedMethod({
+  name: 'users.getFriendData',
+  validate: null,
+  run(friend_ids) {
+    check(friend_ids, Array);
+    return Meteor.users.find(
+      {
+        _id: { $in: friend_ids },
+      }
+    ).fetch();
+  },
+});
+
 Meteor.users.methods.updateAppProfile = new ValidatedMethod({
   name: 'users.updateAppProfile',
   validate: null,

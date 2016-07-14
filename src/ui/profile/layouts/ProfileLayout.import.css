@@ -8,10 +8,10 @@
       width: 51%;  
     }
     .two.columns {
-      width: 10.3333333333%;
+      width: 13.3333333333%;
     }
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 1024px) {
     .columns.nav {
       display: none;
     }
@@ -74,11 +74,11 @@
       box-shadow: 0 1px 5px hexa(#000 ,0.14);
       width: 100%;
     }
-    .icon, .text {
+    .icon, .text-wrapper {
       display: inline-block;
       vertical-align: top;
     }
-    .text {
+    .text-wrapper {
       width: calc(100% - 29px);
     }
   }
@@ -108,10 +108,17 @@
       width: 25px;
       text-align: center;
     }
-    p {
+    .text {
       padding-left: 13px;
       font-size: 14px;
       margin-bottom: 15px;
+    }
+  }
+  .cat-link {
+    text-decoration: none;
+    color: #999;
+    &:hover {
+      color: #222;
     }
   }
   .friend-card {
@@ -151,7 +158,7 @@
     &:hover {
       color: #555555 !important;
     }
-    &.link-active {
+    &.active {
       color: black;
       font-weight: 600;
     }

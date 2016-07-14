@@ -45,7 +45,7 @@ export default class ProfileContainer extends Component {
       profileUserReady,
       profileUser,
     } = this.state;
-
+    console.log(this.state);
     if (!currentUser) return <div></div>;
     /*
       currentUser's profile
