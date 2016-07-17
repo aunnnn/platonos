@@ -17,6 +17,7 @@ class ProfileLayout extends Component {
   render() {
     const {
       isFriend,
+      isOwner,
       children,
       currentUser,
       profileUser,
@@ -52,8 +53,11 @@ class ProfileLayout extends Component {
         {
           // children
         }
+
         {children && React.cloneElement(children, {
           profileUser,
+          isOwner,
+          isFriend,
         })}
 
       </div>

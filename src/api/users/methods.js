@@ -13,7 +13,7 @@ Meteor.users.methods.getUserForProfile = new ValidatedMethod({
   },
 });
 
-Meteor.users.methods.getFriendData = new ValidatedMethod({
+Meteor.users.methods.getFriendsData = new ValidatedMethod({
   name: 'users.getFriendData',
   validate: null,
   run(friend_ids) {

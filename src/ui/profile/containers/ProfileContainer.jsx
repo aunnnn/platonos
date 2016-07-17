@@ -16,17 +16,16 @@ export default class ProfileContainer extends Component {
   }
 
   getUserForProfile(userId, isFriend) {
-    console.log('yo get user');
     Meteor.users.methods.getUserForProfile.call(
       { userId, isFriend },
-      (err, result) => {
+      (err, user) => {
         if (err) {
-          console.log('error: cannot get user for profile');
+          console.log('error get user for profile');
           return;
         }
         this.setState({
           profileUserReady: true,
-          profileUser: result,
+          profileUser: user,
         });
         return;
       }
@@ -45,7 +44,7 @@ export default class ProfileContainer extends Component {
       profileUserReady,
       profileUser,
     } = this.state;
-    console.log(this.state);
+
     if (!currentUser) return <div></div>;
     /*
       currentUser's profile
@@ -55,6 +54,7 @@ export default class ProfileContainer extends Component {
         <ProfileLayout
           profileUser={currentUser}
           currentUser={currentUser}
+          isOwner
           children={children}
         />
       );
@@ -65,12 +65,13 @@ export default class ProfileContainer extends Component {
     */
     const isFriend = currentUser.appProfile.friend_ids.indexOf(userId) !== -1;
 
-    if (!profileUserReady) {
+    console.log(userId !== profileUser._id);
+    if (!profileUserReady || userId !== profileUser._id) {
       // profile user - not ready
       this.getUserForProfile(userId, isFriend);
-      return <div></div>;
+      return <OrbitLoader />;
     }
-
+    console.log(profileUser);
     // profile user - ready
     return (
       <ProfileLayout

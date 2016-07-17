@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 // components
 import AboutCard from '../components/AboutCard.jsx';
@@ -32,6 +32,8 @@ export default class ProfileIndexLayout extends Component {
           friend_ids,
         },
       },
+      isFriend,
+      isOwner,
     } = this.props;
 
     return (
@@ -43,9 +45,13 @@ export default class ProfileIndexLayout extends Component {
             educations={educations}
             places={places}
             userId={_id}
+            isOwner={isOwner}
           />
           <FriendsCard
             friend_ids={friend_ids}
+            userId={_id}
+            isFriend={isFriend}
+            isOwner={isOwner}
           />
         </div>
         <div className="six columns feed">
@@ -69,5 +75,7 @@ export default class ProfileIndexLayout extends Component {
 }
 
 ProfileIndexLayout.propTypes = {
-  profileUser: PropTypes.object,
+  profileUser: React.PropTypes.object,
+  isFriend: React.PropTypes.bool,
+  isOwner: React.PropTypes.bool,
 };
