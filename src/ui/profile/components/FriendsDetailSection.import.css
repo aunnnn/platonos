@@ -1,0 +1,59 @@
+/* friend detail section */
+.fd-s {
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 5px;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+  border-bottom: 1px solid hexa(#000,0.15);
+  padding: 20px 0 0;
+  .friend {
+    /* display: inline-block; */
+    width: 31%;
+    margin: 0 0 20px;
+    padding: 5px 10px;
+    @media (max-width: 850px) {
+      width: 45%;
+    }
+    @media (max-width: 550px) {
+      width: 90%;
+    }
+  }
+  .friend-link {
+    .name {
+      color: #444;
+      &:hover {
+        color: #222;
+      }
+    }   
+  }
+  .pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .detail {
+    display: inline-block;
+    width: calc(100% - 80px);
+    vertical-align: middle;
+    padding-left: 17px;
+    > .name {
+      font-size: 19px;
+    }
+    > .desc, > .place {
+      font-size: 13px;
+      color: #999;
+      white-space: nowrap; 
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .fa-map-marker {
+      margin-right: 6px;
+    }
+  }
+}

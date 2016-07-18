@@ -10,3 +10,9 @@ FlowingThought - .fl-t
 // discussion
 DiscussionCardLayout - .dcl, .dcl-content
 DiscussionBubble - .db
+
+// profile
+ProfileAboutLayout - .pa-l
+ProfileFriendLayout - .pf-l
+AboutDetailSection - .ad-s
+FriendDetailSection - .fd-s

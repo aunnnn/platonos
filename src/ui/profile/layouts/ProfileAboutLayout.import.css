@@ -1,0 +1,23 @@
+/* profile about layout */
+/* profile friends layout */
+#pa-l, #pf-l {
+  max-width: 950px;
+  padding-bottom: 30px;
+  > .back-link {
+    color: #222;
+    &:hover {
+      color: #444;
+    }
+  }
+  h5 {
+    display: inline-block;
+    font-size: 18px;
+    > .fa-angle-left {
+      margin-right: 20px;
+    }
+  }
+  > label {
+    font-size: 18px;
+    margin: 10px 0 20px;
+  }
+}

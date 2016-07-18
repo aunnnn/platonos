@@ -39,7 +39,7 @@
       }
     }
   }
-  .name {
+  .name-section {
     width: 100%;
     max-width: 630px;
     padding: 0 3%;
@@ -113,12 +113,12 @@
       font-size: 14px;
       margin-bottom: 15px;
     }
-  }
-  .cat-link {
-    text-decoration: none;
-    color: #999;
-    &:hover {
-      color: #222;
+    .cat-link {
+      text-decoration: none;
+      color: #999;
+      &:hover {
+        color: #222;
+      }
     }
   }
   .friend-card {

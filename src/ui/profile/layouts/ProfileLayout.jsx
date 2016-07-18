@@ -37,7 +37,7 @@ class ProfileLayout extends Component {
         {
           // name
         }
-        <div className="name">
+        <div className="name-section">
           <img
             role="presentation"
             className={classNames({ loading: profilePicLoaded })}

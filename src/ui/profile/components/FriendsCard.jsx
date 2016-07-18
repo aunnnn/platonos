@@ -44,10 +44,10 @@ export default class FriendsCard extends Component {
 
     // if userId is not the owner of these friends
     if (userId !== friendsOfUserId) {
-      if (doneLoadingFriends === true) {
+      if (doneLoadingFriends) {
         this.setState({ doneLoadingFriends: false });
       }
-      this.getFriendsData();
+      if (!doneLoadingFriends) this.getFriendsData();
     }
 
     return (

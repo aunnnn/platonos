@@ -1,18 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const AboutCard = ({ followed_categories, work, education, places, userId }) => {
+const AboutCard = ({ followed_categories, work, education, places, userId, isOwner }) => {
   const eduTemp = {
     highschool: 'Suankularb',
     college: [
       'Chulalongkorn University',
     ],
   };
+
   return (
     <div className="about-card card">
       <div className="card-header">
         <label>About</label>
-        <Link to={`/profile/${userId}/about`} className="header-link">Edit</Link>
+        {isOwner ?
+          <Link to={`/profile/${userId}/about`} className="header-link">Edit</Link>
+          : ''
+        }
       </div>
       <div className="content merr-font">
         {
@@ -91,6 +95,23 @@ const AboutCard = ({ followed_categories, work, education, places, userId }) => 
               </div>
             </div>
           }
+          {
+            // place
+            places.born === '' && places.lives === '' ?
+            '' :
+            <div className="live place">
+              <div className="icon">
+                <i className="fa fa-map-marker"></i>
+              </div>
+              <div className="text-wrapper">
+                <p className="text">
+                  {places.lives !== '' ?
+                    places.lives : places.born
+                  }
+                </p>
+              </div>
+            </div>
+          }
       </div>
     </div>);
 };
@@ -101,6 +122,7 @@ AboutCard.propTypes = {
   education: React.PropTypes.array,
   places: React.PropTypes.object,
   userId: React.PropTypes.string,
+  isOwner: React.PropTypes.bool,
 };
 
 export default AboutCard;
