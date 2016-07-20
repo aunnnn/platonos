@@ -16,7 +16,7 @@ export default class PersonalFeed extends React.Component {
     this.renderPost = this.renderPost.bind(this);
   }
 
-  // Render posts by its type
+  // Render posts according to its type
   renderPost(post) {
     const content = post.content;
     if (post.type === 'THOUGHT') {
@@ -29,11 +29,11 @@ export default class PersonalFeed extends React.Component {
           currentUser={this.props.currentUser}
         />
       );
-    } else if (post.type === 'FRIEND_THOUGHT') {
+    } else if (post.type === 'FRIEND_THOUGHT' || post.type === 'MY_THOUGHT') {
       const friendThought = content;
       // return <div>Its Friend's thought man!</div>;
       return (
-        <div>
+        <div key={friendThought._id}>
           <img width="40" height="40" src={friendThought.user_picture} role="presentation" />
           <h5>{friendThought.user_fullname}</h5>
           <p>{friendThought.type} {friendThought.category.title}</p>

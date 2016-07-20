@@ -5,7 +5,8 @@ import { Thoughts } from './thoughts.js';
 import { DraftThoughts } from './draftThoughts.js';
 import { Connections } from '../connection/connections.js';
 import { Actions } from '../feed/actions.js';
-
+import { Feeds } from '../feed/feeds.js';
+import moment from 'moment';
 /*
 ======= Thought methods =======
 */
@@ -66,6 +67,32 @@ Thoughts.methods.insert = new ValidatedMethod({
         } else {
           // no friend
         }
+
+        // Also put my own thought on Feed and Action
+        const embedThought = {
+          thought_id: thoughtId,
+          user_id: this.userId,
+          user_picture: user.appProfile.picture,
+          user_fullname: `${user.appProfile.first_name} ${user.appProfile.last_name}`,
+          type: thought.type,
+          header: thought.header,
+          description: thought.description,
+          category: {
+            title: thought.category.title,
+          },
+          created_at: thought.created_at,
+        };
+        const action = {
+          user_id: this.userId,
+          type: 'MY_THOUGHT',
+          content: embedThought,
+          dispatched: true,
+        };
+        const currentYM = moment().format('YYYYMM');
+        Feeds.update(
+          { user_id: user._id, year_month: currentYM },
+          { $push: { posts: action } }
+        );
       }
     }
     // * end if server

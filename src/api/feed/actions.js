@@ -203,7 +203,7 @@ Actions.makeSchema = (type) => {
   var contentSchemaType = null;
   if (type === 'THOUGHT') {
     contentSchemaType = AnonymousThoughtSchema;
-  } else if (type === 'FRIEND_THOUGHT') {
+  } else if (type === 'FRIEND_THOUGHT' || type === 'MY_THOUGHT') {
     contentSchemaType = FriendThoughtSchema;
   } else if (type === 'ACTIVITY') {
     contentSchemaType = FriendActivitySchema;
@@ -258,11 +258,12 @@ Actions.makeSchema = (type) => {
 
 // we can have multiple schemas here dynamically based on type
 const type1 = 'THOUGHT';
-
 Actions.attachSchema(Actions.makeSchema(type1), { selector: { type: type1 } });
 const type2 = 'FRIEND_THOUGHT';
 Actions.attachSchema(Actions.makeSchema(type2), { selector: { type: type2 } });
-const type3 = 'ACTIVITY';
+const type3 = 'MY_THOUGHT';
 Actions.attachSchema(Actions.makeSchema(type3), { selector: { type: type3 } });
+const type4 = 'ACTIVITY';
+Actions.attachSchema(Actions.makeSchema(type4), { selector: { type: type4 } });
 
 export { Actions };
