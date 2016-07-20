@@ -94,10 +94,10 @@ const AboutCard = ({ followed_categories, work, education, places, userId, isOwn
                 </p>
               </div>
             </div>
-          }
-          {
-            // place
-            places.born === '' && places.lives === '' ?
+        }
+        {
+          // place
+          places.born === '' && places.lives === '' ?
             '' :
             <div className="live place">
               <div className="icon">

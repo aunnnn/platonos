@@ -29,7 +29,7 @@ class NavbarLayout extends Component {
     } = this.props;
 
     return (
-      <nav className="main-nav">
+      <nav id="main-nav">
         <div className="container">
           {
             // logo & motto
@@ -59,14 +59,21 @@ class NavbarLayout extends Component {
                 /> : ''
               }
 
-              <i
-                className={classNames(
-                  'fa', 'fa-comments-fix',
-                  { 'fa-comments-o': activeDropdown !== 'discuss' },
-                  { 'fa-comments': activeDropdown === 'discuss' }
-                )}
-                onClick={() => dispatch(openDropdown('discuss'))}
-              ></i>
+              {/* fa fa-comments-fix in Link for temp. patching purpose */}
+              <Link
+                to="/discussions"
+                className="fa fa-comments-fix discuss-link"
+                activeClassName="active"
+              >
+                <i
+                  className={classNames(
+                    'fa', 'fa-comments-fix',
+                    { 'fa-comments-o': activeDropdown !== 'discuss' },
+                    { 'fa-comments': activeDropdown === 'discuss' }
+                  )}
+                  onClick={() => dispatch(openDropdown('discuss'))}
+                ></i>
+              </Link>
 
               <i
                 className={classNames(

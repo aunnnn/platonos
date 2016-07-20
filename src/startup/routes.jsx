@@ -20,6 +20,7 @@ import ProfileIndexLayout from '../ui/profile/layouts/ProfileIndexLayout.jsx';
 import ProfileFriendsLayout from '../ui/profile/layouts/ProfileFriendsLayout.jsx';
 import ProfileAboutLayout from '../ui/profile/layouts/ProfileAboutLayout.jsx';
 import ThoughtPageContainer from '../ui/thought/containers/ThoughtPageContainer.jsx';
+import DiscussionHubLayout from '../ui/discussion/layouts/DiscussionHubLayout.jsx';
 
 const history = syncHistoryWithStore(browserHistory, Store);
 
@@ -96,6 +97,11 @@ export const renderRoutes = () => (
           }
           <Route path="about" component={ProfileAboutLayout} onEnter={requireAuth} />
         </Route>
+
+        {
+          // platonos.com/discussions
+        }
+        <Route path="/discussions" component={DiscussionHubLayout} onEnter={requireAuth} />
 
         {
           // platonos.com/write
