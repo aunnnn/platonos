@@ -20,19 +20,41 @@ export const UserAppProfileSchema = new SimpleSchema({
     min: 0,
   },
 
-  address: {
-    type: String,
-  },
-
-  'address.born': {
-    type: String,
-  },
-
-  'address.lives': {
-    type: String,
-  },
-
   description: {
+    type: String,
+  },
+
+  friend_ids: {
+    type: Array,
+  },
+
+  followed_categories: {
+    type: Array,
+  },
+
+  work: {
+    type: Array,
+  },
+
+  'education.highschool': {
+    type: Array,
+  },
+
+  'education.college': {
+    type: Array,
+  },
+
+  place: {
+    type: String,
+  },
+
+  'place.born.name': {
+    type: String,
+  },
+
+  // YO FUCK IT USER SCHEMA IS NOT STABLE SO YOU KNOW
+
+  'address.live': {
     type: String,
   },
 
@@ -68,11 +90,17 @@ if (Meteor.isServer) {
       place: {
         born: {
           name: '',
-          geo: '',
+          location: {
+            lat: '',
+            long: '',
+          },
         },
         live: {
           name: '',
-          geo: '',
+          location: {
+            lat: '',
+            long: '',
+          },
         },
       },
 
