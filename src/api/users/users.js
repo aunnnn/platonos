@@ -24,25 +24,25 @@ export const UserAppProfileSchema = new SimpleSchema({
     type: String,
   },
 
-  friend_ids: {
-    type: Array,
-  },
+  // friend_ids: {
+  //   type: Array,
+  // },
 
-  followed_categories: {
-    type: Array,
-  },
+  // followed_categories: {
+  //   type: Array,
+  // },
 
-  work: {
-    type: Array,
-  },
+  // work: {
+  //   type: Array,
+  // },
 
-  'education.highschool': {
-    type: Array,
-  },
+  // 'education.highschool': {
+  //   type: Array,
+  // },
 
-  'education.college': {
-    type: Array,
-  },
+  // 'education.college': {
+  //   type: Array,
+  // },
 
   place: {
     type: String,
