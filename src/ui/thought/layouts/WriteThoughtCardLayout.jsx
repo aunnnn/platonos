@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 
 // collections
 import { Thoughts } from '../../../api/thought/thoughts.js';
+import { Categories } from '../../../api/category/categories.js';
 
 // components
 import HeaderEditor from '../components/HeaderEditor.jsx';
@@ -12,6 +13,7 @@ import DescriptionEditor from '../components/DescriptionEditor.jsx';
 import './WriteThoughtCardLayout.import.css';
 
 class WriteThoughtCard extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +23,8 @@ class WriteThoughtCard extends Component {
       headerText: '',
       descriptionText: '',
       category: '',
+      allCategories: [],
+      doneLoadingAllCategories: false,
     };
     this.toggleDesc = () => this.setState({ hasDesc: !this.state.hasDesc });
     this.setHeadTrue = () => this.setState({ hasHead: true });
@@ -33,6 +37,21 @@ class WriteThoughtCard extends Component {
     };
 
     this.launchThought = this.launchThought.bind(this);
+    this.getAllCategories = this.getAllCategories.bind(this);
+  }
+
+  getAllCategories() {
+    Categories.methods.getAllCategories.call(
+      (err, result) => {
+        if (err) {
+          console.log('cannot get all categories');
+        }
+        this.setState({
+          allCategories: result,
+          doneLoadingAllCategories: true,
+        });
+      }
+    );
   }
 
   launchThought() {
@@ -47,14 +66,15 @@ class WriteThoughtCard extends Component {
     };
 
     // reset state
-    this.state = {
+    this.setState({
       hasHead: false,
       hasDesc: false,
       isGlobal: false,
       headerText: '',
       descriptionText: '',
       category: '',
-    };
+    });
+
     this.refs.headerEditor.reset();
     this.refs.descriptionEditor.reset();
 
@@ -69,11 +89,18 @@ class WriteThoughtCard extends Component {
   }
 
   render() {
-    const { hasHead, hasDesc, isGlobal } = this.state;
+    const { hasHead, hasDesc, isGlobal, doneLoadingAllCategories } = this.state;
     const { router } = this.props;
+
+    if (!doneLoadingAllCategories) this.getAllCategories();
+
     return (
       <div className="write-thought-card-layout">
-        <UpperRow setCategory={this.setCategory} selectedCategory={this.state.category}/>
+        <CategoryDropdown
+          setCategory={this.setCategory}
+          selectedCategory={this.state.category}
+          allCategories={this.state.allCategories}
+        />
         <div className={classNames('header', { hasDesc })}>
           <HeaderEditor
             ref="headerEditor"
@@ -107,14 +134,22 @@ WriteThoughtCard.propTypes = {
   router: PropTypes.object.isRequired,
 };
 
-const UpperRow = ({ setCategory, selectedCategory }) => (
+const CategoryDropdown = ({ setCategory, selectedCategory, allCategories }) => (
   <div className="upper-row">
     <i className="fa fa-lightbulb-o"></i>
     <select id="write-thought-card-category" onChange={setCategory} value={selectedCategory}>
       <option value="" disabled>Choose category..</option>
-      <option value="Science">Science</option>
-      <option value="Politics">Politics</option>
-      <option value="Engineering">Engineering</option>
+      {
+        allCategories.map(
+          category =>
+            <option
+              value={category.title}
+              key={category._id}
+            >
+              {category.title}
+            </option>
+        )
+      }
     </select>
   </div>
 );
@@ -152,9 +187,10 @@ LowerRow.propTypes = {
   launchThought: PropTypes.func.isRequired,
 };
 
-UpperRow.propTypes = {
+CategoryDropdown.propTypes = {
   setCategory: PropTypes.func.isRequired,
   selectedCategory: PropTypes.string.isRequired,
+  allCategories: PropTypes.array,
 };
 
 export default withRouter(WriteThoughtCard);
