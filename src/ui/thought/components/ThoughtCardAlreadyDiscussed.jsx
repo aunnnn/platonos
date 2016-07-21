@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import './ThoughtCardAlreadyDiscussed.import.css';
 
 const ThoughtCardAlreadyDiscussed =
   ({ message, currentUser }) => (
-    <div className="already-discussed action-discuss">
+    <div className="tc-already-discussed tc-action-discuss">
       <div className="wrapper">
         <div style={{ marginBottom: '10px' }}>
           <div

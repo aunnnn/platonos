@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CardActionStar = ({ isStarred, starCount }) => (
-  <div className="action-button">
+  <div className="tc-action-button">
     <i
       className={isStarred ? 'fa fa-star' : 'fa fa-star-o'}
     >

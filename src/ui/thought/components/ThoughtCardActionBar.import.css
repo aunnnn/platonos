@@ -1,4 +1,4 @@
-.action-bar {
+.tc-action-bar {
   width: 100%;
   height: 33px;
   padding: 0 5.5%;
@@ -8,7 +8,7 @@
     display: inline-block;
     float: left;
     vertical-align: middle;
-    .action-button:hover {
+    .tc-action-button:hover {
       color: #222;
     }
   }
@@ -19,7 +19,7 @@
   }
 }
 
-.action-button {
+.tc-action-button {
   display: inline-block;
   margin-right: 10px;
   cursor: pointer;

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import '../../_tools/clamp.js';
 
+import './ThoughtCardContentHeader.import.css';
+
 class ThoughtCardContentHeader extends Component {
   componentDidMount() {
     let dom = this.refs.clampText;
@@ -14,14 +16,14 @@ class ThoughtCardContentHeader extends Component {
       description,
     } = this.props;
     return (
-      <Link className="content" to={`/thought/${thoughtId}`}>
+      <Link className="tc-ch" to={`/thought/${thoughtId}`}>
         <div className="bg">
-        <div className="header">
-          <h5>{header}</h5>
-        </div>
-        <div className="description" ref="clampText">
-          {description}
-        </div>
+          <div className="header">
+            <h5>{header}</h5>
+          </div>
+          <div className="description" ref="clampText">
+            {description}
+          </div>
         </div>
       </Link>
     );

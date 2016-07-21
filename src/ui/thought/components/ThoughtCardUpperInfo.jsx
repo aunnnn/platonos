@@ -1,8 +1,10 @@
 import React from 'react';
 import moment from 'moment';
 
+import './ThoughtCardUpperInfo.import.css';
+
 const ThoughtCardUpperInfo = ({ category, type, currentUser, isOwner, created_at }) => (
-  <div className="category">
+  <div className="tc-ui">
     <i className="fa fa-lightbulb-o"></i>
     <label>{category}</label>
     {isOwner ?

@@ -4,6 +4,7 @@ import moment from 'moment';
 
 // components
 import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
+import ThoughtCardLayoutFriend from '../../thought/layouts/ThoughtCardLayoutFriend.jsx';
 import WriteThoughtCardLayout from '../../thought/layouts/WriteThoughtCardLayout.jsx';
 import { OrbitLoader } from '../../app/components/Loader.jsx';
 
@@ -33,15 +34,10 @@ export default class PersonalFeed extends React.Component {
       const friendThought = content;
       // return <div>Its Friend's thought man!</div>;
       return (
-        <div key={friendThought._id}>
-          <img width="40" height="40" src={friendThought.user_picture} role="presentation" />
-          <h5>{friendThought.user_fullname}</h5>
-          <p>{friendThought.type} {friendThought.category.title}</p>
-          <h5>{friendThought.header}</h5>
-          <p>{friendThought.description}</p>
-          <p>{moment(friendThought.created_at).fromNow()}</p>
-          <hr />
-        </div>
+        <ThoughtCardLayoutFriend
+          currentUser={this.props.currentUser}
+          friendThought={friendThought}
+        />
       );
     } else if (post.type === 'ACTIVITY') {
       const activity = content;
@@ -81,3 +77,13 @@ PersonalFeed.propTypes = {
   feedsReady: React.PropTypes.bool,
   currentUser: React.PropTypes.object,
 };
+
+// <div key={friendThought._id}>
+//           <img width="40" height="40" src={friendThought.user_picture} role="presentation" />
+//           <h5>{friendThought.user_fullname}</h5>
+//           <p>{friendThought.type} {friendThought.category.title}</p>
+//           <h5>{friendThought.header}</h5>
+//           <p>{friendThought.description}</p>
+//           <p>{moment(friendThought.created_at).fromNow()}</p>
+//           <hr />
+//         </div>
