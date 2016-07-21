@@ -4,7 +4,6 @@ import './DiscussionListItem.import.css';
 
 const DiscussionListItem = ({ discussion }) => (
   <div className="dl-i">
-    {console.log(discussion)}
     {
       discussion.first_message
     }
