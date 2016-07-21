@@ -9,7 +9,10 @@ class DiscussionCollection extends Mongo.Collection {
 const Discussions = new DiscussionCollection('Discussions');
 
 if (Meteor.isServer) {
-  Discussions._ensureIndex({ 'thought._id': 1 });
+  Discussions._ensureIndex({
+    'thought._id': 1,
+    created_by: 1,
+  });
 }
 
 Discussions.deny({

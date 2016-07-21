@@ -1,0 +1,21 @@
+/* discussion filter menu */
+#df-m {
+  height: 60px;
+  padding: 20px 10px 0;
+  border-bottom: 1px solid #ddd;
+  > .item {
+    display: inline-block;
+    font-weight: 300;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+    &.active {
+      color: #222;
+      font-weight: 600;
+    }
+    &:hover {
+      color: #222;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+/* discussion hub layout */
+#dh-l {
+  background-color: #fff;
+  min-height: 1000px;
+  .sidebar {
+    width: 300px;
+    border-right: 1px solid #ddd;
+    min-height: 1000px;
+  }
+}

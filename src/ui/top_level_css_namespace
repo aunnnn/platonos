@@ -10,6 +10,9 @@ FlowingThought - .fl-t
 // discussion
 DiscussionCardLayout - .dcl, .dcl-content
 DiscussionBubble - .db
+DiscussionFilterMenu - #df-m
+DiscussionListLayout - #dl-l
+DiscussionListItem - .dl-i
 
 // profile
 ProfileAboutLayout - .pa-l

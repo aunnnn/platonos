@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
-// import './fixtures.js';
+import './fixtures.js';
 import './register-api.js';
 
 // =========BACKGROUND JOBS=====================
