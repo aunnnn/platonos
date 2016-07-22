@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import DiscussionFilterMenu from '../components/DiscussionFilterMenu.jsx';
-import DiscussionListItem from '../components/DiscussionListItem.jsx';
+import DiscussionListItemGroup from '../components/DiscussionListItemGroup.jsx';
 import { OrbitLoader } from '../../app/components/Loader.jsx';
 
 export default class DiscussionListLayout extends Component {
@@ -22,8 +22,9 @@ export default class DiscussionListLayout extends Component {
     const { discussionFilter } = this.state;
     const {
       discussionReady,
-      discussions,
+      allDiscussions,
     } = this.props;
+
     return (
       <div id="dl-l">
         <DiscussionFilterMenu
@@ -32,10 +33,10 @@ export default class DiscussionListLayout extends Component {
         />
         {
           discussionReady ?
-            discussions.map(discussion => (
-              <DiscussionListItem
-                discussion={discussion}
-                key={discussion._id}
+            allDiscussions.map(discussionGroup => (
+              <DiscussionListItemGroup
+                discussionGroup={discussionGroup}
+                key={discussionGroup.thought._id}
               />
             ))
             :
@@ -50,5 +51,5 @@ export default class DiscussionListLayout extends Component {
 DiscussionListLayout.propTypes = {
   currentUser: React.PropTypes.object,
   discussionReady: React.PropTypes.bool,
-  discussions: React.PropTypes.array,
+  allDiscussions: React.PropTypes.array,
 };

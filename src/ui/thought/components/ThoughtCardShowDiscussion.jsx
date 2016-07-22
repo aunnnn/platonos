@@ -1,7 +1,8 @@
 import React from 'react';
+import './ThoughtCardShowDiscussion.import.css';
 
 const ThoughtCardShowDiscussion = ({ discussions }) => (
-  <div className="show-discussion">
+  <div className="tc-show-discussion">
     <div className="header">
       <i className="fa fa-comment"></i>
       <label>Some global discussions</label>

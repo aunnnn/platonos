@@ -22,7 +22,7 @@ class ThoughtCardActionBar extends Component {
     const { type, isOwner } = this.props;
     const { activeDrop } = this.state;
     return (
-      <div className="action-bar">
+      <div className="tc-action-bar">
         {type === 'GLOBAL' ?
           <div className="left">
             <CardActionStar isStarred={false} starCount={12} />
@@ -31,7 +31,7 @@ class ThoughtCardActionBar extends Component {
           : ''
         }
         {!isOwner ?
-          <div className="right action-button">
+          <div className="right tc-action-button">
             <div className="item">
               <i className="fa fa-bookmark-o"></i>
               {/*<span className="text">Save</span>*/}

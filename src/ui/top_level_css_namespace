@@ -6,6 +6,10 @@ CategoryFeedHeader - .cfh
 ThoughtCardLayout - .tcl
 ThoughtPageLayout - #tpl
 FlowingThought - .fl-t
+ThoughtCardUpperInfo - .tc-ui
+ThoughtCardContentHeader - .tc-ch
+ThoughtCardAlreadyDiscussed - .tc-already-discussed
+ThoughtCardActionBar - .tc-action-bar, .tc-action-button
 
 // discussion
 DiscussionCardLayout - .dcl, .dcl-content
@@ -13,6 +17,8 @@ DiscussionBubble - .db
 DiscussionFilterMenu - #df-m
 DiscussionListLayout - #dl-l
 DiscussionListItem - .dl-i
+DiscussionListItemGroup - .dl-ig
+
 
 // profile
 ProfileAboutLayout - .pa-l

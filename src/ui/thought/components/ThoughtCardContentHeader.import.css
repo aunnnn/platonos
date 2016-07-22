@@ -1,0 +1,28 @@
+/* thought card content header */
+.tc-ch {
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    > .bg {
+      background-color: #FEF9FB;
+    }
+  }
+  .header h5 {
+    font-weight: 600;
+    font-size: 21px;
+    margin: 16px 0 6px;
+    letter-spacing: 0.15px;
+    color: #222;
+    @media (max-width: 550px) {
+      font-size: 19px;
+      letter-spacing: 0.05px;
+      color: #000;
+    }
+  }
+  .description {
+    font-family: 'Merriweather';  
+    font-size: 14px;
+    color: #5d5d5d;
+    padding: 5px 0 3px;
+  }
+}

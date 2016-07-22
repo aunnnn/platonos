@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CardActionShare = () => (
-  <div className="action-button">
+  <div className="tc-action-button">
     <i className="fa fa-share"></i>
     <p>Share</p>
   </div>

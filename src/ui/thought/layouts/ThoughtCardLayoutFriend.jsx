@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 
 // collections
@@ -13,9 +13,7 @@ import ThoughtCardShowDiscussion from '../components/ThoughtCardShowDiscussion.j
 import ThoughtCardAlreadyDiscussed from '../components/ThoughtCardAlreadyDiscussed.jsx';
 import { OrbitLoader } from '../../app/components/Loader.jsx';
 
-import './ThoughtCardLayout.import.css';
-
-class ThoughtCardLayout extends React.Component {
+export default class ThoughtCardLayoutFriend extends Component {
 
   constructor(props) {
     super(props);
@@ -33,7 +31,7 @@ class ThoughtCardLayout extends React.Component {
   }
 
   loadMyDiscussion() {
-    const thoughtId = this.props.thought._id;
+    const thoughtId = this.props.friendThought._id;
     Discussions.methods.getMyDiscussion.call({ thoughtId }, (err, result) => {
       if (err) {
         this.setState({
@@ -57,7 +55,7 @@ class ThoughtCardLayout extends React.Component {
     const {
       type,
       _id: thoughtId,
-     } = this.props.thought;
+     } = this.props.friendThought;
 
     if (type === 'GLOBAL') {
       Discussions.methods.getPreviewDiscussions.call({ thoughtId }, (err, result) => {
@@ -86,7 +84,7 @@ class ThoughtCardLayout extends React.Component {
         }
         return (
           <ThoughtCardActionDiscuss
-            thought={this.props.thought}
+            thought={this.props.friendThought}
             loadPreviewDiscussions={this.loadPreviewDiscussions}
             loadMyDiscussion={this.loadMyDiscussion}
             currentUser={currentUser}
@@ -106,7 +104,7 @@ class ThoughtCardLayout extends React.Component {
 
   render() {
     const {
-      thought: {
+      friendThought: {
         _id,
         category,
         type,
@@ -164,27 +162,20 @@ class ThoughtCardLayout extends React.Component {
             thoughtId={_id}
           />
         </div>
-
-        {
-          // show global discussion
-        }
-        {isPage ? '' : previewDiscussionCmp}
         {
           // action & start discuss
         }
         <div className="lower-action">
           <ThoughtCardActionBar type={type} isOwner={isOwner} />
-          {this.renderActionDiscussComponent(isOwner, currentUser)}
+          {this.renderActionDiscussComponent(false, currentUser)}
         </div>
       </div>
     );
   }
 }
 
-ThoughtCardLayout.propTypes = {
-  thought: React.PropTypes.object,
+ThoughtCardLayoutFriend.propTypes = {
+  friendThought: React.PropTypes.object,
   isPage: React.PropTypes.bool,
   currentUser: React.PropTypes.object,
 };
-
-export default ThoughtCardLayout;

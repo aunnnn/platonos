@@ -1,0 +1,9 @@
+/* discussion list item group */
+.dl-ig {
+  .group-header {
+    cursor: pointer;
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
