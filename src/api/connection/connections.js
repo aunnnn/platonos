@@ -29,12 +29,6 @@ const ConnectedFriendSchema = new SimpleSchema({
   },
   connected_at: {
     type: Date,
-    // autoValue: function() {
-    //   if (this.isInsert) {
-    //     return new Date;
-    //   }
-    // },
-    // denyUpdate: true,
     label: 'Date of connection',
   },
   discussion_id: {

@@ -108,5 +108,4 @@ Thoughts.publicFields = {
   created_at: 1,
 };
 
-
 export { Thoughts };
