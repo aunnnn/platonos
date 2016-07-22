@@ -167,7 +167,7 @@ export default class ThoughtCardLayoutFriend extends Component {
         }
         <div className="lower-action">
           <ThoughtCardActionBar type={type} isOwner={isOwner} />
-          {this.renderActionDiscussComponent(false, currentUser)}
+          {this.renderActionDiscussComponent(isOwner, currentUser)}
         </div>
       </div>
     );
