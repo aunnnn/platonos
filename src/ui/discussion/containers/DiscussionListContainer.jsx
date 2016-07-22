@@ -28,6 +28,6 @@ export default createContainer(({ currentUser }) => {
           thought: value[0].thought,
           discussions: value,
         }
-      )).value(),
+      )).value().reverse(), // super hack motherfucker
   };
 }, DiscussionListLayout);

@@ -6,5 +6,12 @@
     width: 300px;
     border-right: 1px solid #ddd;
     min-height: 1000px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .discussion-room {
+    width: calc(100% - 300px);
+    display: inline-block;
+    vertical-align: top;
   }
 }

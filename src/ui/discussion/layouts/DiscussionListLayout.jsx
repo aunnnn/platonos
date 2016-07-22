@@ -10,19 +10,30 @@ export default class DiscussionListLayout extends Component {
     super(props);
     this.state = {
       discussionFilter: 'ongoing', // ongoing, friend, leaved
+      activeGroup: '',
     };
     this.changeDiscussionFilter = this.changeDiscussionFilter.bind(this);
+    this.changeActiveGroup = this.changeActiveGroup.bind(this);
   }
 
   changeDiscussionFilter(filter) {
     this.setState({ discussionFilter: filter });
   }
 
+  changeActiveGroup(groupId) {
+    if (this.state.activeGroup === groupId) {
+      this.setState({ activeGroup: '' });
+    } else {
+      this.setState({ activeGroup: groupId });
+    }
+  }
+
   render() {
-    const { discussionFilter } = this.state;
+    const { discussionFilter, activeGroup } = this.state;
     const {
       discussionReady,
       allDiscussions,
+      currentUser,
     } = this.props;
 
     return (
@@ -37,6 +48,9 @@ export default class DiscussionListLayout extends Component {
               <DiscussionListItemGroup
                 discussionGroup={discussionGroup}
                 key={discussionGroup.thought._id}
+                changeActiveGroup={this.changeActiveGroup}
+                isActive={activeGroup === discussionGroup.thought._id}
+                currentUser={currentUser}
               />
             ))
             :
