@@ -32,7 +32,7 @@ export default class FeedLayout extends Component {
           </div>
           <div className="three columns right">
             <MsgFromFounders
-              name={currentUser.first_name}
+              name={currentUser.appProfile.first_name}
             />
           </div>
         </div>
