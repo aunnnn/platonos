@@ -1,0 +1,20 @@
+/* discussion room layout */
+#dr-l {
+  > .header {
+    height: 60px;
+    border-bottom: 1px solid #ddd;
+  }
+  > .message-wrapper {
+    height: 470px;
+    background-color: #fcfcfc;
+    padding: 15px;
+  }
+  > .message-editor {
+    height: 150px;
+    border-top: 1px solid #ddd;
+  }
+  .room-placeholder {
+    text-align: center;
+    color: #999;
+  }
+}

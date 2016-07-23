@@ -18,6 +18,7 @@ DiscussionFilterMenu - #df-m
 DiscussionListLayout - #dl-l
 DiscussionListItem - .dl-i
 DiscussionListItemGroup - .dl-ig
+DiscussionRoomLayout - .dr-l
 
 
 // profile

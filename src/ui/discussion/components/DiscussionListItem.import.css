@@ -6,15 +6,25 @@
   border-bottom: 1px solid #ddd;
   background-color: #fcfcfc;
   &:hover {
-    border-left-color: #873C58;
+    border-left-color: #972952;
   }
   .merr-font {
-    font-size: 13px;
+    font-size: 12px;
     margin: 0 0 5px;
     color: #222;
   }
   .time {
     font-size: 9px;
     color: #999;
+  }
+}
+
+.dl-i-link.active {
+  .dl-i {
+    border-left-color: #bc3366;
+    background-color: #972952;
+    .merr-font, .time {
+      color: #fff;
+    }
   }
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import classNames from 'classnames';
 
 import DiscussionListItem from './DiscussionListItem.jsx';
 import './DiscussionListItemGroup.import.css';
 
-export default class DiscussionListItemGroup extends Component {
+class DiscussionListItemGroup extends Component {
 
   constructor(props) {
     super(props);
@@ -12,21 +13,18 @@ export default class DiscussionListItemGroup extends Component {
 
   render() {
     const {
-      discussionGroup,
-      isActive,
-      changeActiveGroup,
-      currentUser,
+      discussionGroup, isActive, changeActiveGroup,
+      changeActiveDiscussion, currentUser,
+      activeDiscussion, router, groupThatHasActiveDiscussion,
     } = this.props;
 
-    console.log(discussionGroup.thought);
     const isOwner = currentUser._id === discussionGroup.thought.user_id;
+    const hasActiveDiscussion = groupThatHasActiveDiscussion === discussionGroup.thought._id;
     return (
       <div className="dl-ig">
         <div
-          className={classNames('group-header', { active: isActive })}
-          onClick={() => {
-            changeActiveGroup(discussionGroup.thought._id);
-          }}
+          className={classNames('group-header', { active: isActive }, { hasActiveDiscussion })}
+          onClick={() => { changeActiveGroup(discussionGroup.thought._id); }}
         >
           <i className="fa fa-lightbulb-o"></i>
           <label>{discussionGroup.thought.category}</label>
@@ -41,15 +39,26 @@ export default class DiscussionListItemGroup extends Component {
             </div> : ''
           }
         </div>
-        {isActive ?
-          discussionGroup.discussions.map(discussion =>
-            <DiscussionListItem
-              discussion={discussion}
-              key={discussion._id}
-            />
-          )
-          :
-          ''
+
+        {// render discussions
+          isActive ?
+            discussionGroup.discussions.map(discussion => {
+              if (!hasActiveDiscussion) {
+                if (activeDiscussion !== discussion._id) {
+                  if (router.isActive(`/discussions/${discussion._id}`)) {
+                    changeActiveDiscussion(discussion._id, discussionGroup.thought._id);
+                  }
+                }
+              }
+              return (
+                <DiscussionListItem
+                  discussion={discussion}
+                  key={discussion._id}
+                />
+              );
+            })
+            :
+            ''
         }
       </div>
     );
@@ -60,5 +69,12 @@ DiscussionListItemGroup.propTypes = {
   discussionGroup: React.PropTypes.object,
   isActive: React.PropTypes.bool,
   changeActiveGroup: React.PropTypes.func,
+  changeActiveDiscussion: React.PropTypes.func,
   currentUser: React.PropTypes.object,
+  activeDiscussion: React.PropTypes.string,
+  router: React.PropTypes.object,
+  groupThatHasActiveDiscussion: React.PropTypes.string,
 };
+
+export default withRouter(DiscussionListItemGroup);
+

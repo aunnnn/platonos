@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import DiscussionFilterMenu from '../components/DiscussionFilterMenu.jsx';
 import DiscussionListItemGroup from '../components/DiscussionListItemGroup.jsx';
 import { OrbitLoader } from '../../app/components/Loader.jsx';
+import './DiscussionListLayout.import.css';
 
 export default class DiscussionListLayout extends Component {
 
@@ -11,9 +12,12 @@ export default class DiscussionListLayout extends Component {
     this.state = {
       discussionFilter: 'ongoing', // ongoing, friend, leaved
       activeGroup: '',
+      activeDiscussion: '',
+      groupThatHasActiveDiscussion: '',
     };
     this.changeDiscussionFilter = this.changeDiscussionFilter.bind(this);
     this.changeActiveGroup = this.changeActiveGroup.bind(this);
+    this.changeActiveDiscussion = this.changeActiveDiscussion.bind(this);
   }
 
   changeDiscussionFilter(filter) {
@@ -28,12 +32,20 @@ export default class DiscussionListLayout extends Component {
     }
   }
 
+  changeActiveDiscussion(discussionId, groupId) {
+    this.setState({
+      activeDiscussion: discussionId,
+      groupThatHasActiveDiscussion: groupId,
+    });
+  }
+
   render() {
-    const { discussionFilter, activeGroup } = this.state;
     const {
-      discussionReady,
-      allDiscussions,
-      currentUser,
+      discussionFilter, activeGroup, activeDiscussion,
+      groupThatHasActiveDiscussion,
+    } = this.state;
+    const {
+      discussionReady, allDiscussions, currentUser,
     } = this.props;
 
     return (
@@ -42,6 +54,7 @@ export default class DiscussionListLayout extends Component {
           discussionFilter={discussionFilter}
           changeDiscussionFilter={this.changeDiscussionFilter}
         />
+        <div className="list-wrapper">
         {
           discussionReady ?
             allDiscussions.map(discussionGroup => (
@@ -49,14 +62,17 @@ export default class DiscussionListLayout extends Component {
                 discussionGroup={discussionGroup}
                 key={discussionGroup.thought._id}
                 changeActiveGroup={this.changeActiveGroup}
+                changeActiveDiscussion={this.changeActiveDiscussion}
                 isActive={activeGroup === discussionGroup.thought._id}
                 currentUser={currentUser}
+                activeDiscussion={activeDiscussion}
+                groupThatHasActiveDiscussion={groupThatHasActiveDiscussion}
               />
             ))
             :
             <OrbitLoader />
         }
-        {discussionFilter}
+        </div>
       </div>
     );
   }

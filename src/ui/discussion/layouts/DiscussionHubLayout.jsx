@@ -21,7 +21,15 @@ export default class DiscussionHubLayout extends Component {
               currentUser,
             })
             :
-            <div>no room yo</div>
+            <div id="dr-l">
+              <div className="header">
+              </div>
+              <div className="message-wrapper">
+                <p className="room-placeholder">No discussion selected</p>
+              </div>
+              <div className="message-editor">
+              </div>
+            </div>
           }
         </div>
       </div>

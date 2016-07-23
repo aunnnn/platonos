@@ -1,15 +1,16 @@
 /* discussion hub layout */
 #dh-l {
   background-color: #fff;
-  min-height: 1000px;
-  .sidebar {
+  height: 680px;
+  > .sidebar {
     width: 300px;
+    height: 680px;
+    overflow: hidden;
     border-right: 1px solid #ddd;
-    min-height: 1000px;
     display: inline-block;
     vertical-align: top;
   }
-  .discussion-room {
+  > .discussion-room {
     width: calc(100% - 300px);
     display: inline-block;
     vertical-align: top;

@@ -4,9 +4,12 @@
     padding: 10px 6% 15px;
     cursor: pointer;
     border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ddd;
     &.active {
       background-color: #FEF9FB;
+    }
+    &.hasActiveDiscussion {
+      border-bottom-color: #972952;
+      box-shadow: inset 1px -20px 30px -15px hexa(#bc3366, 0.3);
     }
     &:hover {
       background-color: #FEF9FB;
