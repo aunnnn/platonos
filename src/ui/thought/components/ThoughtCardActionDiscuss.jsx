@@ -82,7 +82,7 @@ class ThoughtCardActionDiscuss extends Component {
     const { isSubDiscuss } = this.props;
     const hasText = editorState.getCurrentContent().hasText();
     return (
-      <div className="action-discuss">
+      <div className="tc-action-discuss">
         <Editor
           editorState={editorState}
           onChange={this.onChange}

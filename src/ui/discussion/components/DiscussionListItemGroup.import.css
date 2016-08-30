@@ -1,9 +1,65 @@
 /* discussion list item group */
 .dl-ig {
   .group-header {
+    padding: 10px 6% 15px;
     cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    &.active {
+      background-color: #FEF9FB;
+    }
+    &.hasActiveDiscussion {
+      border-bottom-color: #972952;
+      box-shadow: inset 1px -20px 30px -15px hexa(#bc3366, 0.3);
+    }
     &:hover {
-      background-color: #eee;
+      background-color: #FEF9FB;
+    }
+    > .fa-lightbulb-o {
+      vertical-align: middle;
+    }
+    > label {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 8px;
+      font-size: 11px;
+      &.own {
+        color: #972952;
+        float: right;
+        margin: 5px 0 0;
+      }
+    }
+    > h5 {
+      font-weight: 600;
+      font-size: 14px;
+      margin: 6px 0 6px;
+      letter-spacing: 0.15px;
+      color: #222;
+      @media (max-width: 550px) {
+        font-size: 19px;
+        letter-spacing: 0.05px;
+        color: #000;
+      }
+    }
+  }
+  .noti {
+    margin-top: 10px;
+    .item {
+      display: inline-block;
+      padding: 2px 8px 3px;
+      margin: 0 8px 0 0;
+      font-size: 11px;
+      /* font-weight: 00; */
+      border-radius: 10px;
+      &.new-message {
+        color: #fff;
+        background-color: #873C58;
+        border: 2px solid #5B142F;
+      }
+      &.new-discussion {
+        color: #972952;
+        background-color: #fff;
+        border: 2px solid #972952;
+      }
     }
   }
 }

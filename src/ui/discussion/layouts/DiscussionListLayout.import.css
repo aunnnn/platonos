@@ -1,0 +1,7 @@
+/* discussion list layout */
+#dl-l {
+  > .list-wrapper {
+    height: 620px;
+    overflow: scroll;
+  }
+}

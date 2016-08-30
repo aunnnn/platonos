@@ -16,7 +16,21 @@ export default class DiscussionHubLayout extends Component {
           <DiscussionListContainer currentUser={currentUser} />
         </div>
         <div className="discussion-room">
-          {children}
+          {children ?
+            children && React.cloneElement(children, {
+              currentUser,
+            })
+            :
+            <div id="dr-l">
+              <div className="header">
+              </div>
+              <div className="message-wrapper">
+                <p className="room-placeholder">No discussion selected</p>
+              </div>
+              <div className="message-editor">
+              </div>
+            </div>
+          }
         </div>
       </div>
     );

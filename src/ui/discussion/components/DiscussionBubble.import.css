@@ -8,4 +8,7 @@
   &.self {
     background-color: #fef9fb;
   }
+  &.inRoom {
+    max-width: 360px;
+  }
 }
