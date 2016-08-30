@@ -4,9 +4,7 @@ import classNames from 'classnames';
 import './DiscussionBubble.import.css';
 
 const DiscussionBubble = ({ text, isSelf, inRoom }) => (
-  <div
-    className={classNames('db merr-font', { self: isSelf }, { inRoom })}
-  >
+  <div className={classNames('db merr-font', { self: isSelf }, { inRoom })}>
     {text}
   </div>
 );

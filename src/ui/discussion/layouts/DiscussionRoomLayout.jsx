@@ -9,7 +9,9 @@ export default class DiscussionRoomLayout extends Component {
     return (
       <div id="dr-l">
         <div className="header">
-
+          <div className="anno-hint">
+            <i className=""></i>
+          </div>
         </div>
         <div className="message-wrapper">
           <DiscussionBubble text="Yo wahts upp" inRoom />

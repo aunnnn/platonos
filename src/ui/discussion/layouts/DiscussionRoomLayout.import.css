@@ -2,6 +2,7 @@
 #dr-l {
   > .header {
     height: 60px;
+    padding: 20px 10px 0;
     border-bottom: 1px solid #ddd;
   }
   > .message-wrapper {
