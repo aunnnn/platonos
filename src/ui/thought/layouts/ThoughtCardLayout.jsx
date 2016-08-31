@@ -33,7 +33,7 @@ class ThoughtCardLayout extends React.Component {
   }
 
   loadMyDiscussion() {
-    const thoughtId = this.props.thought._id;
+    const thoughtId = this.props.thought.thought_id;
     Discussions.methods.getMyDiscussion.call({ thoughtId }, (err, result) => {
       if (err) {
         this.setState({
@@ -45,6 +45,7 @@ class ThoughtCardLayout extends React.Component {
             myDiscussion: null,
           });
         } else {
+          console.log(`my discussion for thoughtId ${thoughtId} is found!`);
           this.setState({
             myDiscussion: result,
           });
@@ -56,7 +57,7 @@ class ThoughtCardLayout extends React.Component {
   loadPreviewDiscussions() {
     const {
       type,
-      _id: thoughtId,
+      thought_id: thoughtId,
      } = this.props.thought;
 
     if (type === 'GLOBAL') {
@@ -107,7 +108,7 @@ class ThoughtCardLayout extends React.Component {
   render() {
     const {
       thought: {
-        _id,
+        thought_id,
         category,
         type,
         header,
@@ -161,7 +162,7 @@ class ThoughtCardLayout extends React.Component {
           <ThoughtCardContentHeader
             header={header}
             description={description}
-            thoughtId={_id}
+            thoughtId={thought_id}
           />
         </div>
 
