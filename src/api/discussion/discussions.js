@@ -65,7 +65,30 @@ Discussions.schema = new SimpleSchema({
     denyUpdate: true,
   },
 
+  user_1_is_connecting: {
+    type: Boolean,
+    autoValue: function() {
+      if (this.isInsert) {
+        return true;
+      }
+    },
+  },
+
+  user_2_is_connecting: {
+    type: Boolean,
+    autoValue: function() {
+      if (this.isInsert) {
+        return true;
+      }
+    },
+  },
 });
+
+// every fields are published except these two,
+Discussions.publicFields = {
+  user_1_is_connecting: 0,
+  user_2_is_connecting: 0,
+};
 
 Discussions.attachSchema(Discussions.schema);
 

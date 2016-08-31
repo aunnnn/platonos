@@ -88,6 +88,7 @@ Thoughts.methods.insert = new ValidatedMethod({
           content: embedThought,
           dispatched: true,
         };
+        Actions.insert(action);
         const currentYM = moment().format('YYYYMM');
         Feeds.update(
           { user_id: user._id, year_month: currentYM },

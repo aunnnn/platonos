@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
-// import './fixtures.js';
+import './fixtures.js';
 import './register-api.js';
 
 // =========BACKGROUND JOBS=====================
@@ -13,6 +13,9 @@ import './background-jobs/feed-update.js'; // Undispatched Action => Feed
 //  meteor --settings development.json
 
 Meteor.startup(() => {
+
+  console.log('db url: ' + process.env.MONGO_URL);
+  
   if (Meteor.settings.facebook) {
     ServiceConfiguration.configurations.upsert({
       service: 'facebook',
