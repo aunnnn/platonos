@@ -13,7 +13,6 @@ export default class PersonalFeed extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.renderPost = this.renderPost.bind(this);
   }
 
@@ -22,10 +21,10 @@ export default class PersonalFeed extends React.Component {
     const content = post.content;
     if (post.type === 'THOUGHT') {
       const thought = content;
-      console.log(`render anon. thought ${JSON.stringify(thought)}`);
+      // console.log(`render anon. thought ${JSON.stringify(thought)}`);
       return (
         <ThoughtCardLayout
-          key={thought._id}
+          key={thought.thought_id}
           thought={thought}
           currentUser={this.props.currentUser}
         />
@@ -35,6 +34,7 @@ export default class PersonalFeed extends React.Component {
       // return <div>Its Friend's thought man!</div>;
       return (
         <ThoughtCardLayoutFriend
+          key={friendThought.thought_id}
           currentUser={this.props.currentUser}
           friendThought={friendThought}
         />
