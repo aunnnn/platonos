@@ -474,7 +474,7 @@ div {
 .container {
   position: relative;
   width: 100%;
-  max-width: 1001px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }

@@ -35,7 +35,7 @@ class AppLayout extends Component {
           // Navbar & Padding
         }
         <NavbarLayout currentUser={currentUser} />
-        <div style={{ height: '55px', width: '100%' }}></div>
+        <div style={{ height: '50px', width: '100%' }}></div>
         {
           // Children
         }
