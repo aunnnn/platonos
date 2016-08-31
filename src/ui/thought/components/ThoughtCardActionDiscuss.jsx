@@ -26,7 +26,7 @@ class ThoughtCardActionDiscuss extends Component {
   createDiscussion() {
     const {
       thought: {
-        _id,
+        thought_id,
         user_id,
         category,
         header,
@@ -38,7 +38,7 @@ class ThoughtCardActionDiscuss extends Component {
 
     const discussion = {
       thought: {
-        _id,
+        _id: thought_id,
         user_id,
         header,
         description,
@@ -49,7 +49,7 @@ class ThoughtCardActionDiscuss extends Component {
       latest_message: this.state.discussionMessage,
       last_active: new Date(),
     };
-    console.log(`will create discussion ${discussion}`);
+    console.log(`will create discussion ${JSON.stringify(discussion)}`);
     // reset discussion message state
     this.setState({
       discussionMessage: '',
@@ -61,9 +61,10 @@ class ThoughtCardActionDiscuss extends Component {
       { discussion },
       (err, result) => {
         if (err) {
-          console.log(err.reason);
+          console.log(`error insert discussion: ${err.reason}`);
         } else {
           // reset all after create a discussion for ThoughtCardLayout
+          console.log(`did insert discussion: ${result}`);
           this.props.loadPreviewDiscussions();
           this.props.loadMyDiscussion();
         }
