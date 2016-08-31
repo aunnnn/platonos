@@ -79,3 +79,10 @@ Meteor.startup(() => {
   undispatchedActionsToFeedJob.start();
   console.log("BG-Job: 'feed-update'");
 });
+
+//  May use this instead since it's simpler.
+// if (Meteor.isServer) {
+//   Meteor.setInterval(function(){
+//     console.log("test interval from server");
+//   }, 5000);
+// }
