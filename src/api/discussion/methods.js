@@ -88,6 +88,7 @@ Discussions.methods.setCurrentUserConnectionState = new ValidatedMethod({
     if (this.userId === discussion.thought.user_id) {
       Discussions.update({ _id: discussion_id }, { $set: { user1_is_connecting: is_connecting } });
     } else if (this.userId === discussion.created_by) {
+      // if current user is discussioner
       Discussions.update({ id: discussion_id }, { $set: { user_2_is_connecting: is_connecting } });
     } else {
       throw new Meteor.Error('discussions.setCurrentUserConnectionState.wrongUser',
