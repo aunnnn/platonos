@@ -21,6 +21,16 @@ Discussions.deny({
   remove() { return true; },
 });
 
+Discussions.formatEmbedThought = (thought) => {
+  const embedThought = {
+    _id: thought._id,
+    user_id: thought.user_id,
+    header: thought.header,
+    description: thought.description,
+    category: thought.category.title,
+  };
+  return embedThought;
+};
 
 Discussions.schema = new SimpleSchema({
 
