@@ -58,7 +58,7 @@ Meteor.startup(() => {
           { $push: { posts: targetAction } },
           (err) => {
             if (err) {
-              console.log(`Update error: ${err.reason}`);
+              console.log(`Update error: ${err}`);
             } else {
               Actions.update(
                 { _id: targetAction._id },
