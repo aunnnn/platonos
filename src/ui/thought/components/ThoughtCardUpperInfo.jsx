@@ -3,20 +3,38 @@ import moment from 'moment';
 
 import './ThoughtCardUpperInfo.import.css';
 
-const ThoughtCardUpperInfo = ({ category, type, currentUser, isOwner, created_at }) => (
+const ThoughtCardUpperInfo = ({ category, type, userPicture, isOwner, created_at }) => (
   <div className="tc-ui">
     <i className="fa fa-lightbulb-o"></i>
     <label>{category}</label>
+    {/*
     {isOwner ?
       <div className="owner">
+        <div
+          className="owner-pic"
+          style={{ backgroundImage: `url(${userPicture})` }}
+        ></div>
+        <label>{moment(created_at).fromNow()}</label>
+      </div>
+      : <div className="owner">
         <div
           className="owner-pic"
           style={{ backgroundImage: `url(${currentUser.appProfile.picture})` }}
         ></div>
         <label>{moment(created_at).fromNow()}</label>
       </div>
-      : ''
     }
+  */}
+
+    <div className="owner">
+      <div
+        className="owner-pic"
+        style={{ backgroundImage: `url(${userPicture})` }}
+      ></div>
+      <label>{moment(created_at).fromNow()}</label>
+    </div>
+
+
     {type === 'GLOBAL' ?
       <div className="type">
         <label>Global</label>
@@ -30,7 +48,7 @@ const ThoughtCardUpperInfo = ({ category, type, currentUser, isOwner, created_at
 ThoughtCardUpperInfo.propTypes = {
   category: React.PropTypes.string.isRequired,
   type: React.PropTypes.string.isRequired,
-  currentUser: React.PropTypes.object,
+  userPicture: React.PropTypes.string.isRequired,
   isOwner: React.PropTypes.bool,
   created_at: React.PropTypes.string,
 };
