@@ -1,6 +1,7 @@
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
+import { Thoughts } from '../thought/thoughts.js';
 class ActionCollection extends Mongo.Collection {
 
 }
@@ -194,13 +195,42 @@ const FriendActivitySchema = new SimpleSchema({
   },
 });
 
+// Convenient function to generate Friend Thought Action
+// Use Case: When a user is launching his thought, use this function
+//          to make a FriendThought Action for each of the user's friend
+//          to get notified about this launch.
+Actions.actionWithFriendThought = (thoughtId, receiverUserId, myThought = false) => {
+  const thought = Thoughts.findOne({ _id: thoughtId });
+  const user_id = thought.user_id;
+  const user = Meteor.users.findOne({ _id: user_id });
+  const embedThought = {
+    thought_id: thought._id,
+    user_id: user._id,
+    user_picture: user.appProfile.picture,
+    user_fullname: `${user.appProfile.first_name} ${user.appProfile.last_name}`,
+    type: thought.type,
+    header: thought.header,
+    description: thought.description,
+    category: {
+      title: thought.category.title,
+    },
+    created_at: thought.created_at,
+  };
+  const action = {
+    user_id: receiverUserId,
+    type: myThought ? 'MY_THOUGHT' : 'FRIEND_THOUGHT',
+    content: embedThought,
+    dispatched: false,
+  };
+  return action;
+};
+
 Actions.subSchema_FriendActivity = FriendActivitySchema;
 Actions.subSchema_FriendThought = FriendThoughtSchema;
 Actions.subSchema_AnonymousThought = AnonymousThoughtSchema;
 
 Actions.makeSchema = (type) => {
-
-  var contentSchemaType = null;
+  let contentSchemaType = null;
   if (type === 'THOUGHT') {
     contentSchemaType = AnonymousThoughtSchema;
   } else if (type === 'FRIEND_THOUGHT' || type === 'MY_THOUGHT') {
