@@ -31,7 +31,7 @@ export default class ThoughtCardLayoutFriend extends Component {
   }
 
   loadMyDiscussion() {
-    const thoughtId = this.props.friendThought._id;
+    const thoughtId = this.props.friendThought.thought_id;
     Discussions.methods.getMyDiscussion.call({ thoughtId }, (err, result) => {
       if (err) {
         this.setState({
@@ -54,7 +54,7 @@ export default class ThoughtCardLayoutFriend extends Component {
   loadPreviewDiscussions() {
     const {
       type,
-      _id: thoughtId,
+      thought_id: thoughtId,
      } = this.props.friendThought;
 
     if (type === 'GLOBAL') {
@@ -105,7 +105,9 @@ export default class ThoughtCardLayoutFriend extends Component {
   render() {
     const {
       friendThought: {
-        _id,
+        thought_id,
+        user_picture,
+        user_fullname,
         category,
         type,
         header,
@@ -122,6 +124,7 @@ export default class ThoughtCardLayoutFriend extends Component {
     } = this.state;
 
     const isOwner = currentUser._id === byUserId;
+    const userPicture = isOwner ? currentUser.appProfile.picture : user_picture;
 
     // global discusssions
     let previewDiscussionCmp = null;
@@ -152,14 +155,13 @@ export default class ThoughtCardLayoutFriend extends Component {
           <ThoughtCardUpperInfo
             category={category.title}
             type={type}
-            currentUser={currentUser}
-            isOwner={isOwner}
+            userPicture={userPicture}
             created_at={created_at}
           />
           <ThoughtCardContentHeader
             header={header}
             description={description}
-            thoughtId={_id}
+            thoughtId={thought_id}
           />
         </div>
         {
