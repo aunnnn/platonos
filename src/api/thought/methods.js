@@ -60,8 +60,7 @@ Thoughts.methods.insert = new ValidatedMethod({
               dispatched: false,
             };
 
-            // insert action to this friend
-            // console.log(`action ${JSON.stringify(action)}`);
+            // insert action to this friend, waiting to be dispatched by bg process...
             Actions.insert(action);
           });
         } else {
