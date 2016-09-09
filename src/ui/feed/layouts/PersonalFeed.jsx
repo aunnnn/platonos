@@ -1,19 +1,84 @@
-import { Meteor } from 'meteor/meteor';
 import React from 'react';
-import moment from 'moment';
+
+// collection
+import { Feeds } from '../../../api/feed/feeds.js';
 
 // components
 import ThoughtCardLayout from '../../thought/layouts/ThoughtCardLayout.jsx';
 import ThoughtCardLayoutFriend from '../../thought/layouts/ThoughtCardLayoutFriend.jsx';
 import WriteThoughtCardLayout from '../../thought/layouts/WriteThoughtCardLayout.jsx';
 import { OrbitLoader } from '../../app/components/Loader.jsx';
-
+import { _ } from 'meteor/underscore';
 
 export default class PersonalFeed extends React.Component {
 
   constructor(props) {
     super(props);
     this.renderPost = this.renderPost.bind(this);
+    this.fetchPost = this.fetchPost.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.state = {
+      feedReady: true,
+      feedErrorMessage: null,
+    };
+  }
+
+  componentDidMount() {
+    this.handleScroll = _.throttle(this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
+    this.fetchPost();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  fetchPost() {
+    const {
+      feedReady,
+    } = this.state;
+
+    if (!feedReady) { return; }
+
+    const {
+      currentYMSequence: yearMonthSequenceCount,
+      currentYMStartIndex: startIndex,
+    } = this.props;
+
+    const endIndex = startIndex + 5;
+    console.log(`ym: ${yearMonthSequenceCount}, start: ${startIndex}, end: ${endIndex}`);
+
+    // show loading
+    this.setState({
+      feedReady: false,
+    });
+
+    Feeds.methods.getPosts.call({
+      yearMonthSequenceCount,
+      startIndex,
+      endIndex,
+    }, (err, result) => {
+      if (err) {
+        console.log(`load more error ${err}`);
+        this.setState({
+          feedReady: true,
+          feedErrorMessage: `We cannot retrieve your feed: ${err}`,
+        });
+      } else {
+        this.props.didFetchMorePosts(result);
+        this.setState({
+          feedReady: true,
+          feedErrorMessage: null,
+        });
+        console.log(`load more result success ${result.length}`);
+      }
+    });
+  }
+
+  handleScroll(event) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      this.fetchPost();
+    }
   }
 
   // Render posts according to its type
@@ -45,37 +110,42 @@ export default class PersonalFeed extends React.Component {
       return (
         <div>{JSON.stringify(activity)}</div>
       );
-    } else {
-      console.log(`Something wrong, what type is this? ${post.type}`);
-      return <div>Something wrong</div>;
     }
+    console.log(`Something wrong, what type is this? ${post.type}`);
+    return <div>Something wrong</div>;
   }
 
   render() {
     const {
-      feeds,
-      feedsReady,
+      posts,
     } = this.props;
+    const {
+      feedReady,
+      feedErrorMessage,
+    } = this.state;
 
+    console.log(`feed render ready? ${feedReady}`);
+    const errorMessage = feedErrorMessage !== null ? feedErrorMessage : '';
 
-    // because we use 'find', so we only need to get first item (if we can).
-    const userPosts = feeds.length >= 1 ? feeds[0].posts : [];
-    userPosts.reverse();
     return (
-      <div>
+      <div ref="feedContent">
         <WriteThoughtCardLayout />
-        {feedsReady ?
-            userPosts.map((post) => this.renderPost(post))
-            : (<OrbitLoader />)}
+        {posts.map((post) => this.renderPost(post))}
+        {feedReady ? errorMessage : (<OrbitLoader />)}
       </div>
     );
   }
 }
 
 PersonalFeed.propTypes = {
-  feeds: React.PropTypes.array,
-  feedsReady: React.PropTypes.bool,
-  currentUser: React.PropTypes.object,
+  // feeds: React.PropTypes.array,
+  // feedsReady: React.PropTypes.bool,
+  // itemsCount: React.PropTypes.object,
+  currentYMSequence: React.PropTypes.number.isRequired,
+  currentYMStartIndex: React.PropTypes.number.isRequired,
+  posts: React.PropTypes.array,
+  didFetchMorePosts: React.PropTypes.func.isRequired,
+  currentUser: React.PropTypes.object.isRequired,
 };
 
 // <div key={friendThought._id}>

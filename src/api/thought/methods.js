@@ -60,8 +60,7 @@ Thoughts.methods.insert = new ValidatedMethod({
               dispatched: false,
             };
 
-            // insert action to this friend
-            // console.log(`action ${JSON.stringify(action)}`);
+            // insert action to this friend, waiting to be dispatched by bg process...
             Actions.insert(action);
           });
         } else {
@@ -89,7 +88,7 @@ Thoughts.methods.insert = new ValidatedMethod({
           dispatched: true,
         };
         Actions.insert(action);
-        const currentYM = moment().format('YYYYMM');
+        const currentYM = Feeds.currentYearMonthCode();
         Feeds.update(
           { user_id: user._id, year_month: currentYM },
           { $push: { posts: action } }
