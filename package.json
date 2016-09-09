@@ -13,6 +13,10 @@
   "license": "ISC",
   "description": "",
   "eslintConfig": {
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "allowImportExportEverywhere": true
+    },
     "plugins": [
       "meteor"
     ],
@@ -20,6 +24,9 @@
       "airbnb",
       "plugin:meteor/recommended"
     ],
+    "settings": {
+      "import/resolver": "meteor"
+    },
     "rules": {
       "meteor/eventmap-params": [
         2,
@@ -88,6 +95,7 @@
   "devDependencies": {
     "babel": "^6.3.26",
     "babel-core": "^6.3.26",
+    "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-react-transform": "^2.0.0",
@@ -97,12 +105,13 @@
     "babel-preset-stage-0": "^6.3.13",
     "css-loader": "^0.23.0",
     "css-mqpacker": "^5.0.1",
-    "eslint": "^2.9.0",
+    "eslint": "^2.13.1",
     "eslint-config-airbnb": "^8.0.0",
-    "eslint-plugin-import": "^1.6.1",
-    "eslint-plugin-jsx-a11y": "^1.0.4",
-    "eslint-plugin-meteor": "^3.5.2",
-    "eslint-plugin-react": "^5.0.1",
+    "eslint-import-resolver-meteor": "^0.3.3",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^1.5.5",
+    "eslint-plugin-meteor": "^3.6.0",
+    "eslint-plugin-react": "^5.2.2",
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^0.9.1",
     "faker": "^3.1.0",
