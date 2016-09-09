@@ -9,6 +9,12 @@ class FeedCollection extends Mongo.Collection {
 
 const Feeds = new FeedCollection('Feeds');
 
+// Get current year month code to handle with Feeds
+Feeds.currentYearMonthCode = () => {
+  const ym = moment().format('YYYYMM');
+  return parseInt(ym, 10); // radix 10 (e.g. base 10)
+};
+
 Feeds.deny({
   insert() { return true; },
   update() { return true; },
@@ -22,13 +28,13 @@ Feeds.schema = new SimpleSchema({
     label: 'User that owns the feed',
   },
 
+  // This should be Int so it can be sorted easily.
   year_month: {
-    type: String,
-    regEx: /^[0-9]+$/,
+    type: Number,
     label: 'YEARMONTH code (e.g. 201606)',
     autoValue: function() {
       if (this.isInsert) {
-        return moment().format('YYYYMM');
+        return Feeds.currentYearMonthCode();
       }
     },
     denyUpdate: true,

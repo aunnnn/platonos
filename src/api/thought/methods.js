@@ -88,7 +88,7 @@ Thoughts.methods.insert = new ValidatedMethod({
           dispatched: true,
         };
         Actions.insert(action);
-        const currentYM = moment().format('YYYYMM');
+        const currentYM = Feeds.currentYearMonthCode();
         Feeds.update(
           { user_id: user._id, year_month: currentYM },
           { $push: { posts: action } }
