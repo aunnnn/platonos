@@ -8,8 +8,8 @@
       background-color: #FEF9FB;
     }
     &.hasActiveDiscussion {
-      border-bottom-color: #972952;
-      box-shadow: inset 1px -20px 30px -15px hexa(#bc3366, 0.3);
+      // border-bottom-color: #FEF9FB;
+      // box-shadow: inset 1px -20px 30px -15px hexa(#bc3366, 0.3);
     }
     &:hover {
       background-color: #FEF9FB;
